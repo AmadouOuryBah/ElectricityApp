@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Electricity.BusinessLogic.DTO_s.RenterDto>
+
+<table class="table my-4">
+    <caption>list of Renters </caption>
+    <thead class="table-dark">
+
+        <tr>
+            <th scope="col">Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var renter in Model)
+        {
+
+            <tr>
+                <td>@renter.Name</td>
+            </tr>
+
+        }
+    </tbody>
+    <a btn btn-primary-lg asp-action="Create" asp-controller="Renter">create</a>
+</table>

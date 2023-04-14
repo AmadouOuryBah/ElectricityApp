@@ -1,0 +1,97 @@
+﻿@using Electricity.BusinessLogic.DTO_s;
+@model Electricity.BusinessLogic.Requests.ElectricalMeterRequest
+
+
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="my-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="ElectricalMeter">Electrical meters</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add electrical meter</li>
+    </ol>
+</nav>
+<form class="row g-3 my-4" method="post" asp-controller="ElectricalMeter">
+    <div class="col-md-4">
+
+        <label asp-for="Name" class="form-label">device name</label>
+        <select  asp-for="Name" class="form-select">
+
+            <option selected>Choose device</option>
+
+            @foreach(var equipement in (List<ElectricalEquipementDto>)ViewData["equipements"])
+            {
+
+                <option>@equipement.Name</option>
+            }
+
+        </select>
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="Power" class="form-label">power</label>
+        <input type="number" asp-for="Power" class="form-control" id="">
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="Coefficient" class="form-label">coefficient</label>
+        <input asp-for="Coefficient" type="number" class="form-control">
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="NumberOfDevice" class="form-label">quantity</label>
+        <input asp-for="NumberOfDevice" type="number" class="form-control">
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="Time" class="form-label">time</label>
+        <input asp-for="Time" type="number" class="form-control">
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="RoomId" class="form-label">room info</label>
+        <select asp-for="RoomId" class="form-select">
+
+            <option selected>Choose room</option>
+            @foreach(var room in (List<RoomDto>)ViewData["rooms"])
+            {
+
+                <option value=@room.Id>@room.NumberOfRoom</option>
+            }
+
+        </select>
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label">building</label>
+        <input readOnly type="text" class="form-control">
+    </div>
+
+     <div class="col-md-6">
+        <label  class="form-label">renter</label>
+        <input readOnly type="text" class="form-control">
+    </div>
+  
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary"> add electrical meter </button>
+    </div>
+</form>  
+@section Scripts{
+
+   <script>
+
+        async function getRoom(){
+
+         let url = "https://localhost:7258/ElectricalMeter/GetRoom";
+
+            const data = await fetch"https://localhost:7258/ElectricalMeter/GetRoom");
+
+        console.log(data)
+
+    }
+
+    getRoom();
+
+   </script>
+
+   
+}
+
+

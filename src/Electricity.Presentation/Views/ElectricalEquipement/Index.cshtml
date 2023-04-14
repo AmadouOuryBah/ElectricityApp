@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Electricity.BusinessLogic.DTO_s.ElectricalEquipementDto>
+
+<table class="table my-4">
+    <thead class="table-dark">
+
+        <tr>
+            <th scope="col">Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var device in Model)
+        {
+
+            <tr>
+                <td>@device.Name</td>
+            </tr>
+
+        }
+    </tbody>
+    <a btn btn-primary-lg asp-action="Create" asp-controller="ElectricalEquipement">create</a>
+</table>

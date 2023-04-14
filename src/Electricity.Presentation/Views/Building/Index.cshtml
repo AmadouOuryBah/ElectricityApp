@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Electricity.BusinessLogic.DTO_s.BuildingDto>
+
+<table class="table my-4">
+    <caption>list of buildings </caption>
+    <thead class="table-dark">
+        
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Floor</th>
+            <th scope="col">City</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var building in Model)
+        {
+           
+            <tr>
+                <td>@building.Name</td>
+                <td>@building.Address</td>
+                <td>@building.Floor</td>
+                <td>@building.City</td>
+            </tr>
+           
+        }
+    </tbody>
+    <a btn btn-primary-lg asp-action="Create" asp-controller="Building">create</a>
+</table>

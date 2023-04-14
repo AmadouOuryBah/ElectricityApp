@@ -1,0 +1,33 @@
+﻿@model Electricity.BusinessLogic.Requests.BuildingRequest
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="my-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="ElectricalMeter">Electrical meters</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Add building</li>
+    </ol>
+</nav>
+<form class="row g-3 my-4" method = "post" asp-controller="Building">
+    
+    <div class="col-md-4">
+        <label asp-for="Name" class="form-label">Name</label>
+        <input asp-for="Name" class="form-control" >
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="Address" class="form-label">Address</label>
+        <input asp-for="Address" class="form-control" id="inputCoefficient">
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="Floor" class="form-label">Floor</label>
+        <input asp-for="Floor" class="form-control" >
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="City" class="form-label">City</label>
+        <input asp-for="City" class="form-control" >
+    </div>
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary"> add new building </button>
+    </div>
+</form>

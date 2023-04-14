@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Electricity.BusinessLogic.DTO_s.ElectricalMeterDto>
+
+
+<table class="table my-4">
+    
+     <caption>List of electrical meter</caption>
+    <thead class="table-dark">
+       
+        <tr>
+          <th scope="col">name</th>
+          <th scope="col">power</th>
+          <th scope="col">quantity</th>
+          <th scope="col">coeffcient</th>
+          <th scope="col">room nber</th>
+          <th scope="col">address</th>
+          <th scope="col">city</th>
+            <th scope="col">renter</th>
+       </tr>
+
+    </thead>
+    <tbody>
+        @foreach (var electricalMeter in Model)
+        {
+            <tr>
+                <td>@electricalMeter.Name</td>
+                <td>@electricalMeter.Power</td>
+                <td>@electricalMeter.NumberOfDevice</td>
+                <td>@electricalMeter.Coefficient</td>
+              @*  <td>@electricalMeter.Room.NumberOfRoom</td>
+                <td>@electricalMeter.Room.Building.Address</td>
+                <td>@electricalMeter.Room.Building.City</td>
+                <td>@electricalMeter.Room.Renter.Name</td*@>
+
+            </tr>
+        }
+    </tbody>
+     <a btn btn-primary-lg asp-action="Create" asp-controller="ElectricalMeter">create</a>
+</table>
+
