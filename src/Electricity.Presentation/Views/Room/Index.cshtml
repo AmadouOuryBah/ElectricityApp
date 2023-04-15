@@ -8,6 +8,7 @@
             <th scope="col">Room Number</th>
             <th scope="col">Renter</th>
             <th scope="col">Building</th>
+            <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -18,6 +19,7 @@
                <td>@room.NumberOfRoom</td>
                <td>@room.Renter.Name</td>
                <td>@room.Building.Name</td>
+               <td><a class="btn btn-secondary" href="Room/Edit/@room.Id">edit</a><a class="btn btn-danger" href="">delete</a></td>
             </tr>
 
         }

@@ -64,10 +64,11 @@
     </div>
     
     <div class="col-md-4">
-        <label asp-for="BuildingId" class="form-label">Building</label>
-        <select asp-for="BuildingId" class="form-select">
+        <label  class="form-label">Building</label>
+        <select  class="form-select">
 
             <option selected>Choose room</option>
+           
 
         </select>
     </div>
@@ -87,9 +88,5 @@
     </div>
 </form>  
 
-@code{
-    private async Task<RoomDto> GetItemAsync(){
-        return await _roomService.GetAllAsync();
-    }
-}
+
 

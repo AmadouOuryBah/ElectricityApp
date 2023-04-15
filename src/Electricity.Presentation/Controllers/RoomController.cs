@@ -34,7 +34,27 @@ namespace Electricity.Presentation.Controllers
             return View();
         }
 
-      
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+       
+            ViewData["building"] = await _buildingService.GetAllAsync();
+            ViewData["renter"] = await _renterService.GetAllAsync();
+            ViewData["room"] = await _roomService.GetById(id);
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(RoomRequest room)
+        {
+
+            await _roomService.UpdateAsync(room);
+
+            return RedirectToAction("Index");
+        }
+
+
 
         [HttpPost]
         public async Task<IActionResult> Create(RoomRequest room)

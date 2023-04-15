@@ -26,7 +26,9 @@ namespace Electricity.DataAccess.Repositories
 
         public Task<List<Building>> GetAllAsync()
         {
-            return buildings.ToListAsync();
+            return buildings
+                .Include(building => building.Rooms)
+                .ToListAsync();
         }
 
         public Task<Building?> GetByIdAsync(int id)

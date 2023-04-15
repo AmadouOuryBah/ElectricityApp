@@ -46,21 +46,6 @@ namespace Electricity.Presentation.Controllers
             return RedirectToAction("Index");
         }
 
-        [Microsoft.AspNetCore.Mvc.HttpGet]
-        
-        //public async Task<Microsoft.AspNetCore.Mvc.JsonResult> GetRoom(int id)
-        //{
-        //    var result = await _roomService.GetById(id);
 
-        //    return Json(new { data = result }, JsonRequestBehavior.AllowGet) ;
-        //}
-
-
-        //public async Task<IActionResult> Update(int id)
-        //{
-        //    var electrical = await _electricalMeterservice.GetAllAsync(id);
-
-        //    return View(electrical);
-        //}
     }
 }
