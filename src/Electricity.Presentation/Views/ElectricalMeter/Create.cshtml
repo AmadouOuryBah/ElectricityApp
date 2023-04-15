@@ -1,5 +1,9 @@
 ﻿@using Electricity.BusinessLogic.DTO_s;
+@using Electricity.BusinessLogic.Services.Interface;
 @model Electricity.BusinessLogic.Requests.ElectricalMeterRequest
+@inject IBuilding buildingService
+@inject IRoom _roomService
+@inject IRenter _renterService
 
 
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="my-3">
@@ -21,7 +25,7 @@
 
                 <option>@equipement.Name</option>
             }
-
+            @Html
         </select>
     </div>
 
@@ -46,8 +50,8 @@
     </div>
 
     <div class="col-md-4">
-        <label asp-for="RoomId" class="form-label">room info</label>
-        <select asp-for="RoomId" class="form-select">
+        <label asp-for="RoomId" class="form-label">room</label>
+        <select asp-for="RoomId" class="form-select" >
 
             <option selected>Choose room</option>
             @foreach(var room in (List<RoomDto>)ViewData["rooms"])
@@ -55,6 +59,15 @@
 
                 <option value=@room.Id>@room.NumberOfRoom</option>
             }
+
+        </select>
+    </div>
+    
+    <div class="col-md-4">
+        <label asp-for="BuildingId" class="form-label">Building</label>
+        <select asp-for="BuildingId" class="form-select">
+
+            <option selected>Choose room</option>
 
         </select>
     </div>
@@ -73,25 +86,10 @@
         <button type="submit" class="btn btn-primary"> add electrical meter </button>
     </div>
 </form>  
-@section Scripts{
 
-   <script>
-
-        async function getRoom(){
-
-         let url = "https://localhost:7258/ElectricalMeter/GetRoom";
-
-            const data = await fetch"https://localhost:7258/ElectricalMeter/GetRoom");
-
-        console.log(data)
-
+@code{
+    private async Task<RoomDto> GetItemAsync(){
+        return await _roomService.GetAllAsync();
     }
-
-    getRoom();
-
-   </script>
-
-   
 }
-
 

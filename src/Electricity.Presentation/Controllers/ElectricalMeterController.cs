@@ -1,13 +1,13 @@
 ﻿using Electricity.BusinessLogic.DTO_s;
 using Electricity.BusinessLogic.Requests;
-using Electricity.BusinessLogic.Services;
 using Electricity.BusinessLogic.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
+using System.Web.Mvc;
 
 namespace Electricity.Presentation.Controllers
 {
-   
-    public class ElectricalMeterController : Controller
+
+    public class ElectricalMeterController : Microsoft.AspNetCore.Mvc.Controller
     {
         private readonly IElectricalMeter _electricalMeterservice;
         private readonly IElectricalEquipement _electricalEquipementService;
@@ -29,7 +29,7 @@ namespace Electricity.Presentation.Controllers
             return View(electricalMeters);
         }
 
-        [HttpGet]
+        [Microsoft.AspNetCore.Mvc.HttpGet]
         public async Task<IActionResult> Create()
         {
             ViewData["equipements"] = await _electricalEquipementService.GetAllAsync();
@@ -38,7 +38,7 @@ namespace Electricity.Presentation.Controllers
             return View();
         }
 
-        [HttpPost]
+        [Microsoft.AspNetCore.Mvc.HttpPost]
         public async Task<IActionResult> Create(ElectricalMeterRequest request)
         {
             await _electricalMeterservice.AddAsync(request);
@@ -46,12 +46,14 @@ namespace Electricity.Presentation.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        public RoomDto? GetRoom(int id)
-        {
+        [Microsoft.AspNetCore.Mvc.HttpGet]
+        
+        //public async Task<Microsoft.AspNetCore.Mvc.JsonResult> GetRoom(int id)
+        //{
+        //    var result = await _roomService.GetById(id);
 
-            return _roomService.GetById(id);
-        }
+        //    return Json(new { data = result }, JsonRequestBehavior.AllowGet) ;
+        //}
 
 
         //public async Task<IActionResult> Update(int id)

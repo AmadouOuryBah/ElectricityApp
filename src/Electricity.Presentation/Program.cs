@@ -30,6 +30,16 @@ internal class Program
         builder.Services.AddScoped<IRenter, RenterService>();
         builder.Services.AddScoped<IGenericRepository<Building>, BuildingRepository>();
         builder.Services.AddScoped<IBuilding, BuildingService>();
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("MyPolicy", policy =>
+            {
+                policy.AllowAnyHeader();
+                policy.AllowAnyOrigin();
+                policy.AllowAnyMethod();
+
+            });
+        });
 
         var app = builder.Build();
 
@@ -41,6 +51,7 @@ internal class Program
             app.UseHsts();
         }
 
+        app.UseCors("MyPolicy");
         app.UseHttpsRedirection();
         app.UseStaticFiles();
 
