@@ -7,9 +7,9 @@ namespace Electricity.Presentation.Controllers
 {
     public class ElectricalEquipementController : Controller
     {
-        private readonly IElectricalEquipement _electricalEquipementService;
+        private readonly IElectricityEquipement _electricalEquipementService;
 
-        public ElectricalEquipementController(IElectricalEquipement electricalEquipementService)
+        public ElectricalEquipementController(IElectricityEquipement electricalEquipementService)
         {
             _electricalEquipementService = electricalEquipementService;
         }

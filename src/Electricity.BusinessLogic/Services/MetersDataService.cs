@@ -53,7 +53,7 @@ namespace Electricity.BusinessLogic.Services
         {
             var meterData = await _repository.GetByIdAsync(id);
 
-            return _mapper.Map<>(meterData);
+            return _mapper.Map<MetersDataDto>(meterData);
         }
 
         public async  Task<MetersDataDto> UpdateAsync(MetersDataDto metersData)

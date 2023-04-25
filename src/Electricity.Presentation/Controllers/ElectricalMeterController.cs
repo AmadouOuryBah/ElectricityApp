@@ -9,12 +9,12 @@ namespace Electricity.Presentation.Controllers
 
     public class ElectricalMeterController : Microsoft.AspNetCore.Mvc.Controller
     {
-        private readonly IElectricalMeterService _electricalMeterservice;
-        private readonly IElectricalEquipement _electricalEquipementService;
+        private readonly IElectricityMeterService _electricalMeterservice;
+        private readonly IElectricityEquipement _electricalEquipementService;
         private readonly IRoomService _roomService;
 
-        public ElectricalMeterController(IElectricalMeterService electricalMeterservice,
-            IElectricalEquipement electricalEquipementService,
+        public ElectricalMeterController(IElectricityMeterService electricalMeterservice,
+            IElectricityEquipement electricalEquipementService,
             IRoomService roomService)
         {
             _electricalMeterservice = electricalMeterservice;
@@ -58,7 +58,7 @@ namespace Electricity.Presentation.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(ElectricalMeterDto electriclMeter)
+        public async Task<IActionResult> Edit(ElectricityMeterDto electriclMeter)
         {
 
             await _electricalMeterservice.UpdateAsync(electriclMeter);
@@ -74,7 +74,7 @@ namespace Electricity.Presentation.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(ElectricalMeterDto electricalMeterDto)
+        public async Task<IActionResult> Delete(ElectricityMeterDto electricalMeterDto)
         {
             await _electricalMeterservice.DeleteAsync(electricalMeterDto.Id);
 

@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+
+using Electricity.BusinessLogic.DTO_s;
+using Electricity.BusinessLogic.Requests;
 
 namespace Electricity.BusinessLogic.Services.Interface
 {
-    internal interface IRoomElectricalEquipementService
+    public interface IRoomElectricalEquipementService
     {
+        Task<List<RoomElectricalEquipementDto>> GetAllAsync();
+        Task<RoomElectricalEquipementDto> GetById(int id);
+        Task<RoomDto> AddAsync(RoomElectricalEquipementRequest item);
+        Task<RoomElectricalEquipementDto> UpdateAsync(RoomElectricalEquipementDto item);
+        Task<string> DeleteAsync(int id);
     }
 }

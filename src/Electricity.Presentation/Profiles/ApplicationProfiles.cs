@@ -16,7 +16,7 @@ namespace Electricity.Presentation.Profiles
 
             CreateMap<ElectricalMeterRequest, ElectricalMeter>()
             .ReverseMap();
-            CreateMap<ElectricalMeter, ElectricalMeterDto>()
+            CreateMap<ElectricalMeter, ElectricityMeterDto>()
             .ReverseMap();
 
             CreateMap<RoomRequest, Room>()

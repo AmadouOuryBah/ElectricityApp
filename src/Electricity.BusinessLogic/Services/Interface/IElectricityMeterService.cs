@@ -4,12 +4,12 @@ using Electricity.BusinessLogic.Requests;
 
 namespace Electricity.BusinessLogic.Services.Interface
 {
-    public interface IElectricalMeterService 
+    public interface IElectricityMeterService 
     {
-        Task<List<ElectricalMeterDto>> GetAllAsync();
-        Task<ElectricalMeterDto> GetById(int id);
-        Task<ElectricalMeterDto> AddAsync(ElectricalMeterRequest electrical);
-        Task<ElectricalMeterDto> UpdateAsync(ElectricalMeterDto electrical);
+        Task<List<ElectricityMeterDto>> GetAllAsync();
+        Task<ElectricityMeterDto> GetById(int id);
+        Task<ElectricityMeterDto> AddAsync(ElectricityMeterRequest electricity);
+        Task<ElectricityMeterDto> UpdateAsync(ElectricityMeterDto electricity);
         Task DeleteAsync(int id);
 
         

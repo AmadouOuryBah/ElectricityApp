@@ -11,6 +11,6 @@ namespace Electricity.BusinessLogic.DTO_s
         public int RoomName { get; set; }
         public string RenterName { get; set; }
         public double EnergyCumsumed { get; set; }
-        public List<ElectricalMeterDto> ElectricalMeters { get; set; }
+        public List<ElectricityMeterDto> ElectricalMeters { get; set; }
     }
 }

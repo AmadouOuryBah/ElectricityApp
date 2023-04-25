@@ -7,7 +7,7 @@ namespace Electricity.BusinessLogic.DTO_s
         public string Name { get; set; }
         public int FactoryNumber { get; set; }
 
-        public BuildingDto Building { get; set; }
+       
 
     }
 }

@@ -37,10 +37,11 @@ namespace Electricity.BusinessLogic.Services
 
         public async Task<string> DeleteAsync(int id)
         {
-           var room =  await _repository.GetByIdAsync(room.Id);
+           var room =  await _repository.GetByIdAsync(id);
 
             _repository.Delete(room);
-            _unitOfWork.SaveChangesAsync();
+           await  _unitOfWork.SaveChangesAsync();
+           
             return "room deleted ";
         }
 

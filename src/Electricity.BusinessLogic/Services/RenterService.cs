@@ -44,9 +44,25 @@ namespace Electricity.BusinessLogic.Services
             return _mapper.Map<List<RenterDto>>(renters);
         }
 
-        public Task<RenterDto> UpdateAsync(int id, RenterRequest renter)
+        public async Task<RenterDto> UpdateAsync(int id, RenterDto renter)
         {
-            throw new NotImplementedException();
+            var renterFound = await GetById(renter.Id);
+
+            renterFound.Name = renter.Name;
+           
+            _repository.Update(renterFound);
+            await _unitOfWork.SaveChangesAsync();
+
+            return _mapper.Map<RenterDto>(renterFound);
+        }
+
+
+        private async Task<Renter> GetById(int id)
+        {
+            var renter = await _repository.GetByIdAsync(id);
+
+            return renter;
+
         }
     }
 }

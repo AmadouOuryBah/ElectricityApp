@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
 namespace Electricity.BusinessLogic.Requests
 {
-    internal class RoomElectricalEquipementRequest
+    public class RoomElectricalEquipementRequest
     {
+        Task<List<RoomElectricalEquipementDto>> GetAllAsync();
+        Task<RoomElectricalEquipementDto> GetById(int id);
+        Task<RoomElectricalEquipementDto> AddAsync(RoomElectricalEquipementRequest roomEkipmnt);
+        Task<RoomElectricalEquipementDto> UpdateAsync(RoomElectricalEquipementRequest roomEkipmnt);
+        Task<string> DeleteAsync(int id);
     }
 }

@@ -56,8 +56,14 @@ namespace Electricity.BusinessLogic.Services
 
             buildingFound.Name = building.Name;
             buildingFound.Address = building.Address;
-   
             buildingFound.City = building.City;
+            buildingFound.ElectricityMeterId = building.ElectricityMeterId;
+            buildingFound.HeatMeterId = building.HeatMeterId;
+            buildingFound.WaterMeterId = building.WaterMeterId;
+            buildingFound.BuildingArea = building.BuildingArea;
+
+
+            ;
             _repository.Update(buildingFound);
             await _unitOfWork.SaveChangesAsync();
 

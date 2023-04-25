@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+
+using Electricity.BusinessLogic.DTO_s;
+using Electricity.BusinessLogic.Requests;
 
 namespace Electricity.BusinessLogic.Services.Interface
 {
-    internal interface IWaterMeterService
+    public  interface IWaterMeterService
     {
+        Task<List<WaterMeterDto>> GetAllAsync();
+        Task<WaterMeterDto> GetById(int id);
+        Task<WaterMeterDto> AddAsync(WaterMeterRequest item);
+        Task<WaterMeterDto> UpdateAsync(WaterMeterDto item);
+        Task<string> DeleteAsync(int id);
     }
 }

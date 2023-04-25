@@ -8,7 +8,7 @@ using Electricity.DataAccess.Repositories.Interface;
 
 namespace Electricity.BusinessLogic.Services
 {
-    public class ElectricalEquipementService : IElectricalEquipement
+    public class ElectricalEquipementService : IElectricityEquipement
     {
 
         public readonly IGenericRepository<ElectricalEquipment> _genericRepository;
@@ -68,7 +68,7 @@ namespace Electricity.BusinessLogic.Services
             var deviceFound = await _genericRepository.GetByIdAsync(id);
 
             if (deviceFound is not null)
-                return deviceFound
+                return deviceFound;
 
             throw new NotFoundException("electricalEquipment with this id does not exist");
         }

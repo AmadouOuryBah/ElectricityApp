@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Electricity.DataAccess.Entities
 {
-    internal class Schedule
+    public  class Schedule
     {
+        public int Id { get; set; }
+        public int RoomId { get; set; }
+        public Room Room { get; set; }
+        public int Month { get; set; }
+        public int Year { get; set; }
+        public int TotalOfDay { get; set; }
     }
 }

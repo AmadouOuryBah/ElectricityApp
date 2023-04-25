@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Electricity.BusinessLogic.Services.Interface
 {
-    public interface IElectricalEquipement
+    public interface IElectricityEquipement
     {
         Task<List<ElectricalEquipementDto>> GetAllAsync();
         Task<ElectricalEquipementDto> AddAsync(ElectricalEquipementRequest electricalEquipementRequest);

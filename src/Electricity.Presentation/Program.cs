@@ -21,9 +21,9 @@ internal class Program
         .UseSqlServer(builder.Configuration.GetConnectionString("Default")));
         builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
         builder.Services.AddScoped<IGenericRepository<ElectricalEquipment>, ElectricalEquipmentRepository>();
-        builder.Services.AddScoped<IElectricalEquipement, ElectricalEquipementService>();
-        builder.Services.AddScoped<IGenericRepository<ElectricalMeter>, ElectricalMeterRepository>();
-        builder.Services.AddScoped<IElectricalMeterService, ElectricalMeterService>();
+        builder.Services.AddScoped<IElectricityEquipement, ElectricalEquipementService>();
+        builder.Services.AddScoped<IGenericRepository<ElectricalMeter>, ElectricityMeterRepository>();
+        builder.Services.AddScoped<IElectricityMeterService, ElectricityMeterService>();
         builder.Services.AddScoped<IGenericRepository<Room>, RoomRepository>();
         builder.Services.AddScoped<IRoomRepository, RoomRepository>();
         builder.Services.AddScoped<IRoomService, RoomService>();

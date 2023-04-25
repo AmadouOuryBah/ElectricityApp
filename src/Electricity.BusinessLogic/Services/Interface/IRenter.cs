@@ -7,7 +7,7 @@ namespace Electricity.BusinessLogic.Services.Interface
     {
         Task<List<RenterDto>> GetAllAsync();
         Task<RenterDto> AddAsync(RenterRequest renter);
-        Task<RenterDto> UpdateAsync(int id, RenterRequest renter);
+        Task<RenterDto> UpdateAsync(int id, RenterDto renter);
         Task<string> DeleteAsync(int id);
 
 

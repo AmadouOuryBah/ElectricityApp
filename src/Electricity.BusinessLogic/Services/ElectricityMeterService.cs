@@ -61,7 +61,7 @@ namespace Electricity.BusinessLogic.Services
             var electricityMeterFound = await GetByIdAsync(electricityMeter.Id);
 
             electricityMeterFound.Name = electricityMeter.Name;
-            electricityMeterFound.FactoryNumber = electricityMeter.Name;
+            electricityMeterFound.FactoryNumber = electricityMeter.FactoryNumber;
            
             _repository.Update(electricityMeterFound);
             await _unitOfWork.SaveChangesAsync();
@@ -71,7 +71,7 @@ namespace Electricity.BusinessLogic.Services
 
        public  async Task<ElectricityMeterDto> GetById(int id)
         {
-            var electricityMeter = await _repository.GetByIdAsync(id);
+            var electricityMeter = await GetByIdAsync(id);
 
             return _mapper.Map<ElectricityMeterDto>(electricityMeter);
         }
