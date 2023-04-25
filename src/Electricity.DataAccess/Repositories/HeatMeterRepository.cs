@@ -25,12 +25,16 @@ namespace Electricity.DataAccess.Repositories
 
         public Task<List<HeatMeter>> GetAllAsync()
         {
-            return heatMeters.ToListAsync();
+            return heatMeters
+                .Include(e => e.Building)
+                .ToListAsync();
         }
 
         public Task<HeatMeter?> GetByIdAsync(int id)
         {
-            return heatMeters.Where(heatMeters => heatMeters.Id == id).FirstOrDefaultAsync();
+            return heatMeters
+                .Include(e => e.Building)
+                .Where(heatMeters => heatMeters.Id == id).FirstOrDefaultAsync();
         }
 
         public void Update(HeatMeter item)

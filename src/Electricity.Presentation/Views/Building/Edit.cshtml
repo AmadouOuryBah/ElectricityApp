@@ -1,0 +1,34 @@
+﻿@model Electricity.BusinessLogic.DTO_s.BuildingDto
+
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="my-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Building">Buildings</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Update building</li>
+    </ol>
+</nav>
+<form class="row g-3 my-4" method="post" asp-controller="Building">
+
+    <div class="col-md-4">
+        <label asp-for="Name" class="form-label">Name</label>
+        <input asp-for="Name" value =@Model.Name class="form-control">
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="Address" class="form-label">Address</label>
+        <input asp-for="Address" value =@Model.Address class="form-control" >
+    </div>
+
+    <div class="col-md-4">
+        <label asp-for="Floor" class="form-label">Floor</label>
+        <input asp-for="Floor" value=@Model.Floor class="form-control">
+    </div>
+
+    <div class="col-md-12">
+        <label asp-for="City" class="form-label">City</label>
+        <input asp-for="City" value=@Model.City class="form-control">
+    </div>
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary"> Save </button>
+    </div>
+</form>

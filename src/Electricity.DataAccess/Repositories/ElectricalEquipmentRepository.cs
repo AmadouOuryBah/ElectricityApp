@@ -26,7 +26,9 @@ namespace Electricity.DataAccess.Repositories
 
         public Task<List<ElectricalEquipment>> GetAllAsync()
         {
-            return electricalEquipements.ToListAsync();
+            return electricalEquipements
+                .Include(e => e.RoomElectricalEquipements)
+                .ToListAsync();
         }
 
         public Task<ElectricalEquipment?> GetByIdAsync(int id)

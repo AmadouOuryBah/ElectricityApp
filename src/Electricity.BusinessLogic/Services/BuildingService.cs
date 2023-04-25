@@ -7,7 +7,7 @@ using Electricity.DataAccess.Repositories.Interface;
 
 namespace Electricity.BusinessLogic.Services
 {
-    public class BuildingService : IBuilding
+    public class BuildingService : IBuildingService
     {
         public readonly IGenericRepository<Building> _repository;
         public readonly IMapper _mapper;
@@ -43,9 +43,25 @@ namespace Electricity.BusinessLogic.Services
             return _mapper.Map<List<BuildingDto>>(buildings);
         }
 
-        public async Task<BuildingDto> UpdateAsync(int id, BuildingRequest building)
+        public async Task<BuildingDto> GetById(int id)
         {
-            throw new NotImplementedException();
+           var buildingFound = await _repository.GetByIdAsync(id);
+
+            return _mapper.Map<BuildingDto>(buildingFound);
+        }
+
+        public async Task<BuildingDto> UpdateAsync(BuildingDto building)
+        {
+            var buildingFound = await _repository.GetByIdAsync(building.Id);
+
+            buildingFound.Name = building.Name;
+            buildingFound.Address = building.Address;
+   
+            buildingFound.City = building.City;
+            _repository.Update(buildingFound);
+            await _unitOfWork.SaveChangesAsync();
+
+            return _mapper.Map<BuildingDto>(buildingFound);
         }
     }
 }

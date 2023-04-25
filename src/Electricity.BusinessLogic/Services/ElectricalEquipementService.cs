@@ -52,7 +52,11 @@ namespace Electricity.BusinessLogic.Services
         public async Task<ElectricalEquipementDto> UpdateAsync(int id, ElectricalEquipementRequest electriqEquimnt)
         {
             var deviceFound = await GetByIdAsync(id);
+
             deviceFound.Name = electriqEquimnt.Name;
+            deviceFound.Power = electriqEquimnt.Power;
+            deviceFound.Coefficient = electriqEquimnt.Coefficient;
+
             _genericRepository.Update(deviceFound);
             await _unitOfWork.SaveChangesAsync();
 
@@ -64,9 +68,7 @@ namespace Electricity.BusinessLogic.Services
             var deviceFound = await _genericRepository.GetByIdAsync(id);
 
             if (deviceFound is not null)
-                return deviceFound;
-            //Todo: don't handle your exception like in the api here you will use a component(view )
-            //and you will handle it in the controller!!!
+                return deviceFound
 
             throw new NotFoundException("electricalEquipment with this id does not exist");
         }

@@ -9,5 +9,7 @@ namespace Electricity.BusinessLogic.Services.Interface
         Task<RenterDto> AddAsync(RenterRequest renter);
         Task<RenterDto> UpdateAsync(int id, RenterRequest renter);
         Task<string> DeleteAsync(int id);
+
+
     }
 }

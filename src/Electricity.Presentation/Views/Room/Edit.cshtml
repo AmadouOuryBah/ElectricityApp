@@ -1,9 +1,6 @@
 ﻿@using Electricity.BusinessLogic.DTO_s;
-@model Electricity.BusinessLogic.Requests.RoomRequest;
+@model Electricity.BusinessLogic.DTO_s.RoomDto;
 
-@{
-    var room = (RoomDto)ViewData["room"];
-}
 
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="my-3">
     <ol class="breadcrumb">
@@ -16,7 +13,7 @@
     <div class="col-md-6">
         <label asp-for="BuildingId" class="form-label">Building</label>
         <select asp-for="BuildingId" class="form-select">
-            <option selected>@room.Building.Name @room.Renter</option>
+            <option selected>Model.Building.Name</option>
             @foreach (var building in (List<BuildingDto>)ViewData["building"])
             {
 
@@ -34,7 +31,7 @@
     <div class="col-md-6">
         <label asp-for="RenterId" class="form-label">Renter</label>
         <select asp-for="RenterId" class="form-select">
-            <option selected></option>
+            <option selected>Model.Renter.Name</option>
 
             @foreach (var renter in (List<RenterDto>)ViewData["renter"])
             {

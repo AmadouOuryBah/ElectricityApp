@@ -9,6 +9,7 @@
             <th scope="col">Address</th>
             <th scope="col">Floor</th>
             <th scope="col">City</th>
+            <th scope="col">Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -20,6 +21,7 @@
                 <td>@building.Address</td>
                 <td>@building.Floor</td>
                 <td>@building.City</td>
+                <td><a class="btn btn-secondary mx-2" href="Building/Edit/@building.Id">edit</a> <a class="btn btn-danger" href=""><i class="bi bi-trash3-fill"></i>delete</a></td>
             </tr>
            
         }

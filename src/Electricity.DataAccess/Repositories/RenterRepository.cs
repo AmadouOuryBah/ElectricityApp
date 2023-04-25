@@ -24,11 +24,13 @@ namespace Electricity.DataAccess.Repositories
 
         public Task<List<Renter>> GetAllAsync()
         {
-            return renters.ToListAsync();
+            return renters
+                .Include(renter => renter.Rooms)
+                .ToListAsync();
         }
 
         public Task<Renter?> GetByIdAsync(int id)
-        {
+        { 
             return renters.Include(renter => renter.Rooms)
                 .Where(renter => renter.Id == id)
                 .FirstOrDefaultAsync();

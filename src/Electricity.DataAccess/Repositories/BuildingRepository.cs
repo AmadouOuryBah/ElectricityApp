@@ -28,6 +28,9 @@ namespace Electricity.DataAccess.Repositories
         {
             return buildings
                 .Include(building => building.Rooms)
+                .Include(building => building.ElectricityMeter)
+                .Include(building => building.HeatMeter)
+                .Include(building => building.WaterMeter)
                 .ToListAsync();
         }
 
@@ -35,6 +38,9 @@ namespace Electricity.DataAccess.Repositories
         {
             return buildings.Include(building => building.Rooms)
                 .Where(building => building.Id == id)
+                .Include(building => building.ElectricityMeter)
+                .Include(building => building.HeatMeter)
+                .Include(building => building.WaterMeter)
                 .FirstOrDefaultAsync();
         }
 

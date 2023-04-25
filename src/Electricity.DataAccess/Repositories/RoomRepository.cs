@@ -7,7 +7,7 @@ namespace Electricity.DataAccess.Repositories
 {
     public class RoomRepository : IGenericRepository<Room>
     {
-        public readonly DbSet<Room> rooms;
+        public readonly DbSet<Room> rooms; 
 
         public RoomRepository(ApplicationContext context)
         {
@@ -28,6 +28,7 @@ namespace Electricity.DataAccess.Repositories
         {
             return rooms.Include(room => room.Renter)
                 .Include(room => room.Building)
+                .Include(room => room.Schedule)
                 .ToListAsync();
         }
 
@@ -35,6 +36,7 @@ namespace Electricity.DataAccess.Repositories
         {
             return rooms.Include(room => room.Building)
                 .Include(room => room.Renter)
+                .Include(room => room.Schedule)
                 .Where(room => room.Id == id)
                 .FirstOrDefaultAsync();
         }

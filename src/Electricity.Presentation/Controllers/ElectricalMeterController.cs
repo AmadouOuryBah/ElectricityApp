@@ -1,21 +1,21 @@
 ﻿using Electricity.BusinessLogic.DTO_s;
 using Electricity.BusinessLogic.Requests;
+using Electricity.BusinessLogic.Services;
 using Electricity.BusinessLogic.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
-using System.Web.Mvc;
 
 namespace Electricity.Presentation.Controllers
 {
 
     public class ElectricalMeterController : Microsoft.AspNetCore.Mvc.Controller
     {
-        private readonly IElectricalMeter _electricalMeterservice;
+        private readonly IElectricalMeterService _electricalMeterservice;
         private readonly IElectricalEquipement _electricalEquipementService;
-        private readonly IRoom _roomService;
+        private readonly IRoomService _roomService;
 
-        public ElectricalMeterController(IElectricalMeter electricalMeterservice,
+        public ElectricalMeterController(IElectricalMeterService electricalMeterservice,
             IElectricalEquipement electricalEquipementService,
-            IRoom roomService)
+            IRoomService roomService)
         {
             _electricalMeterservice = electricalMeterservice;
             _electricalEquipementService = electricalEquipementService;
@@ -29,7 +29,7 @@ namespace Electricity.Presentation.Controllers
             return View(electricalMeters);
         }
 
-        [Microsoft.AspNetCore.Mvc.HttpGet]
+        [HttpGet]
         public async Task<IActionResult> Create()
         {
             ViewData["equipements"] = await _electricalEquipementService.GetAllAsync();
@@ -38,10 +38,45 @@ namespace Electricity.Presentation.Controllers
             return View();
         }
 
-        [Microsoft.AspNetCore.Mvc.HttpPost]
+        [HttpPost]
         public async Task<IActionResult> Create(ElectricalMeterRequest request)
         {
             await _electricalMeterservice.AddAsync(request);
+
+            return RedirectToAction("Index");
+        }
+
+
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            ViewData["equipements"] = await _electricalEquipementService.GetAllAsync();
+            ViewData["rooms"] = await _roomService.GetAllAsync();
+
+            return View(await _electricalMeterservice.GetById(id));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(ElectricalMeterDto electriclMeter)
+        {
+
+            await _electricalMeterservice.UpdateAsync(electriclMeter);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+
+            return View(await _electricalMeterservice.GetById(id)); ;
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(ElectricalMeterDto electricalMeterDto)
+        {
+            await _electricalMeterservice.DeleteAsync(electricalMeterDto.Id);
 
             return RedirectToAction("Index");
         }

@@ -8,11 +8,12 @@ using System.Threading.Tasks;
 
 namespace Electricity.BusinessLogic.Services.Interface
 {
-    public interface IBuilding
+    public interface IMetersDataService
     {
-        Task<List<BuildingDto>> GetAllAsync();
-        Task<BuildingDto> AddAsync(BuildingRequest building);
-        Task<BuildingDto> UpdateAsync(int id, BuildingRequest building);
+        Task<List<MetersDataDto>> GetAllAsync();
+        Task<MetersDataDto> GetById(int id);
+        Task<MetersDataDto> AddAsync(MetersDataRequest metersData);
+        Task<MetersDataDto> UpdateAsync(MetersDataDto metersData);
         Task<string> DeleteAsync(int id);
     }
 }

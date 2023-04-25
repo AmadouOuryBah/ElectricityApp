@@ -7,11 +7,11 @@ namespace Electricity.Presentation.Controllers
 {
     public class RoomController : Controller
     {
-        private readonly IRoom _roomService;
+        private readonly IRoomService _roomService;
         private readonly IRenter _renterService;
-        private readonly IBuilding _buildingService;
+        private readonly IBuildingService _buildingService;
 
-        public RoomController(IRoom roomService, IRenter renterService, IBuilding buildingService)
+        public RoomController(IRoomService roomService, IRenter renterService, IBuildingService buildingService)
         {
             _roomService = roomService;
             _renterService = renterService;
@@ -40,13 +40,12 @@ namespace Electricity.Presentation.Controllers
        
             ViewData["building"] = await _buildingService.GetAllAsync();
             ViewData["renter"] = await _renterService.GetAllAsync();
-            ViewData["room"] = await _roomService.GetById(id);
 
-            return View();
+            return View(await _roomService.GetById(id));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(RoomRequest room)
+        public async Task<IActionResult> Edit(RoomDto room)
         {
 
             await _roomService.UpdateAsync(room);

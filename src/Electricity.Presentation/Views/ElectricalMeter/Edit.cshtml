@@ -1,26 +1,22 @@
 ﻿@using Electricity.BusinessLogic.DTO_s;
 @using Electricity.BusinessLogic.Services.Interface;
-@model Electricity.BusinessLogic.Requests.ElectricalMeterRequest
-@inject IBuildingService buildingService
-@inject IRoomService _roomService
-@inject IRenter _renterService
-
+@model Electricity.BusinessLogic.DTO_s.ElectricityMeterDto;
 
 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="my-3">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a asp-action="Index" asp-controller="ElectricalMeter">Electrical meters</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Add electrical meter</li>
+        <li class="breadcrumb-item active" aria-current="page">Update electrical meter</li>
     </ol>
 </nav>
 <form class="row g-3 my-4" method="post" asp-controller="ElectricalMeter">
     <div class="col-md-4">
 
         <label asp-for="Name" class="form-label">device name</label>
-        <select  asp-for="Name" class="form-select">
+        <select asp-for="Name" class="form-select">
 
-            <option selected>Choose device</option>
+            <option selected>@Model.Name</option>
 
-            @foreach(var equipement in (List<ElectricalEquipementDto>)ViewData["equipements"])
+            @foreach (var equipement in (List<ElectricalEquipementDto>)ViewData["equipements"])
             {
 
                 <option>@equipement.Name</option>
@@ -31,42 +27,43 @@
 
     <div class="col-md-4">
         <label asp-for="Power" class="form-label">power</label>
-        <input type="number" asp-for="Power" class="form-control" id="">
+        <input type="number" value=@Model.Power asp-for="Power" class="form-control" id="">
     </div>
 
     <div class="col-md-4">
         <label asp-for="Coefficient" class="form-label">coefficient</label>
-        <input asp-for="Coefficient" type="number" class="form-control">
+        <input asp-for="Coefficient" value=@Model.Coefficient type="number" class="form-control">
     </div>
 
     <div class="col-md-4">
         <label asp-for="NumberOfDevice" class="form-label">quantity</label>
-        <input asp-for="NumberOfDevice" type="number" class="form-control">
+        <input asp-for="NumberOfDevice" value=@Model.NumberOfDevice  type="number" class="form-control">
     </div>
 
     <div class="col-md-4">
         <label asp-for="Time" class="form-label">time</label>
-        <input asp-for="Time" type="number" class="form-control">
+        <input asp-for="Time" type="number" value=@Model.Time class="form-control">
     </div>
 
     <div class="col-md-4">
-        <label asp-for="RoomId" class="form-label">room</label>
-        <select asp-for="RoomId" class="form-select" >
+        <label asp-for="RoomID" class="form-label">room</label>
+        <select asp-for="RoomID" class="form-select">
 
-            <option selected>Choose room</option>
-            @foreach(var room in (List<RoomDto>)ViewData["rooms"])
+            <option selected>@Model.Room.Building.Name + " " + @Model.Room.Renter.Name + " " + @Model.Room.NumberOfRoom;</option>
+            @foreach (var room in (List<RoomDto>)ViewData["rooms"])
             {
 
-                <option value=@room.Id>@room.NumberOfRoom + @room.Building.Name + @room.Building.City</option>
+                <option value=@room.Id>@room.NumberOfRoom</option>
             }
 
         </select>
     </div>
-    
+
+
     <div class="col-12">
-        <button type="submit" class="btn btn-primary"> add electrical meter </button>
+        <button type="submit" class="btn btn-primary"> Save </button>
     </div>
-</form>  
+</form>
 
 
 

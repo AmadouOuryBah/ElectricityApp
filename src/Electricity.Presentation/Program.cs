@@ -23,13 +23,14 @@ internal class Program
         builder.Services.AddScoped<IGenericRepository<ElectricalEquipment>, ElectricalEquipmentRepository>();
         builder.Services.AddScoped<IElectricalEquipement, ElectricalEquipementService>();
         builder.Services.AddScoped<IGenericRepository<ElectricalMeter>, ElectricalMeterRepository>();
-        builder.Services.AddScoped<IElectricalMeter, ElectricalMeterService>();
+        builder.Services.AddScoped<IElectricalMeterService, ElectricalMeterService>();
         builder.Services.AddScoped<IGenericRepository<Room>, RoomRepository>();
-        builder.Services.AddScoped<IRoom, RoomService>();
+        builder.Services.AddScoped<IRoomRepository, RoomRepository>();
+        builder.Services.AddScoped<IRoomService, RoomService>();
         builder.Services.AddScoped<IGenericRepository<Renter>, RenterRepository>();
         builder.Services.AddScoped<IRenter, RenterService>();
         builder.Services.AddScoped<IGenericRepository<Building>, BuildingRepository>();
-        builder.Services.AddScoped<IBuilding, BuildingService>();
+        builder.Services.AddScoped<IBuildingService, BuildingService>();
         builder.Services.AddCors(options =>
         {
             options.AddPolicy("MyPolicy", policy =>
@@ -61,7 +62,7 @@ internal class Program
 
         app.MapControllerRoute(
             name: "default",
-            pattern: "{controller=Home}/{action=Index}/{id?}");
+            pattern: "{controller=ElectricalMeter}/{action=Index}/{id?}");
 
         app.Run();
     }
