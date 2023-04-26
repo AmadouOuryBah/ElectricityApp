@@ -7,7 +7,7 @@ namespace Electricity.DataAccess.Entities
         public string Name { get; set; }
         public int FactoryNumber { get; set; }
 
-        public Building Building { get; set; }
+        public ICollection<Building> Building { get; set; }
 
 
     }

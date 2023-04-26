@@ -4,8 +4,12 @@
     {
         public int Id { get; set; }
         public int WorkingTime { get; set; }
+        public int RoomId { get; set; }
+        public Room Room { get; set; }
+        public int ElectricalEquipementId { get; set; } 
+        public ElectricalEquipment Equipment { get; set; }
+       
 
-        public ICollection<ElectricalEquipment> ElectricalEquipments { get; set; }
 
     }
 }

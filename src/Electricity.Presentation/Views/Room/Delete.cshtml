@@ -1,0 +1,53 @@
+﻿@model Electricity.BusinessLogic.DTO_s.RoomDto
+
+<h2>Are You Sure you want to Delete <br />  this Room ?</h2>
+
+
+
+<form class="row g-3 my-4" method="post" asp-controller="Room">
+    <div class="mb-3 col-4">
+        <label asp-for="Name" class="form-label">Name</label>
+        <input asp-for="Name" type="text" value=@Model.Name disabled class="form-control">
+    </div>
+
+    <div class="mb-3 col-4">
+        <label asp-for="Floor" class="form-label">Floor</label>
+        <input disabled asp-for="Floor" value=@Model.Floor type="text" class="form-control">
+    </div>
+
+    <div class="mb-3 col-4">
+        <label asp-for="RoomArea" class="form-label">Area</label>
+        <input asp-for="RoomArea" type="text" value=@Model.RoomArea form-control">
+    </div>
+
+    <div class="col-4">
+        <select disabled asp-for="BuildingId" class="form-select">
+
+
+
+            <option >@Model.Building.Name @Model.Building.Address @Model.Building.City</option>
+
+
+        </select>
+    </div>
+
+    <div class="col-4">
+        <select asp-for="RenterId" class="form-select">
+
+
+
+            <option> @Model.Name</option>
+
+
+        </select>
+    </div>
+
+
+    <div class="col-4">
+        <label asp-for="TotalWorkers" class="form-label"> Total of Workers</label>
+        <input value=@Model.TotalWorkers asp-for="TotalWorkers" disabled type="text" class="form-control">
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary"> Delete </button>
+    </div>
+</form>

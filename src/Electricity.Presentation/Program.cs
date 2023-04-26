@@ -20,17 +20,36 @@ internal class Program
         builder.Services.AddDbContext<ApplicationContext>(options => options
         .UseSqlServer(builder.Configuration.GetConnectionString("Default")));
         builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
         builder.Services.AddScoped<IGenericRepository<ElectricalEquipment>, ElectricalEquipmentRepository>();
         builder.Services.AddScoped<IElectricityEquipement, ElectricalEquipementService>();
-        builder.Services.AddScoped<IGenericRepository<ElectricalMeter>, ElectricityMeterRepository>();
+
+        builder.Services.AddScoped<IGenericRepository<ElectricityMeter>, ElectricityMeterRepository>();
         builder.Services.AddScoped<IElectricityMeterService, ElectricityMeterService>();
+
         builder.Services.AddScoped<IGenericRepository<Room>, RoomRepository>();
-        builder.Services.AddScoped<IRoomRepository, RoomRepository>();
         builder.Services.AddScoped<IRoomService, RoomService>();
+
         builder.Services.AddScoped<IGenericRepository<Renter>, RenterRepository>();
         builder.Services.AddScoped<IRenter, RenterService>();
+
         builder.Services.AddScoped<IGenericRepository<Building>, BuildingRepository>();
         builder.Services.AddScoped<IBuildingService, BuildingService>();
+
+        builder.Services.AddScoped<IGenericRepository<HeatMeter>, HeatMeterRepository>();
+        builder.Services.AddScoped<IHeatMeterService, HeatMeterService>();
+
+        builder.Services.AddScoped<IGenericRepository<WaterMeter>, WaterMeterRepository>();
+        builder.Services.AddScoped<IWaterMeterService, WaterMeterService>();
+
+        builder.Services.AddScoped<IGenericRepository<RoomElectricalEquipement>,  RoomElectricalEquipementRepository>();
+        builder.Services.AddScoped<IRoomElectricalEquipementService,  RoomElectricalEquipementService>();
+
+        builder.Services.AddScoped<IGenericRepository<Schedule>, ScheduleRepository>();
+        builder.Services.AddScoped<IScheduleService, ScheduleService>();
+
+        builder.Services.AddScoped<IGenericRepository<MetersData>, MetersDataRepository>();
+
         builder.Services.AddCors(options =>
         {
             options.AddPolicy("MyPolicy", policy =>
@@ -62,7 +81,7 @@ internal class Program
 
         app.MapControllerRoute(
             name: "default",
-            pattern: "{controller=ElectricalMeter}/{action=Index}/{id?}");
+            pattern: "{controller=Home}/{action=Index}/{id?}");
 
         app.Run();
     }

@@ -35,7 +35,7 @@ namespace Electricity.BusinessLogic.Services
 
         public async Task<string> DeleteAsync(int id)
         {
-            var device = await GetByIdAsync(id);
+            var device = await _genericRepository.GetByIdAsync(id);
             _genericRepository.Delete(device);
             await _unitOfWork.SaveChangesAsync();
 
@@ -49,9 +49,9 @@ namespace Electricity.BusinessLogic.Services
             return _mapper.Map<List<ElectricalEquipementDto>>(devices);
         }
 
-        public async Task<ElectricalEquipementDto> UpdateAsync(int id, ElectricalEquipementRequest electriqEquimnt)
+        public async Task<ElectricalEquipementDto> UpdateAsync(ElectricalEquipementDto electriqEquimnt)
         {
-            var deviceFound = await GetByIdAsync(id);
+            var deviceFound = await _genericRepository.GetByIdAsync(electriqEquimnt.Id);
 
             deviceFound.Name = electriqEquimnt.Name;
             deviceFound.Power = electriqEquimnt.Power;
@@ -63,17 +63,18 @@ namespace Electricity.BusinessLogic.Services
             return _mapper.Map<ElectricalEquipementDto>(deviceFound);
         }
 
-        private async Task<ElectricalEquipment> GetByIdAsync(int id)
+     
+
+        public async Task<ElectricalEquipementDto> GetByIdAsync(int id)
         {
             var deviceFound = await _genericRepository.GetByIdAsync(id);
 
-            if (deviceFound is not null)
-                return deviceFound;
-
-            throw new NotFoundException("electricalEquipment with this id does not exist");
+            return _mapper.Map<ElectricalEquipementDto>(deviceFound);
         }
+
+
     }
 
-   
-    
+
+
 }

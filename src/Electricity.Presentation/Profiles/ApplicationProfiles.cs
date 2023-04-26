@@ -14,9 +14,9 @@ namespace Electricity.Presentation.Profiles
             CreateMap<ElectricalEquipment, ElectricalEquipementDto>()
             .ReverseMap();
 
-            CreateMap<ElectricalMeterRequest, ElectricalMeter>()
+            CreateMap<ElectricityMeterRequest, ElectricityMeter>()
             .ReverseMap();
-            CreateMap<ElectricalMeter, ElectricityMeterDto>()
+            CreateMap<ElectricityMeter, ElectricityMeterDto>()
             .ReverseMap();
 
             CreateMap<RoomRequest, Room>()
@@ -34,7 +34,33 @@ namespace Electricity.Presentation.Profiles
             CreateMap<Building, BuildingDto>()
             .ReverseMap();
 
+            CreateMap<WaterMeterRequest, WaterMeter>()
+           .ReverseMap();
+            CreateMap<WaterMeter, WaterMeterDto>()
+            .ReverseMap();
+
+            CreateMap<HeatMeterRequest, HeatMeter>()
+           .ReverseMap();
+            CreateMap<HeatMeter, HeatMeterDto>()
+            .ReverseMap();
+
+            CreateMap<MetersDataRequest, MetersData>()
+            .ReverseMap();
+            CreateMap<MetersData, MetersDataDto>()
+            .ReverseMap();
+
+            CreateMap<RoomElectricalEquipementRequest, RoomElectricalEquipement>()
+            .ReverseMap();
+            CreateMap<RoomElectricalEquipement, RoomElectricalEquipementDto>()
+            .ReverseMap();
+
+            CreateMap<ScheduleRequest, Schedule>()
+           .ReverseMap();
+            CreateMap<Schedule, ScheduleDto>()
+            .ReverseMap();
+
+
         }
-      
+
     }
 }

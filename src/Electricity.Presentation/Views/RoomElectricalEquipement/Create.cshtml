@@ -1,0 +1,46 @@
+﻿@using Electricity.BusinessLogic.DTO_s
+@model Electricity.BusinessLogic.Requests.RoomElectricalEquipementRequest
+
+<h2 class="my-3">Create new room with electrical  equipements </h2>
+
+
+
+<form class="row g-3 my-4" method="post" asp-controller="ElectricalEquipement">
+   
+
+    <div class="col-6">
+        <select asp-for="RoomId" class="form-select">
+
+            @foreach (var item in (List<RoomDto>)ViewData["rooms"])
+            {
+                <option value=@item.Id>
+                    <span>@item.Name</span>
+                    <span>@item.Floor</span>
+                    <span>@item.Building.Name</span>
+                    <span>@item.Building.City</span>
+                </option>
+
+            }
+        </select>
+    </div>
+
+    <div class="col-6">
+        <select asp-for="ElectricalEquipementId" class="form-select">
+            <option>Select device</option>
+
+            @foreach (var item in (List<ElectricalEquipementDto>)ViewData["equipements"])
+            {
+                <option value=@item.Id>@item.Name <span>Power: </span>@item.Power</option>
+
+            }
+        </select>
+    </div>
+
+    <div class="col-6">
+        <label asp-for="WorkingTime" class="form-label"> Time </label>
+        <input asp-for="WorkingTime" type="text" class="form-control">
+    </div>
+    <div>
+        <a class="btn btn-primary">Add</a>
+    </div>
+</form>

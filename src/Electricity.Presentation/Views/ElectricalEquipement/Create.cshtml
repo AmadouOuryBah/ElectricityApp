@@ -1,21 +1,24 @@
 ﻿@model Electricity.BusinessLogic.Requests.ElectricalEquipementRequest
 
-<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="my-3">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Building">Electrical Equipement</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Add renter</li>
-    </ol>
-</nav>
+<h2 class="mt-3">Create new Electrical Equipement</h2>
+
 <form class="row g-3 my-4" method="post" asp-controller="ElectricalEquipement">
-
-
-    <div class="col-md-4">
+    <div class="mb-3">
         <label asp-for="Name" class="form-label">Name</label>
-        <input asp-for="Name" class="form-control">
+        <input asp-for="Name" type="text" class="form-control">
     </div>
 
-    <div class="col-12">
-        <button type="submit" class="btn btn-primary"> add  </button>
+    <div class="mb-3">
+        <label asp-for="Power" class="form-label">Power</label>
+        <input asp-for="Power" type="text" class="form-control">
     </div>
 
+    <div class="mb-3">
+        <label asp-for="Coefficient" class="form-label">Coefficient</label>
+        <input asp-for="Coefficient" type="text" class="form-control">
+    </div>
+
+    <div>
+        <button type="submit">Add</button>
+    </div>
 </form>

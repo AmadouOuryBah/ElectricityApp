@@ -1,8 +1,10 @@
 ﻿
+using AutoMapper;
 using Electricity.BusinessLogic.DTO_s;
 using Electricity.BusinessLogic.Requests;
 using Electricity.BusinessLogic.Services.Interface;
 using Electricity.DataAccess.Entities;
+using Electricity.DataAccess.Repositories.Interface;
 
 namespace Electricity.BusinessLogic.Services
 {
@@ -33,7 +35,7 @@ namespace Electricity.BusinessLogic.Services
 
         public async Task<string> DeleteAsync(int id)
         {
-            var meterData = await _repository.GetByIdAync(id);
+            var meterData = await _repository.GetByIdAsync(id);
 
             _repository.Delete(meterData);
             _unitOfWork.SaveChangesAsync();

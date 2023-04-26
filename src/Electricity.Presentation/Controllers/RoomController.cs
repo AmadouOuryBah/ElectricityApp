@@ -28,18 +28,27 @@ namespace Electricity.Presentation.Controllers
         [HttpGet]
         public async  Task<IActionResult> Create()
         {
-            ViewData["building"] = await _buildingService.GetAllAsync();
-            ViewData["renter"] = await _renterService.GetAllAsync();
+            ViewData["buildings"] = await _buildingService.GetAllAsync();
+            ViewData["renters"] = await _renterService.GetAllAsync();
 
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(RoomRequest room)
+        {
+
+            await _roomService.AddAsync(room);
+
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
        
-            ViewData["building"] = await _buildingService.GetAllAsync();
-            ViewData["renter"] = await _renterService.GetAllAsync();
+            ViewData["buildings"] = await _buildingService.GetAllAsync();
+            ViewData["renters"] = await _renterService.GetAllAsync();
 
             return View(await _roomService.GetById(id));
         }
@@ -54,14 +63,21 @@ namespace Electricity.Presentation.Controllers
         }
 
 
-
-        [HttpPost]
-        public async Task<IActionResult> Create(RoomRequest room)
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
         {
 
-            await _roomService.AddAsync(room);
+            return View(await _roomService.GetById(id));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(RoomDto room)
+        {
+            await _roomService.DeleteAsync(room.Id);
 
             return RedirectToAction("Index");
         }
+
+
     }
 }

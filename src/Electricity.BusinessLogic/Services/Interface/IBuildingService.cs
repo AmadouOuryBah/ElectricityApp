@@ -13,7 +13,7 @@ namespace Electricity.BusinessLogic.Services.Interface
         Task<List<BuildingDto>> GetAllAsync();
         Task<BuildingDto> GetById(int id);
         Task<BuildingDto> AddAsync(BuildingRequest building);
-        Task<BuildingDto> UpdateAsync(BuildingRequest building);
+        Task<BuildingDto> UpdateAsync(BuildingDto building);
         Task<string> DeleteAsync(int id);
     }
 }

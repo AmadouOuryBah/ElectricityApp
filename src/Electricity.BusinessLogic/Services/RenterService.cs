@@ -32,9 +32,15 @@ namespace Electricity.BusinessLogic.Services
             return _mapper.Map<RenterDto>(renterMapped);
         }
 
-        public Task<string> DeleteAsync(int id)
+        public async Task<string> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+           var renter = await _repository.GetByIdAsync(id);
+
+            _repository.Delete(renter);
+            _unitOfWork.SaveChangesAsync();
+
+            return "deleted";
+
         }
 
         public async Task<List<RenterDto>> GetAllAsync()
@@ -44,9 +50,9 @@ namespace Electricity.BusinessLogic.Services
             return _mapper.Map<List<RenterDto>>(renters);
         }
 
-        public async Task<RenterDto> UpdateAsync(int id, RenterDto renter)
+        public async Task<RenterDto> UpdateAsync(RenterDto renter)
         {
-            var renterFound = await GetById(renter.Id);
+            var renterFound = await _repository.GetByIdAsync(renter.Id);
 
             renterFound.Name = renter.Name;
            
@@ -57,11 +63,11 @@ namespace Electricity.BusinessLogic.Services
         }
 
 
-        private async Task<Renter> GetById(int id)
+        public  async Task<RenterDto> GetById(int id)
         {
             var renter = await _repository.GetByIdAsync(id);
 
-            return renter;
+            return _mapper.Map<RenterDto>(renter);
 
         }
     }

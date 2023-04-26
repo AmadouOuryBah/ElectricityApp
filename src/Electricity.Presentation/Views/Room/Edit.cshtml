@@ -1,53 +1,62 @@
 ﻿@using Electricity.BusinessLogic.DTO_s;
-@model Electricity.BusinessLogic.DTO_s.RoomDto;
+@using Electricity.BusinessLogic.Requests
+@model Electricity.BusinessLogic.DTO_s.RoomDto
 
 
-<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="my-3">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Room">Rooms</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Update room</li>
-    </ol>
-</nav>
+<h2 class="mt-3">Edit Room </h2>
+
+
 
 <form class="row g-3 my-4" method="post" asp-controller="Room">
-    <div class="col-md-6">
-        <label asp-for="BuildingId" class="form-label">Building</label>
+    <div class="mb-3 col-4">
+        <label asp-for="Name" class="form-label">Name</label>
+        <input asp-for="Name" type="text" class="form-control">
+    </div>
+
+    <div class="mb-3 col-4">
+        <label asp-for="Floor" class="form-label">Floor</label>
+        <input asp-for="Floor" type="text" class="form-control">
+    </div>
+
+    <div class="mb-3 col-4">
+        <label asp-for="RoomArea" class="form-label">Area</label>
+        <input asp-for="RoomArea" type="text" class="form-control">
+    </div>
+
+    <div class="col-4">
         <select asp-for="BuildingId" class="form-select">
-            <option selected>Model.Building.Name</option>
-            @foreach (var building in (List<BuildingDto>)ViewData["building"])
-            {
 
-                <option value=@building.Id>@building.Name</option>
+            <option>@Model.Building.Name <span>@Model.Building.Address</span> <span>@Model.Building.City</span></option>
+            @foreach (var item in (List<BuildingDto>)ViewData["buildings"])
+            {
+                <option value=@item.Id>
+                    <span>@item.Name</span>
+                    <span>@item.Address</span>
+                    <span>@item.City</span>
+                </option>
 
             }
         </select>
     </div>
 
-    <div class="col-md-6">
-        <label asp-for="NumberOfRoom" class="form-label">Room Number</label>
-        <input type="number" asp-for="NumberOfRoom" class="form-control" id="">
-    </div>
-
-    <div class="col-md-6">
-        <label asp-for="RenterId" class="form-label">Renter</label>
+    <div class="col-4">
         <select asp-for="RenterId" class="form-select">
-            <option selected>Model.Renter.Name</option>
 
-            @foreach (var renter in (List<RenterDto>)ViewData["renter"])
+            <option>@Model.Renter.Name</option>
+            @foreach (var item in (List<RenterDto>)ViewData["renters"])
             {
-
-                <option value=@renter.Id>@renter.Name</option>
+                <option value=@item.Id>@item.Name @item.Name</option>
 
             }
         </select>
     </div>
 
 
-    <div class="col-12">
-        <button type="submit" class="btn btn-primary">Save</button>
+    <div class="col-4">
+        <label asp-for="TotalWorkers" class="form-label"> Total of Workers</label>
+        <input asp-for="TotalWorkers" type="text" value=@Model.TotalWorkers class="form-control">
     </div>
-</form>  @*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+    <div>
+        <button type="submit" class="btn btn-primary"> Save </button>
+    </div>
+</form>

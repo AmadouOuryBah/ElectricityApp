@@ -1,0 +1,13 @@
+﻿@model Electricity.BusinessLogic.DTO_s.RenterDto
+
+<h2 class="mb-3">Modifie Renter</h2>
+<form class="row g-3 my-4" method="post" asp-controller="Renter">
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">@Model.Name</label>
+        <input asp-for="Name" type="text" class="form-control">
+    </div>
+
+    <div>
+        <button type="submit"> Save </button>
+    </div>
+</form>

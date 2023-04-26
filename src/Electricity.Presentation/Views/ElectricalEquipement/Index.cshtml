@@ -1,21 +1,39 @@
 ﻿@model IEnumerable<Electricity.BusinessLogic.DTO_s.ElectricalEquipementDto>
 
+<div class="row">
+    <div class="col-lg-6">
+        <h2>Electrical Equipement</h2>
+    </div>
+
+
+</div>
+
 <table class="table my-4">
+
     <thead class="table-dark">
 
         <tr>
             <th scope="col">Name</th>
+            <th scope="col">Power</th>
+            <th scope="col">Coefficient</th>
+            <th scope="col">Action</th>
+
         </tr>
     </thead>
     <tbody>
-        @foreach (var device in Model)
+        @foreach (var item in Model)
         {
-
             <tr>
-                <td>@device.Name</td>
+                <td>@item.Name</td>
+                <td>@item.Power</td>
+                <td>@item.Coefficient</td>
+                <td>
+                    <a class="btn btn-secondary" href="ElectricalEquipement/Edit/@item.Id">edit</a>
+                    <a class="btn btn-danger mx-2" href="ElectricalEquipement/Delete/@item.Id"><i class="bi bi-trash3-fill"></i>delete</a>
+                </td>
             </tr>
 
         }
     </tbody>
     <a btn btn-primary-lg asp-action="Create" asp-controller="ElectricalEquipement">create</a>
-</table>
+</table> 

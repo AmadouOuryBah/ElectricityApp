@@ -10,7 +10,7 @@ namespace Electricity.BusinessLogic.Services
 {
     public class RoomElectricalEquipementService : IRoomElectricalEquipementService
     {
-        public readonly IGenericRepository<Renter> _repository;
+        public readonly IGenericRepository<RoomElectricalEquipement> _repository;
         public readonly IMapper _mapper;
         public readonly IUnitOfWork _unitOfWork;
 
@@ -23,9 +23,9 @@ namespace Electricity.BusinessLogic.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<RoomElectricalEquipementDto> AddAsync(RoomElectricalEquipementDto item)
+        public async Task<RoomElectricalEquipementDto> AddAsync(RoomElectricalEquipementRequest item)
         {
-            var roomMapped = _mapper.Map<Room>(item);
+            var roomMapped = _mapper.Map<RoomElectricalEquipement>(item);
 
             _repository.Add(roomMapped);
             await _unitOfWork.SaveChangesAsync();
@@ -47,7 +47,7 @@ namespace Electricity.BusinessLogic.Services
         {
             var roomEkipmnts = await _repository.GetAllAsync();
 
-            return _mapper.Map<List<RoomDto>>(roomEkipmnts);
+            return _mapper.Map<List<RoomElectricalEquipementDto>>(roomEkipmnts);
         }
 
         public async Task<RoomElectricalEquipementDto> GetById(int id)
@@ -60,9 +60,8 @@ namespace Electricity.BusinessLogic.Services
         public  async Task<RoomElectricalEquipementDto> UpdateAsync(RoomElectricalEquipementDto item)
         {
             var roomEkipmntFound = await _repository.GetByIdAsync(item.Id);
-
             roomEkipmntFound.RoomId = item.RoomId;
-            roomEkipmntFound.ElectricalEquipementId = item.ElectricalEquipementId;
+          
             roomEkipmntFound.WorkingTime = item.WorkingTime;
             
            

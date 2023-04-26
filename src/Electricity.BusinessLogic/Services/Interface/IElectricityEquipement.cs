@@ -12,7 +12,9 @@ namespace Electricity.BusinessLogic.Services.Interface
     {
         Task<List<ElectricalEquipementDto>> GetAllAsync();
         Task<ElectricalEquipementDto> AddAsync(ElectricalEquipementRequest electricalEquipementRequest);
-        Task<ElectricalEquipementDto> UpdateAsync(int id, ElectricalEquipementRequest electricalEquipementRequest);
+        Task<ElectricalEquipementDto> UpdateAsync(ElectricalEquipementDto electricalEquipement);
         Task<string> DeleteAsync(int id);
+
+        Task<ElectricalEquipementDto?> GetByIdAsync(int id);
     }
 }

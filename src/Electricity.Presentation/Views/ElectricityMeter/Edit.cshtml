@@ -1,0 +1,18 @@
+﻿@model Electricity.BusinessLogic.DTO_s.ElectricityMeterDto
+
+<h2>Modifie Electricity meter</h2>
+<form class="row g-3 my-4" method="post" asp-controller="ElectricityMeter">
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">@Model.Name</label>
+        <input asp-for="Name" type="text" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FactoryNumber" class="form-label">@Model.FactoryNumber</label>
+        <input asp-for="FactoryNumber" type="text" class="form-control">
+    </div>
+
+    <div>
+        <button type="submit"> Save </button>
+    </div>
+</form>

@@ -1,0 +1,17 @@
+﻿@model Electricity.BusinessLogic.DTO_s.RenterDto
+
+<h2>Are You Sure you want to Delete <br /> This renter ?</h2>
+
+
+
+<form class="row g-3 my-4" method="post" asp-controller="Renter">
+ 
+
+    <div class="col-4">
+        <label asp-for="Name" class="form-label"> Name</label>
+        <input value=@Model.Name asp-for="Name" disabled type="text" class="form-control">
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary"> Delete </button>
+    </div>
+</form>

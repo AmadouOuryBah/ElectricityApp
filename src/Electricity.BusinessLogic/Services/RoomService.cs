@@ -10,20 +10,20 @@ namespace Electricity.BusinessLogic.Services
     public class RoomService : IRoomService
     {
         public readonly IGenericRepository<Room> _repository;
-        public readonly IRoomRepository _roomRepository;
+      
         public readonly IMapper _mapper;
         public readonly IUnitOfWork _unitOfWork;
 
 
         public RoomService(IGenericRepository<Room> repository,
            IMapper mapper,
-           IUnitOfWork unitOfWork,
-           IRoomRepository roomRepository)
+           IUnitOfWork unitOfWork
+          )
         {
             _repository = repository;
             _mapper = mapper;
             _unitOfWork = unitOfWork;
-            _roomRepository = roomRepository;
+            
         }
 
         public async Task<RoomDto> AddAsync(RoomRequest room)

@@ -1,13 +1,19 @@
 ﻿@model IEnumerable<Electricity.BusinessLogic.DTO_s.RoomDto>
 
+    <h2 class="my-3"></h2>
+
 <table class="table my-4">
-    <caption>list of Renters </caption>
+
     <thead class="table-dark">
 
         <tr>
-            <th scope="col">Room Number</th>
+            <th scope="col"> Name</th>
+            <th scope="col">Floor</th>
             <th scope="col">Renter</th>
             <th scope="col">Building</th>
+            <th scope="col">Room Area</th>
+            <th scope="col">Total of Workers</th>
+         
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -16,10 +22,18 @@
         {
 
             <tr>
-               <td>@room.NumberOfRoom</td>
-               <td>@room.Renter.Name</td>
-               <td>@room.Building.Name</td>
-                <td><a class="btn btn-secondary" href="Room/Edit/@room.Id">edit</a><a class="btn btn-danger mx-2" href=""><i class="bi bi-trash3-fill"></i>delete</a></td>
+               
+                <td>@room.Name</td>
+                <td>@room.Floor</td>
+                <td>@room.Renter.Name</td>
+
+                 <td>@room.Building.Name </td>
+                <td>@room.RoomArea</td>
+                <td>@room.TotalWorkers</td>
+                <td>
+                    <a class="btn btn-secondary" href="Room/Edit/@room.Id">edit</a>
+                    <a class="btn btn-danger mx-2" href="Room/Delete/@room.Id"><i class="bi bi-trash3-fill mx-1"></i>delete</a>
+                </td>
             </tr>
 
         }

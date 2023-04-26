@@ -1,34 +1,72 @@
-﻿@model Electricity.BusinessLogic.DTO_s.BuildingDto
+﻿
+@using Electricity.BusinessLogic.DTO_s;
+@using Electricity.BusinessLogic.Requests
+@model Electricity.BusinessLogic.DTO_s.BuildingDto
 
-<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb" class="my-3">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a asp-action="Index" asp-controller="Building">Buildings</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Update building</li>
-    </ol>
-</nav>
+
+<h2>Edit a Building </h2>
+
+
+
 <form class="row g-3 my-4" method="post" asp-controller="Building">
-
-    <div class="col-md-4">
+    <div class="mb-3 col-4">
         <label asp-for="Name" class="form-label">Name</label>
-        <input asp-for="Name" value =@Model.Name class="form-control">
+        <input asp-for="Name" type="text" class="form-control">
     </div>
 
-    <div class="col-md-4">
+    <div class="mb-3 col-4">
         <label asp-for="Address" class="form-label">Address</label>
-        <input asp-for="Address" value =@Model.Address class="form-control" >
+        <input asp-for="Address" type="text" class="form-control">
     </div>
 
-    <div class="col-md-4">
-        <label asp-for="Floor" class="form-label">Floor</label>
-        <input asp-for="Floor" value=@Model.Floor class="form-control">
-    </div>
-
-    <div class="col-md-12">
+    <div class="mb-3 col-4">
         <label asp-for="City" class="form-label">City</label>
-        <input asp-for="City" value=@Model.City class="form-control">
+        <input asp-for="City" type="text" class="form-control">
     </div>
 
-    <div class="col-12">
+    <div class="col-4">
+        <select asp-for="ElectricityMeterId" class="form-select">
+
+            <option >@Model.ElectricityMeterId</option>
+            @foreach (var item in (List<ElectricityMeterDto>)ViewData["electricityMeters"])
+            {
+                <option value=@item.Id>@item.Name @item.FactoryNumber</option>
+
+            }
+        </select>
+    </div>
+
+    <div class="col-4">
+        <select asp-for="HeatMeterId" class="form-select">
+
+           <option >@Model.HeatMeterId</option>
+            @foreach (var item in (List<HeatMeterDto>)ViewData["heatMeters"])
+            {
+                <option value=@item.Id>@item.Name @item.FactoryNumber</option>
+
+            }
+        </select>
+    </div>
+
+
+    <div class="col-4">
+        <select asp-for="WaterMeterId" class="form-select">
+
+            <option>@Model.WaterMeterId</option>
+            @foreach (var item in (List<WaterMeterDto>)ViewData["waterMeters"])
+            {
+                <option value=@item.Id>@item.Name @item.FactoryNumber</option>
+
+            }
+        </select>
+    </div>
+
+
+    <div class="col-4">
+        <label asp-for="BuildingArea" class="form-label"> Area</label>
+        <input asp-for="BuildingArea" type="text" value=@Model.BuildingArea class="form-control">
+    </div>
+    <div>
         <button type="submit" class="btn btn-primary"> Save </button>
     </div>
 </form>

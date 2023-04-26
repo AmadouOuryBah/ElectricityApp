@@ -25,15 +25,17 @@ namespace Electricity.DataAccess.Repositories
 
         public Task<List<RoomElectricalEquipement>> GetAllAsync()
         {
-            _roomElectricalEquipementRepositories
-                .Include(e => e.ElectricalEquipments)
+           return _roomElectricalEquipementRepositories
+                 .Include(e => e.Room)
+                 .Include(e => e.Equipment)
                 .ToListAsync();
         }
 
         public Task<RoomElectricalEquipement?> GetByIdAsync(int id)
         {
-            _roomElectricalEquipementRepositories
-                .Include(e => e.ElectricalEquipments)
+          return  _roomElectricalEquipementRepositories
+                .Include(e => e.Room)
+                 .Include(e => e.Equipment)
                 .Where(e => e.Id == id)
                 .FirstOrDefaultAsync();
         }

@@ -1,0 +1,66 @@
+﻿
+@model Electricity.BusinessLogic.DTO_s.BuildingDto
+
+<h2>Are You Sure you want to Delete <br /> a Building ?</h2>
+
+
+
+<form class="row g-3 my-4" method="post" asp-controller="Building">
+    <div class="mb-3 col-4">
+        <label asp-for="Name" class="form-label">Name</label>
+        <input asp-for="Name" type="text" value=@Model.Name disabled class="form-control">
+    </div>
+
+    <div class="mb-3 col-4">
+        <label asp-for="Address" class="form-label">Address</label>
+        <input disabled asp-for="Address"  value=@Model.Address type="text" class="form-control">
+    </div>
+
+    <div class="mb-3 col-4">
+        <label asp-for="City" class="form-label">City</label>
+        <input asp-for="City" type="text"  value=@Model.City form-control">
+    </div>
+
+    <div class="col-4">
+        <select asp-for="ElectricityMeterId" class="form-select">
+
+          
+           
+                <option >@Model.Name @Model.ElectricityMeterId</option>
+
+         
+        </select>
+    </div>
+
+    <div class="col-4">
+        <select asp-for="HeatMeterId" class="form-select">
+
+
+
+            <option value=@Model.Id> @Model.HeatMeter.Name @Model.HeatMeter.FactoryNumber</option>
+
+        
+        </select>
+    </div>
+
+
+    <div class="col-4">
+        <select asp-for="WaterMeterId" class="form-select">
+
+           
+           
+                <option value=@Model.Id>@Model.WaterMeter.Name @Model.WaterMeter.FactoryNumber</option>
+
+           
+        </select>
+    </div>
+
+
+    <div class="col-4">
+        <label asp-for="BuildingArea" class="form-label"> Area</label>
+        <input value=@Model.BuildingArea asp-for="BuildingArea" disabled type="text" class="form-control">
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary"> Delete </button>
+    </div>
+</form>

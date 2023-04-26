@@ -32,7 +32,12 @@ namespace Electricity.BusinessLogic.Services
 
         public async Task<string> DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var item = await _repository.GetByIdAsync(id);
+
+            _repository.Delete(item);
+           await  _unitOfWork.SaveChangesAsync();
+
+            return "deleted";
         }
 
         public async  Task<List<BuildingDto>> GetAllAsync()

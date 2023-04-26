@@ -2,7 +2,7 @@
 using Electricity.BusinessLogic.DTO_s;
 
 using Electricity.BusinessLogic.Requests;
-
+using Electricity.BusinessLogic.Services.Interface;
 using Electricity.DataAccess.Entities;
 using Electricity.DataAccess.Repositories.Interface;
 
