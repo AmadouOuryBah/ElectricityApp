@@ -27,7 +27,7 @@ namespace Electricity.DataAccess.Repositories
         {
            return _roomElectricalEquipementRepositories
                  .Include(e => e.Room)
-                 .Include(e => e.Equipment)
+                 .Include(e => e.ELectricalEquipement)
                 .ToListAsync();
         }
 
@@ -35,7 +35,7 @@ namespace Electricity.DataAccess.Repositories
         {
           return  _roomElectricalEquipementRepositories
                 .Include(e => e.Room)
-                 .Include(e => e.Equipment)
+                 .Include(e => e.ELectricalEquipement)
                 .Where(e => e.Id == id)
                 .FirstOrDefaultAsync();
         }

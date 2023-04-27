@@ -1,4 +1,5 @@
-﻿using Electricity.BusinessLogic.Requests;
+﻿using Electricity.BusinessLogic.DTO_s;
+using Electricity.BusinessLogic.Requests;
 using Electricity.BusinessLogic.Services;
 using Electricity.BusinessLogic.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
@@ -43,5 +44,42 @@ namespace Electricity.Presentation.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+
+            ViewData["rooms"] = await _roomService.GetAllAsync();
+            ViewData["equipements"] = await _electricityEquipementService.GetAllAsync();
+
+            return View(await _roomElectricalEquipementService.GetByIdAsync(id));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(RoomElectricalEquipementDto room)
+        {
+
+            await _roomElectricalEquipementService.UpdateAsync(room);
+
+            return RedirectToAction("Index");
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+
+            return View(await _roomElectricalEquipementService.GetByIdAsync(id));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(RoomDto room)
+        {
+            await _roomElectricalEquipementService.DeleteAsync(room.Id);
+
+            return RedirectToAction("Index");
+        }
+
+
     }
 }

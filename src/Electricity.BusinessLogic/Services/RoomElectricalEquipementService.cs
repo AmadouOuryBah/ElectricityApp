@@ -50,7 +50,7 @@ namespace Electricity.BusinessLogic.Services
             return _mapper.Map<List<RoomElectricalEquipementDto>>(roomEkipmnts);
         }
 
-        public async Task<RoomElectricalEquipementDto> GetById(int id)
+        public async Task<RoomElectricalEquipementDto> GetByIdAsync(int id)
         {
             var roomEkipmnt = await _repository.GetByIdAsync(id);
 
@@ -61,7 +61,7 @@ namespace Electricity.BusinessLogic.Services
         {
             var roomEkipmntFound = await _repository.GetByIdAsync(item.Id);
             roomEkipmntFound.RoomId = item.RoomId;
-          
+            roomEkipmntFound.ElectricalEquipementId = item.ElectricalEquipementId;
             roomEkipmntFound.WorkingTime = item.WorkingTime;
             
            

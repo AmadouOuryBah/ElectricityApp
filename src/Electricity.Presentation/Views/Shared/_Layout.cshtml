@@ -55,7 +55,7 @@
                             Dropdown
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Schedule</a></li>
+                            <li><a class="dropdown-item" asp-controller="Schedule" asp-action="Index" >Schedule</a></li>
                             <li><a class="nav-link" asp-controller="ElectricityMeter" asp-action="Index">Electricity meter</a></li>
                             <li><a class="nav-link" asp-controller="WaterMeter" asp-action="Index">Water meter</a></li>
                             <li><a class="nav-link" asp-controller="HeatMeter" asp-action="Index">Heat meter</a></li>
@@ -67,7 +67,7 @@
               
                 </ul>
                 <div class="btn-group" role="group" >
-                    <button type="button" class="btn btn-primary">Sign in</button>
+                    <button type="button" class="btn btn-primary mx-2">Sign in</button>
                   
                     <button type="button" class="btn btn-primary">Log out</button>
                 </div>

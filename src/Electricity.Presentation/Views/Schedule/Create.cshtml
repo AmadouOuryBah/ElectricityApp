@@ -1,0 +1,41 @@
+﻿@using Electricity.BusinessLogic.DTO_s
+@model Electricity.BusinessLogic.Requests.ScheduleRequest
+
+<h2 class="my-2">New Schedule</h2>
+
+
+
+<form class="row g-3 my-4" method="post" asp-controller="Schedule">
+
+    <div class="row">
+        <div class="col-4">
+            <select asp-for="RoomId" class="form-select">
+
+                @foreach (var item in (List<RoomDto>)ViewData["rooms"])
+                {
+                    <option value=@item.Id>@item.Name @item.Floor @item.Building.Name</option>
+
+                }
+            </select>
+        </div>
+    </div>
+    
+    <div class="mb-3 col-4">
+        <label asp-for="Month" class="form-label">Month</label>
+        <input asp-for="Month" type="number" class="form-control">
+    </div>
+
+    <div class="mb-3 col-4">
+        <label asp-for="Year" class="form-label">Year</label>
+        <input asp-for="Year" type="text" class="form-control">
+    </div>
+
+    <div class="mb-3 col-4">
+        <label asp-for="TotalOfDay" class="form-label">Days</label>
+        <input asp-for="TotalOfDay" type="text" class="form-control">
+    </div> 
+
+    <div>
+        <button type="submit" class="btn btn-primary">Add</button>
+    </div>
+</form>

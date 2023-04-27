@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Electricity.BusinessLogic.DTO_s.RoomDto>
 
-    <h2 class="my-3"></h2>
+    <h2 class="my-3">List of Rooms</h2>
 
 <table class="table my-4">
 
@@ -38,5 +38,5 @@
 
         }
     </tbody>
-    <a btn btn-primary-lg asp-action="Create" asp-controller="Room">create</a>
+    <button class="btn btn-primary" asp-action="Create" asp-controller="Room">create</button>
 </table>

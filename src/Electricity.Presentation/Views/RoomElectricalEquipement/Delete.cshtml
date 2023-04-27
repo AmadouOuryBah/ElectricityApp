@@ -1,0 +1,48 @@
+﻿@model Electricity.BusinessLogic.DTO_s.RoomElectricalEquipementDto
+
+<h2>Are You Sure you want to Delete ?</h2>
+
+
+
+<form class="row g-3 my-4" method="post" asp-controller="RoomElectricalEquipement">
+   
+
+    <div class="row">
+        <div class="col-6 mb-3">
+            <label asp-for="RoomId" class="form-label"> Room, Floor and building</label>
+            <select asp-for="RoomId" disabled class="form-select">
+                <option>
+                    @Model.Room.Name
+                    @Model.Room.Floor
+                </option>
+          
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <label asp-for="ElectricalEquipementId" class="form-label"> Device and Power</label>
+            <select disabled asp-for="ElectricalEquipementId" class="form-select">
+                <option>
+                    @Model.ElectricalEquipement.Name ,
+                    @Model.ElectricalEquipement.Power :
+
+
+                </option>
+            </select>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-6">
+            <label asp-for="WorkingTime" class="form-label"> Working time</label>
+            <input asp-for="WorkingTime" disabled type="text" value=@Model.WorkingTime class="form-control">
+        </div>
+    </div>
+    
+        <button type="submit" class="btn btn-primary"> Delete </button>
+    
+</form>

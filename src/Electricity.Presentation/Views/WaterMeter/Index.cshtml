@@ -1,13 +1,7 @@
 ﻿@model IEnumerable<Electricity.BusinessLogic.DTO_s.WaterMeterDto>
 
-<div class="row">
-    <div class="col-lg-6">
-        <h2>Water Meter</h2>
-    </div>
-
-
-</div>
-
+<h2 class="my-4">Water Meter</h2>
+ 
 <table class="table my-4">
 
     <thead class="table-dark">
@@ -33,5 +27,5 @@
 
         }
     </tbody>
-    <a btn btn-primary-lg asp-action="Create" asp-controller="WaterMeter">create</a>
+    <a class="btn btn-primary" asp-action="Create" asp-controller="WaterMeter">create</a>
 </table>

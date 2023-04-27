@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Electricity.BusinessLogic.DTO_s.ScheduleDto>
+
+<h2 class="my-3">Schedule </h2>
+
+<table class="table my-4">
+
+    <thead class="table-dark">
+
+        <tr>
+            <th scope="col"> Room</th>
+            <th scope="col">Floor</th>
+            <th scope="col">building</th>
+            <th scope="col">Month</th>
+            <th scope="col">Year</th>
+            <th scope="col">total of day</th>
+
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+
+            <tr>
+
+                <td>@item.Room.Name</td>
+                <td>@item.Room.Floor</td>
+                <td>@item.Room.Building.Name</td>
+
+                <td>@item.Month </td>
+                <td>@item.Year</td>
+                <td>@item.TotalOfDay</td>
+                <td>
+                    <a class="btn btn-secondary" href="Schedule/Edit/@item.Id">edit</a>
+                    <a class="btn btn-danger mx-2" href="Schedule/Delete/@item.Id"><i class="bi bi-trash3-fill mx-1"></i>delete</a>
+                </td>
+            </tr>
+
+        }
+    </tbody>
+    <button class="btn btn-primary" asp-action="Create" asp-controller="Schedule">create</button>
+</table>

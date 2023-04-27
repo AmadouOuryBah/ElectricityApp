@@ -15,6 +15,8 @@
         <tr>
             <th scope="col">Room </th>
             <th scope="col">Device</th>
+            <th scope="col">Power</th>
+            <th scope="col">Coeffcient</th>
             <th scope="col">Working Time </th>
             <th scope="col">Action</th>
 
@@ -24,8 +26,10 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.RoomDto.Name @item.RoomDto.Floor</td>
-                <td>@item.ElectricalEquipementDto.Coefficient @item.ElectricalEquipementDto.Name @item.ElectricalEquipementDto.Power</td>
+                <td>@item.Room.Name</td>
+                <td> @item.ElectricalEquipement.Name</td>
+                <td> @item.ElectricalEquipement.Power</td>
+                <td>@item.ElectricalEquipement.Coefficient</td>
                 <td>@item.WorkingTime</td>
                
                 <td>
@@ -36,5 +40,5 @@
 
         }
     </tbody>
-    <a class="btn btn-primary-lg" asp-action="Create" asp-controller="RoomElectricalEquipement">create</a>
+    <button class="btn btn-primary" asp-action="Create" asp-controller="RoomElectricalEquipement">create</button>
 </table>
