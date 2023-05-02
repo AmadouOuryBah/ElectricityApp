@@ -1,13 +1,16 @@
 ﻿@model IEnumerable<Electricity.BusinessLogic.DTO_s.RenterDto>
 
-<div class="row">
+<div class="row mt-2">
     <div class="col-lg-6">
         <h2>List of Renters</h2>
     </div>
 
 
 </div>
-
+ 
+<div class="my-2">
+    <a class="btn btn-primary" asp-action="Create" asp-controller="Renter">create</a>
+</div>
 <table class="table my-4">
 
     <thead class="table-dark">
@@ -31,5 +34,5 @@
 
         }
     </tbody>
-    <button class="btn btn-primary" asp-action="Create" asp-controller="Renter">create</button>
+   
 </table>

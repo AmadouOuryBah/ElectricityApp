@@ -12,6 +12,6 @@ namespace Electricity.BusinessLogic.Services.Interface
         Task<ScheduleDto> UpdateAsync(ScheduleDto scheduleRequest);
         Task<string> DeleteAsync(int id);
 
-        Task<Schedule> GetByIdAsync(int id);
+        Task<ScheduleDto> GetByIdAsync(int id);
     }
 }

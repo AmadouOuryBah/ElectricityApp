@@ -1,15 +1,15 @@
 ﻿@model Electricity.BusinessLogic.DTO_s.WaterMeterDto
 
-<h2 class="my-4">Modifie Water meter</h2>
+<h2 class="mt-3">Modifie Water meter</h2>
 
 <form class="row g-3 my-4" method="post" asp-controller="WaterMeter">
     <div class="mb-3">
-        <label asp-for="Name" class="form-label">@Model.Name</label>
+        <label asp-for="Name" class="form-label">Name</label>
         <input asp-for="Name" type="text" class="form-control">
     </div>
 
     <div class="mb-3">
-        <label asp-for="FactoryNumber" class="form-label">@Model.FactoryNumber</label>
+        <label asp-for="FactoryNumber" class="form-label">Serial Number</label>
         <input asp-for="FactoryNumber" type="text" class="form-control">
     </div>
 

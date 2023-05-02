@@ -1,6 +1,4 @@
-﻿
-
-using AutoMapper;
+﻿using AutoMapper;
 using Electricity.BusinessLogic.DTO_s;
 using Electricity.BusinessLogic.Requests;
 using Electricity.BusinessLogic.Services.Interface;
@@ -53,17 +51,17 @@ namespace Electricity.BusinessLogic.Services
             return _mapper.Map<List<ScheduleDto>>(schedules);
         }
 
-        public async Task<Schedule> GetByIdAsync(int id)
+        public async Task<ScheduleDto> GetByIdAsync(int id)
         {
             var schedule = await _repository.GetByIdAsync(id);
 
-            return schedule;
+            return _mapper.Map<ScheduleDto>(schedule);
             
         }
 
         public async  Task<ScheduleDto> UpdateAsync(ScheduleDto schedule)
         {
-            var scheduleFound = await GetByIdAsync(schedule.Id);
+            var scheduleFound = await _repository.GetByIdAsync(schedule.Id);
 
             scheduleFound.RoomId = schedule.RoomId;
             scheduleFound.Month = schedule.Month;

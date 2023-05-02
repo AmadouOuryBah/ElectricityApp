@@ -15,7 +15,7 @@
 </head>
 <body>
    
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary ">
         <div class="container-fluid">
             <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Electricity Distribution</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -52,7 +52,7 @@
                     <li class="nav-item dropdown">
 
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
+                            Counters
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" asp-controller="Schedule" asp-action="Index" >Schedule</a></li>
@@ -67,9 +67,9 @@
               
                 </ul>
                 <div class="btn-group" role="group" >
-                    <button type="button" class="btn btn-primary mx-2">Sign in</button>
+                    <button type="button" class="btn btn-secondary mx-2">Sign in</button>
                   
-                    <button type="button" class="btn btn-primary">Log out</button>
+                    <button type="button" class="btn btn-secondary">Log in</button>
                 </div>
             </div>
         </div>
@@ -81,11 +81,8 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - ElectricityDistribution App - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+   
+
     <script src="~/lib/jquery/dist/jquery.min.js">
         </script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

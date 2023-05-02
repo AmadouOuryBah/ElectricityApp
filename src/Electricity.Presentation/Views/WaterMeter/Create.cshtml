@@ -1,7 +1,9 @@
 ﻿@model Electricity.BusinessLogic.Requests.WaterMeterRequest
 
-<h2 class="my-4">Create new Electricity meter</h2>
-
+<h2 class="my-3">Create new Electricity meter</h2>
+<div>
+    <a class="btn btn-primary " asp-action="Create" asp-controller="WaterMeterController">Add new water meter</a>
+</div>
 <form class="row g-3 my-4" method="post" asp-controller="WaterMeter">
     <div class="mb-3">
         <label asp-for="Name" class="form-label">Name</label>
@@ -13,7 +15,5 @@
         <input asp-for="FactoryNumber" type="text" class="form-control">
     </div>
 
-    <div>
-        <button class="btn btn-primary" type="submit">Add</button>
-    </div>
+   
 </form>

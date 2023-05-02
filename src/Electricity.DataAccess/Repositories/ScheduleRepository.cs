@@ -24,7 +24,8 @@ namespace Electricity.DataAccess.Repositories
 
         public Task<List<Schedule>> GetAllAsync()
         {
-           return _schedules.Include(e => e.Room).ToListAsync();
+           return _schedules.Include(e => e.Room)
+                .ThenInclude(b => b.Building).ToListAsync();
 
         }
 
