@@ -22,7 +22,9 @@ public class ApplicationContext: DbContext
     public DbSet<MetersData> MetersDatas { get; set; }
     public DbSet<WaterMeter> WaterMeters { get; set; }
     public DbSet<Schedule> Schedules { get; set; }
-   
+    public DbSet<RoomElectricalEquipement> RoomElectricalEquipements { get; set; }
+
+
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
