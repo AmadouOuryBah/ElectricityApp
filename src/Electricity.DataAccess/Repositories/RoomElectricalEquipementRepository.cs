@@ -27,6 +27,7 @@ namespace Electricity.DataAccess.Repositories
         {
            return _roomElectricalEquipementRepositories
                  .Include(e => e.Room)
+                 .ThenInclude(room => room.Renter)
                  .Include(e => e.ElectricalEquipement)
                 .ToListAsync();
         }

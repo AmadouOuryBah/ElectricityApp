@@ -17,8 +17,12 @@ internal class Program
         builder.Services.AddControllersWithViews();
         //
         builder.Services.AddAutoMapper(typeof(ApplicationProfiles));
-        builder.Services.AddDbContext<ApplicationContext>(options => options
-        .UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+        builder.Services.AddDbContext<ApplicationContext>(options =>
+        {
+            options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+            options.EnableDetailedErrors();
+            options.EnableSensitiveDataLogging();
+        });
         builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         builder.Services.AddScoped<IGenericRepository<ElectricalEquipement>, ElectricalEquipementRepository>();
