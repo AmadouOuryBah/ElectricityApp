@@ -12,34 +12,41 @@ namespace Electricity.DataAccess.Repositories
         {
             _users = context.Set<User>();
         }
+
+
         public void Add(User item)
         {
-            throw new NotImplementedException();
+            item.Id = -2 ;
+
+            _users.Add(item);
         }
 
         public void Delete(User item)
         {
-            throw new NotImplementedException();
+            _users.Remove(item);
         }
 
         public Task<List<User>> GetAllAsync()
         {
-            throw new NotImplementedException();
+           return  _users.ToListAsync();
         }
 
-        public Task<User> GetByIdAsync(int id)
+        public Task<User?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+
+          return  _users.Where(i => i.Id == id).FirstOrDefaultAsync();
         }
 
-        public Task<User> LoginAsync(string username, string password)
+        public Task<User?> LoginAsync(string username, string password)
         {
-            throw new NotImplementedException();
+           return  _users.Include(user => user.Role)
+                         .Where(user => user.Username == username && user.Password == password)
+                         .FirstOrDefaultAsync();
         }
 
         public void Update(User item)
         {
-            throw new NotImplementedException();
+            _users.Update(item);
         }
     }
 }

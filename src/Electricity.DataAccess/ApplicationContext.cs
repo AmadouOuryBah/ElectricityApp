@@ -23,12 +23,35 @@ public class ApplicationContext: DbContext
     public DbSet<WaterMeter> WaterMeters { get; set; }
     public DbSet<Schedule> Schedules { get; set; }
     public DbSet<RoomElectricalEquipement> RoomElectricalEquipements { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<Role> Roles { get; set; }
 
 
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+
+        builder.Entity<Role>()
+           .HasData(new()
+           {
+               Id = -2,
+               Name = "user",
+           }, new Role()
+           {
+               Id = -1,
+               Name = "admin"
+           });
+
+        builder.Entity<User>()
+            .HasData(new User()
+            {
+                Id = -1,
+                Username = "Patrick",
+                Password = "123456",
+                RoleId = -1
+            });
+
         builder.ApplyConfigurationsFromAssembly(typeof(ApplicationContext).Assembly);
     }
 }
