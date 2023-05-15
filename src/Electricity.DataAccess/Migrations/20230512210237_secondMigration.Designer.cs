@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Electricity.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20230425194920_Thrid")]
-    partial class Thrid
+    [Migration("20230512210237_secondMigration")]
+    partial class secondMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -58,8 +58,7 @@ namespace Electricity.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ElectricityMeterId")
-                        .IsUnique();
+                    b.HasIndex("ElectricityMeterId");
 
                     b.HasIndex("HeatMeterId")
                         .IsUnique();
@@ -209,6 +208,32 @@ namespace Electricity.DataAccess.Migrations
                     b.ToTable("Rooms");
                 });
 
+            modelBuilder.Entity("Electricity.DataAccess.Entities.RoomElectricalEquipement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ElectricalEquipementId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoomId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WorkingTime")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ElectricalEquipementId");
+
+                    b.HasIndex("RoomId");
+
+                    b.ToTable("RoomElectricalEquipement");
+                });
+
             modelBuilder.Entity("Electricity.DataAccess.Entities.Schedule", b =>
                 {
                     b.Property<int>("Id")
@@ -260,8 +285,8 @@ namespace Electricity.DataAccess.Migrations
             modelBuilder.Entity("Electricity.DataAccess.Entities.Building", b =>
                 {
                     b.HasOne("Electricity.DataAccess.Entities.ElectricityMeter", "ElectricityMeter")
-                        .WithOne("Building")
-                        .HasForeignKey("Electricity.DataAccess.Entities.Building", "ElectricityMeterId")
+                        .WithMany("Building")
+                        .HasForeignKey("ElectricityMeterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -303,6 +328,25 @@ namespace Electricity.DataAccess.Migrations
                     b.Navigation("Renter");
                 });
 
+            modelBuilder.Entity("Electricity.DataAccess.Entities.RoomElectricalEquipement", b =>
+                {
+                    b.HasOne("Electricity.DataAccess.Entities.ElectricalEquipment", "ElectricalEquipement")
+                        .WithMany("RoomElectricalEquipements")
+                        .HasForeignKey("ElectricalEquipementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Electricity.DataAccess.Entities.Room", "Room")
+                        .WithMany("RoomElectricalEquipements")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ElectricalEquipement");
+
+                    b.Navigation("Room");
+                });
+
             modelBuilder.Entity("Electricity.DataAccess.Entities.Schedule", b =>
                 {
                     b.HasOne("Electricity.DataAccess.Entities.Room", "Room")
@@ -319,10 +363,14 @@ namespace Electricity.DataAccess.Migrations
                     b.Navigation("Rooms");
                 });
 
+            modelBuilder.Entity("Electricity.DataAccess.Entities.ElectricalEquipment", b =>
+                {
+                    b.Navigation("RoomElectricalEquipements");
+                });
+
             modelBuilder.Entity("Electricity.DataAccess.Entities.ElectricityMeter", b =>
                 {
-                    b.Navigation("Building")
-                        .IsRequired();
+                    b.Navigation("Building");
                 });
 
             modelBuilder.Entity("Electricity.DataAccess.Entities.HeatMeter", b =>
@@ -338,6 +386,8 @@ namespace Electricity.DataAccess.Migrations
 
             modelBuilder.Entity("Electricity.DataAccess.Entities.Room", b =>
                 {
+                    b.Navigation("RoomElectricalEquipements");
+
                     b.Navigation("Schedule")
                         .IsRequired();
                 });

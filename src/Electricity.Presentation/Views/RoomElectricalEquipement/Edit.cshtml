@@ -33,14 +33,14 @@
    
     <div class="row">
         <div class="col-6">
-            <label asp-for="ElectricalEquipementId" class="form-label"> Device and Power</label>
-            <select asp-for="ElectricalEquipementId" class="form-select">
+          @*  <label asp-for="ElectricalEquipements" class="form-label"> Device and Power</label>
+            <select asp-for="ElectricalEquipements" class="form-select">
                 <option>
-                    @Model.ElectricalEquipement.Name ,
-                    @Model.ElectricalEquipement.Power :
+                  @*  @Model.ElectricalEquipements
+                    @Model.ElectricalEquipements*@
 
 
-                </option>
+               @* </option>*@
 
                 @foreach (var item in (List<ElectricalEquipementDto>)ViewData["equipements"])
                 {
@@ -51,7 +51,7 @@
                             
 
                 }
-            </select>
+          @*  </select>*@
         </div>
 
     </div>

@@ -12,6 +12,7 @@
 
         <tr>
             <th scope="col">Room </th>
+            <th scope="col">Renter</th>
             <th scope="col">Device</th>
             <th scope="col">Power</th>
             <th scope="col">Coeffcient</th>
@@ -25,8 +26,9 @@
         {
             <tr>
                 <td>@item.Room.Name</td>
+                <td>@item.Room.Renter.Name</td>
                 <td> @item.ElectricalEquipement.Name</td>
-                <td> @item.ElectricalEquipement.Power</td>
+                <td>@item.ElectricalEquipement.Power</td>
                 <td>@item.ElectricalEquipement.Coefficient</td>
                 <td>@item.WorkingTime</td>
                

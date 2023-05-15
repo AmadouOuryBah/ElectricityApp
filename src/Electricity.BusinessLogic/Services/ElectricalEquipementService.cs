@@ -11,11 +11,11 @@ namespace Electricity.BusinessLogic.Services
     public class ElectricalEquipementService : IElectricityEquipement
     {
 
-        public readonly IGenericRepository<ElectricalEquipment> _genericRepository;
+        public readonly IGenericRepository<ElectricalEquipement> _genericRepository;
         public readonly IMapper _mapper;
         public readonly IUnitOfWork _unitOfWork;
 
-        public ElectricalEquipementService(IGenericRepository<ElectricalEquipment> genericRepository,
+        public ElectricalEquipementService(IGenericRepository<ElectricalEquipement> genericRepository,
             IMapper mapper,
             IUnitOfWork unitOfWork)
         {
@@ -25,7 +25,7 @@ namespace Electricity.BusinessLogic.Services
         }
         public async Task<ElectricalEquipementDto> AddAsync(ElectricalEquipementRequest electricalEquipmnt)
         {
-            var deviceMapped = _mapper.Map<ElectricalEquipment>(electricalEquipmnt);
+            var deviceMapped = _mapper.Map<ElectricalEquipement>(electricalEquipmnt);
 
             _genericRepository.Add(deviceMapped);
             await _unitOfWork.SaveChangesAsync();

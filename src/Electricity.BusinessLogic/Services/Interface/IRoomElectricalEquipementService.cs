@@ -14,5 +14,7 @@ namespace Electricity.BusinessLogic.Services.Interface
         Task<string> DeleteAsync(int id);
 
         Task<RoomElectricalEquipementDto> GetByIdAsync(int id);
+
+        //Task<List<RoomElectricalEquipementDtoResult>> DetermineEnergyConsumption(int id);
     }
 }

@@ -9,9 +9,9 @@ namespace Electricity.Presentation.Profiles
     {
         public ApplicationProfiles()
         {
-            CreateMap<ElectricalEquipementRequest, ElectricalEquipment>()
+            CreateMap<ElectricalEquipementRequest, ElectricalEquipement>()
             .ReverseMap();
-            CreateMap<ElectricalEquipment, ElectricalEquipementDto>()
+            CreateMap<ElectricalEquipement, ElectricalEquipementDto>()
             .ReverseMap();
 
             CreateMap<ElectricityMeterRequest, ElectricityMeter>()

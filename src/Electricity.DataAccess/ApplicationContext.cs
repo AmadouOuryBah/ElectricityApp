@@ -16,7 +16,7 @@ public class ApplicationContext: DbContext
     public DbSet<Room> Rooms { get; set; }
     public DbSet<Renter> Renters { get; set; }
     public DbSet<ElectricityMeter> ElectricityMeters { get; set; }
-    public DbSet<ElectricalEquipment> ElectricalEquipments { get; set; }
+    public DbSet<ElectricalEquipement> ElectricalEquipments { get; set; }
     public DbSet<Building> Buildings { get; set; }
     public DbSet<HeatMeter> HeatMeters { get; set; }
     public DbSet<MetersData> MetersDatas { get; set; }

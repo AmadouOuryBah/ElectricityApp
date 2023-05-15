@@ -1,6 +1,5 @@
 ﻿using Electricity.BusinessLogic.DTO_s;
 using Electricity.BusinessLogic.Requests;
-using Electricity.BusinessLogic.Services;
 using Electricity.BusinessLogic.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,7 +27,7 @@ namespace Electricity.Presentation.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
            
             return View();

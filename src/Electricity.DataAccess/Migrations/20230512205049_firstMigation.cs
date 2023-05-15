@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Electricity.DataAccess.Migrations
 {
-    public partial class Thrid : Migration
+    public partial class firstMigation : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -162,6 +162,34 @@ namespace Electricity.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RoomElectricalEquipement",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    WorkingTime = table.Column<int>(type: "int", nullable: false),
+                    RoomId = table.Column<int>(type: "int", nullable: false),
+                    ElectricalEquipementId = table.Column<int>(type: "int", nullable: false),
+                    ElectricalEquipmentId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoomElectricalEquipement", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RoomElectricalEquipement_ElectricalEquipments_ElectricalEquipmentId",
+                        column: x => x.ElectricalEquipmentId,
+                        principalTable: "ElectricalEquipments",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RoomElectricalEquipement_Rooms_RoomId",
+                        column: x => x.RoomId,
+                        principalTable: "Rooms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Schedules",
                 columns: table => new
                 {
@@ -186,8 +214,7 @@ namespace Electricity.DataAccess.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Buildings_ElectricityMeterId",
                 table: "Buildings",
-                column: "ElectricityMeterId",
-                unique: true);
+                column: "ElectricityMeterId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Buildings_HeatMeterId",
@@ -200,6 +227,16 @@ namespace Electricity.DataAccess.Migrations
                 table: "Buildings",
                 column: "WaterMeterId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoomElectricalEquipement_ElectricalEquipmentId",
+                table: "RoomElectricalEquipement",
+                column: "ElectricalEquipmentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoomElectricalEquipement_RoomId",
+                table: "RoomElectricalEquipement",
+                column: "RoomId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Rooms_BuildingId",
@@ -221,13 +258,16 @@ namespace Electricity.DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ElectricalEquipments");
-
-            migrationBuilder.DropTable(
                 name: "MetersDatas");
 
             migrationBuilder.DropTable(
+                name: "RoomElectricalEquipement");
+
+            migrationBuilder.DropTable(
                 name: "Schedules");
+
+            migrationBuilder.DropTable(
+                name: "ElectricalEquipments");
 
             migrationBuilder.DropTable(
                 name: "Rooms");

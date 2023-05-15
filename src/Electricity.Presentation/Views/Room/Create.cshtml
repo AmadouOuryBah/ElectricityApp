@@ -1,60 +1,70 @@
 ﻿@using Electricity.BusinessLogic.DTO_s
 @model Electricity.BusinessLogic.Requests.RoomRequest
 
-<h2 class="mt-3">Create new room </h2>
+<h2 >Create new room </h2>
 
+<form class="row g-3 mt-4" method="post" asp-controller="Room">
 
-<div>
-    <a class="btn btn-primary mt-3">Add new room</a>
-</div>
-<form class="row g-3 my-4" method="post" asp-controller="Room">
+    <div class="row">
+        <div class="mb-2 col-4">
+            <label asp-for="BuildingId" class="form-label">Building</label>
 
-    <div class="col-4">
-        <select asp-for="BuildingId" class="form-select">
+            <select asp-for="BuildingId" class="form-select">
 
-            @foreach (var item in (List<BuildingDto>)ViewData["buildings"])
-            {
-                <option value=@item.Id>
-                    <span>@item.Name</span>
-                    <span>@item.Address</span>
-                    <span>@item.City</span>
-                </option>
+                @foreach (var item in (List<BuildingDto>)ViewData["buildings"])
+                {
+                    <option value=@item.Id>
+                        <span>@item.Name</span>
+                        <span>@item.Address</span>
+                        <span>@item.City</span>
+                    </option>
 
-            }
-        </select>
+                }
+            </select>
+        </div>
+
+        <div class="mb-2 col-4">
+            <label asp-for="Name" class="form-label">Name</label>
+            <input asp-for="Name" type="text" class="form-control">
+        </div>
     </div>
+   
 
-    <div class="mb-3 col-4">
-        <label asp-for="Name" class="form-label">Name</label>
-        <input asp-for="Name" type="text" class="form-control">
-    </div>
+   <div class="row">
+        <div class=" mb-2 col-4">
+            <label asp-for="Floor" class="form-label">Floor</label>
+            <input asp-for="Floor" type="number" class="form-control">
+        </div>
 
-    <div class="mb-3 col-4">
-        <label asp-for="Floor" class="form-label">Floor</label>
-        <input asp-for="Floor" type="number" class="form-control">
-    </div>
-
-    <div class="mb-3 col-4">
-        <label asp-for="RoomArea" class="form-label">Area </label>
-        <input asp-for="RoomArea" type="number" class="form-control">
-    </div>
+        <div class=" mb-2 col-4">
+            <label asp-for="RoomArea" class="form-label">Area </label>
+            <input asp-for="RoomArea" type="number" class="form-control">
+        </div>
+   </div>
 
    
 
-    <div class="col-4">
-        <select asp-for="RenterId" class="form-select">
+   <div class="row">
 
-            @foreach (var item in (List<RenterDto>)ViewData["renters"])
-            {
-                <option value=@item.Id>@item.Name</option>
+        <div class=" mb-2 col-4">
+            <select asp-for="RenterId" class="form-select">
 
-            }
-        </select>
-    </div>
+                @foreach (var item in (List<RenterDto>)ViewData["renters"])
+                {
+                    <option value=@item.Id>@item.Name</option>
+
+                }
+            </select>
+        </div>
+
+        <div class=" mb- 2 col-4">
+            <label asp-for="TotalWorkers" class="form-label">Total of workers</label>
+            <input asp-for="TotalWorkers" type="text" class="form-control">
+        </div>
+   </div>
 
 
-    <div class="col-4">
-        <label asp-for="TotalWorkers" class="form-label">Total of workers</label>
-        <input asp-for="TotalWorkers" type="text" class="form-control">
+    <div>
+        <button class="btn btn-primary">add</button>
     </div>
 </form>

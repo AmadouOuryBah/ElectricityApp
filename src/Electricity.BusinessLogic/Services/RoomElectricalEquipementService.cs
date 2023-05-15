@@ -11,6 +11,8 @@ namespace Electricity.BusinessLogic.Services
     public class RoomElectricalEquipementService : IRoomElectricalEquipementService
     {
         public readonly IGenericRepository<RoomElectricalEquipement> _repository;
+
+        public readonly IRoomRepository _roomElectricalEquipement ;
         public readonly IMapper _mapper;
         public readonly IUnitOfWork _unitOfWork;
 
@@ -57,11 +59,11 @@ namespace Electricity.BusinessLogic.Services
             return _mapper.Map<RoomElectricalEquipementDto>(roomEkipmnt);
         }
 
+       
         public  async Task<RoomElectricalEquipementDto> UpdateAsync(RoomElectricalEquipementDto item)
         {
             var roomEkipmntFound = await _repository.GetByIdAsync(item.Id);
             roomEkipmntFound.RoomId = item.RoomId;
-            roomEkipmntFound.ElectricalEquipementId = item.ElectricalEquipementId;
             roomEkipmntFound.WorkingTime = item.WorkingTime;
             
            

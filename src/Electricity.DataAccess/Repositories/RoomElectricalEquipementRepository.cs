@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Electricity.DataAccess.Repositories
 {
-    public class RoomElectricalEquipementRepository
+    public class RoomElectricalEquipementRepository 
         : IGenericRepository<RoomElectricalEquipement>
     {
         public readonly DbSet<RoomElectricalEquipement> _roomElectricalEquipementRepositories;
@@ -27,18 +27,19 @@ namespace Electricity.DataAccess.Repositories
         {
            return _roomElectricalEquipementRepositories
                  .Include(e => e.Room)
-                 .Include(e => e.ELectricalEquipement)
+                 .Include(e => e.ElectricalEquipement)
                 .ToListAsync();
         }
 
         public Task<RoomElectricalEquipement?> GetByIdAsync(int id)
         {
           return  _roomElectricalEquipementRepositories
-                .Include(e => e.Room)
-                 .Include(e => e.ELectricalEquipement)
-                .Where(e => e.Id == id)
-                .FirstOrDefaultAsync();
+                  .Include(e => e.Room)
+                  .Include(e => e.ElectricalEquipement)
+                  .Where(e => e.Id == id)
+                  .FirstOrDefaultAsync();
         }
+
 
         public void Update(RoomElectricalEquipement item)
         {

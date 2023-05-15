@@ -19,5 +19,7 @@ namespace Electricity.BusinessLogic.DTO_s
 
         public ScheduleDto Schedule { get; set; }
 
+
+
     }
 }

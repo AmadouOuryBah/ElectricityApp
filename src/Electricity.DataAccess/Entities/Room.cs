@@ -14,7 +14,8 @@ namespace Electricity.DataAccess.Entities
         public Renter Renter { get; set; }
 
         public Schedule Schedule { get; set; }
+        public ICollection<RoomElectricalEquipement> RoomElectricalEquipements { get; set; }
 
-      
+
     }
 }

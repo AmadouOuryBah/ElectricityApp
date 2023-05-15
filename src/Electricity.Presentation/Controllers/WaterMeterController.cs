@@ -20,7 +20,7 @@ namespace Electricity.Presentation.Controllers
             return View(waterMeters);
         }
         [HttpGet]
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
 
             return View();

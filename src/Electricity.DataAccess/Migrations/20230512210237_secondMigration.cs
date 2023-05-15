@@ -4,35 +4,26 @@
 
 namespace Electricity.DataAccess.Migrations
 {
-    public partial class third_3 : Migration
+    public partial class secondMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_RoomElectricalEquipement_ElectricalEquipments_EquipmentId",
+                name: "FK_RoomElectricalEquipement_ElectricalEquipments_ElectricalEquipmentId",
                 table: "RoomElectricalEquipement");
 
             migrationBuilder.DropIndex(
-                name: "IX_RoomElectricalEquipement_EquipmentId",
+                name: "IX_RoomElectricalEquipement_ElectricalEquipmentId",
                 table: "RoomElectricalEquipement");
-
-            migrationBuilder.DropIndex(
-                name: "IX_Buildings_ElectricityMeterId",
-                table: "Buildings");
 
             migrationBuilder.DropColumn(
-                name: "EquipmentId",
+                name: "ElectricalEquipmentId",
                 table: "RoomElectricalEquipement");
 
             migrationBuilder.CreateIndex(
                 name: "IX_RoomElectricalEquipement_ElectricalEquipementId",
                 table: "RoomElectricalEquipement",
                 column: "ElectricalEquipementId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Buildings_ElectricityMeterId",
-                table: "Buildings",
-                column: "ElectricityMeterId");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_RoomElectricalEquipement_ElectricalEquipments_ElectricalEquipementId",
@@ -53,32 +44,22 @@ namespace Electricity.DataAccess.Migrations
                 name: "IX_RoomElectricalEquipement_ElectricalEquipementId",
                 table: "RoomElectricalEquipement");
 
-            migrationBuilder.DropIndex(
-                name: "IX_Buildings_ElectricityMeterId",
-                table: "Buildings");
-
             migrationBuilder.AddColumn<int>(
-                name: "EquipmentId",
+                name: "ElectricalEquipmentId",
                 table: "RoomElectricalEquipement",
                 type: "int",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.CreateIndex(
-                name: "IX_RoomElectricalEquipement_EquipmentId",
+                name: "IX_RoomElectricalEquipement_ElectricalEquipmentId",
                 table: "RoomElectricalEquipement",
-                column: "EquipmentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Buildings_ElectricityMeterId",
-                table: "Buildings",
-                column: "ElectricityMeterId",
-                unique: true);
+                column: "ElectricalEquipmentId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_RoomElectricalEquipement_ElectricalEquipments_EquipmentId",
+                name: "FK_RoomElectricalEquipement_ElectricalEquipments_ElectricalEquipmentId",
                 table: "RoomElectricalEquipement",
-                column: "EquipmentId",
+                column: "ElectricalEquipmentId",
                 principalTable: "ElectricalEquipments",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);

@@ -4,41 +4,41 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Electricity.DataAccess.Repositories
 {
-    public class ElectricalEquipmentRepository : IGenericRepository<ElectricalEquipment>
+    public class ElectricalEquipementRepository : IGenericRepository<ElectricalEquipement>
     {
-        public readonly DbSet<ElectricalEquipment> electricalEquipements;
+        public readonly DbSet<ElectricalEquipement> electricalEquipements;
         
-        public ElectricalEquipmentRepository(ApplicationContext context)
+        public ElectricalEquipementRepository(ApplicationContext context)
         {
-            electricalEquipements = context.Set<ElectricalEquipment>();
+            electricalEquipements = context.Set<ElectricalEquipement>();
         }
 
-        public void Add(ElectricalEquipment item)
+        public void Add(ElectricalEquipement item)
         {
             electricalEquipements.Add(item);
         }
 
 
-        public void Delete(ElectricalEquipment item)
+        public void Delete(ElectricalEquipement item)
         {
             electricalEquipements.Remove(item);
         }
 
-        public Task<List<ElectricalEquipment>> GetAllAsync()
+        public Task<List<ElectricalEquipement>> GetAllAsync()
         {
             return electricalEquipements
                 
                 .ToListAsync();
         }
 
-        public Task<ElectricalEquipment?> GetByIdAsync(int id)
+        public Task<ElectricalEquipement?> GetByIdAsync(int id)
         {
             return electricalEquipements
                 .Where(eEquipment => eEquipment.Id == id)
                 .FirstOrDefaultAsync();
         }
 
-        public void Update(ElectricalEquipment item)
+        public void Update(ElectricalEquipement item)
         {
             electricalEquipements.Update(item);
         }
