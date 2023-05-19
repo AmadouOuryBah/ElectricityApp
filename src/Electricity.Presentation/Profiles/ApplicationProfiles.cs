@@ -59,6 +59,11 @@ namespace Electricity.Presentation.Profiles
             CreateMap<Schedule, ScheduleDto>()
             .ReverseMap();
 
+            CreateMap<UserRequest, User>()
+          .ReverseMap();
+            CreateMap<User, UserDto>()
+            .ReverseMap();
+
 
         }
 

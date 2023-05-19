@@ -41,9 +41,6 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Room" asp-action="Index">Rooms</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="ElectricalEquipement" asp-action="Index">Electrical equipement</a>
-                    </li>
 
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="RoomElectricalEquipement" asp-action="Index">Room Equipement</a>
@@ -51,7 +48,7 @@
 
                     <li class="nav-item dropdown">
 
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" ">
                             Counters
                         </a>
                         <ul class="dropdown-menu">
@@ -66,11 +63,13 @@
                     </li>
               
                 </ul>
+
                 <div class="btn-group" role="group" >
-                    <button type="button" class="btn btn-secondary mx-2">Sign in</button>
+                    <a  asp-controller="User" asp-action="Login" class=" btn btn-secondary mx-2">Sign in</a>
                   
-                    <button type="button" class="btn btn-secondary">Log in</button>
+                    <a  asp-controller="User" asp-action="Register" class="btn btn-secondary">Log in</a>
                 </div>
+
             </div>
         </div>
     </nav>

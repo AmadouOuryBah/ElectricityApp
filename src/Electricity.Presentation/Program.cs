@@ -59,6 +59,8 @@ internal class Program
         builder.Services.AddScoped<IGenericRepository<User>, UserRepository>();
         builder.Services.AddScoped<IUserRepository, UserRepository>();
 
+        builder.Services.AddScoped<IUserService, UserService>();
+
         builder.Services.AddCors(options =>
         {
             options.AddPolicy("MyPolicy", policy =>
