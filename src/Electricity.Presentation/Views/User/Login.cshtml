@@ -1,19 +1,35 @@
-﻿<form class="mt-3" method="post" asp-controller="User">
+﻿
+@model Electricity.BusinessLogic.Requests.UserRequest
 
-    <div class="row ">
-        <div class="col-4">
-            <label class="form-label" ></label>
-            <input class="form-control" type="text" placeholder="Enter your username" ></input>
-        </div>    
+<div class="card container mt-4 d-flex flex-column align-items-center" style=" width: 30rem;">
+   
+    <div class="card-body">
+
+        <h2>Please login</h2>
+
+        <form class="mt-4 " method="post" asp-controller="User">
+
+            <div class="row mb-2">
+                <div class="col">
+                    <label class="form-label" asp-for="Username">Username</label>
+                    <input class="form-control" type="text" asp-for="Username" placeholder=" Username" />
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col">
+                    <label class="form-label" asp-for="Password">Password</label>
+                    <input class="form-control" type="password" asp-for="Password" placeholder="Password" />
+                </div>
+            </div>
+
+
+            <div class="mt-3">
+                <button class=" btn btn-custom btn-primary " type="submit">Login</button>
+            </div>
+
+
+        </form>
+       
     </div>
-
-    <div class="row ">
-        <div class="col-4">
-            <label class="form-label" >Password</label>
-            <input class="form-control" type="text" placeholder="Enter your password"></input>
-
-        </div>
-    </div>
-    <button class="btn btn-primary mt-4" type="submit">Login</button>
-
-</form>
+</div>

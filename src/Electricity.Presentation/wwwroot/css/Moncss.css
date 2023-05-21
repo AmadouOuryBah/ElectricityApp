@@ -95,6 +95,11 @@
     }
 }
 
+.btn-custom, .col{
+    max-width: 350px;
+    width:350px;
+}
+
 body {
     margin: 0;
     font-family: var(--bs-body-font-family);

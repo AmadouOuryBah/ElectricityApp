@@ -5,8 +5,14 @@ using Electricity.BusinessLogic.Services.Interface;
 using Electricity.DataAccess.Entities;
 using Electricity.DataAccess.Repositories.Interface;
 using Microsoft.AspNetCore.Authentication.Cookies;
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
+=======
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
+>>>>>>> 6659714e66f502cc2e70f365b19c0c55dff71312
 
 namespace Electricity.BusinessLogic.Services
 {
@@ -25,7 +31,7 @@ namespace Electricity.BusinessLogic.Services
             _unitOfWork = unitOfWork;
             _userLoginRepository = userLoginRepository;
         }
-        public async Task<UserDto> AddAsync(UserRequest user)
+        public async Task<UserDto> AddAsync(UserRegister user)
         {
 
             var userMapped = _mapper.Map<User>(user);
@@ -35,17 +41,32 @@ namespace Electricity.BusinessLogic.Services
             return _mapper.Map<UserDto>(userMapped);
         }
 
+<<<<<<< HEAD
         public async  Task AuthenticateAsync(string username, string role)
         {
             var claims = new List<Claim>
         {
+=======
+      
+
+        public async Task AuthenticateAsync(HttpContext context, string username, string role)
+        {
+            var claims = new List<Claim>
+            {
+>>>>>>> 6659714e66f502cc2e70f365b19c0c55dff71312
                 new Claim(ClaimsIdentity.DefaultNameClaimType, username),
                 new Claim(ClaimsIdentity.DefaultRoleClaimType, role)
             };
 
+<<<<<<< HEAD
             var id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
 
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+=======
+            var id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType); ;
+
+            await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+>>>>>>> 6659714e66f502cc2e70f365b19c0c55dff71312
         }
 
         public Task<string> DeleteAsync(int id)
