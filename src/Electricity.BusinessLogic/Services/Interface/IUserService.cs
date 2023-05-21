@@ -11,5 +11,9 @@ namespace Electricity.BusinessLogic.Services.Interface
         Task<UserDto> AddAsync(UserRequest user);
         Task<UserDto> UpdateAsync(UserDto user);
         Task<string> DeleteAsync(int id);
+        Task AuthenticateAsync(string username, string role);
+        Task Register(UserRequest user);
+
+        Task Login(UserRequest user);
     }
 }

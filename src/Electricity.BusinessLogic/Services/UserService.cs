@@ -4,7 +4,9 @@ using Electricity.BusinessLogic.Requests;
 using Electricity.BusinessLogic.Services.Interface;
 using Electricity.DataAccess.Entities;
 using Electricity.DataAccess.Repositories.Interface;
-
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace Electricity.BusinessLogic.Services
 {
@@ -33,6 +35,19 @@ namespace Electricity.BusinessLogic.Services
             return _mapper.Map<UserDto>(userMapped);
         }
 
+        public async  Task AuthenticateAsync(string username, string role)
+        {
+            var claims = new List<Claim>
+        {
+                new Claim(ClaimsIdentity.DefaultNameClaimType, username),
+                new Claim(ClaimsIdentity.DefaultRoleClaimType, role)
+            };
+
+            var id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
+        }
+
         public Task<string> DeleteAsync(int id)
         {
             throw new NotImplementedException();
@@ -41,6 +56,7 @@ namespace Electricity.BusinessLogic.Services
         public async Task<List<UserDto>> GetAllAsync()
         {
             var users = await _userRepository.GetAllAsync();
+
             return _mapper.Map<List<UserDto>>(users);
         }
 
@@ -49,14 +65,25 @@ namespace Electricity.BusinessLogic.Services
             throw new NotImplementedException();
         }
 
-        public Task<User> LoginAsync(string username, string password)
+        public async Task Login(UserRequest user)
         {
-            return _userLoginRepository.LoginAsync(username, password);
+            var userLog = await _userLoginRepository.LoginAsync(user.Username, user.Password);
+
+
+        }
+
+      
+
+        public async Task Register(UserRequest user)
+        {
+            await _userRepository.Add(new User { Username = user.Username, Password = user.Password });
         }
 
         public Task<UserDto> UpdateAsync(UserDto user)
         {
             throw new NotImplementedException();
         }
+
+      
     }
 }
