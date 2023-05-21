@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Electricity.DataAccess.Entities;
 using Electricity.BusinessLogic.Services;
 using Electricity.BusinessLogic.Services.Interface;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 internal class Program
 {
@@ -61,6 +62,12 @@ internal class Program
 
         builder.Services.AddScoped<IUserService, UserService>();
 
+        builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
+            {
+                options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/User/Login");
+            });
+
         builder.Services.AddCors(options =>
         {
             options.AddPolicy("MyPolicy", policy =>
@@ -87,7 +94,7 @@ internal class Program
         app.UseStaticFiles();
 
         app.UseRouting();
-
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.MapControllerRoute(
