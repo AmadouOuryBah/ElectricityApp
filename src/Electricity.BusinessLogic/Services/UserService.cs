@@ -4,7 +4,10 @@ using Electricity.BusinessLogic.Requests;
 using Electricity.BusinessLogic.Services.Interface;
 using Electricity.DataAccess.Entities;
 using Electricity.DataAccess.Repositories.Interface;
-
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
 
 namespace Electricity.BusinessLogic.Services
 {
@@ -23,7 +26,7 @@ namespace Electricity.BusinessLogic.Services
             _unitOfWork = unitOfWork;
             _userLoginRepository = userLoginRepository;
         }
-        public async Task<UserDto> AddAsync(UserRequest user)
+        public async Task<UserDto> AddAsync(UserRegister user)
         {
 
             var userMapped = _mapper.Map<User>(user);
@@ -31,6 +34,21 @@ namespace Electricity.BusinessLogic.Services
             await _unitOfWork.SaveChangesAsync();
 
             return _mapper.Map<UserDto>(userMapped);
+        }
+
+      
+
+        public async Task AuthenticateAsync(HttpContext context, string username, string role)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimsIdentity.DefaultNameClaimType, username),
+                new Claim(ClaimsIdentity.DefaultRoleClaimType, role)
+            };
+
+            var id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType); ;
+
+            await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
 
         public Task<string> DeleteAsync(int id)
