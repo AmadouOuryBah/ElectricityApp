@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Electricity.BusinessLogic.Services
 {
-    public class UserService : IUserService, IUserRepository
+    public class UserService : IUserService
     {
         public readonly IGenericRepository<User> _userRepository;
         public readonly IUserRepository _userLoginRepository;
@@ -48,9 +48,6 @@ namespace Electricity.BusinessLogic.Services
 
             var id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
 
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
-            var id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType); ;
-
             await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
 
@@ -71,19 +68,23 @@ namespace Electricity.BusinessLogic.Services
             throw new NotImplementedException();
         }
 
-        public async Task Login(UserRequest user)
-        {
-            var userLog = await _userLoginRepository.LoginAsync(user.Username, user.Password);
-
-
-        }
-
       
 
-        public async Task Register(UserRequest user)
+        //public async Task<User> LoginAsync(UserRequest user)
+        //{
+          
+        //}
+
+        public async Task<User> LoginAsync(string username, string password)
         {
-            await _userRepository.Add(new User { Username = user.Username, Password = user.Password });
+            return await _userLoginRepository.LoginAsync(username, password);
         }
+
+        //public async Task Register(UserRegister user)
+        //{
+        //    var userMapped = _mapper.Map<User>(user);
+        //    await _userRepository.Add(userMapped);
+        //}
 
         public Task<UserDto> UpdateAsync(UserDto user)
         {

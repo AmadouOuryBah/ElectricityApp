@@ -1,14 +1,14 @@
-﻿using AutoMapper;
-using Electricity.BusinessLogic.DTO_s;
-using Electricity.BusinessLogic.Requests;
-using Electricity.BusinessLogic.Services.Interface;
+﻿
+using AutoMapper;
 using Electricity.DataAccess.Entities;
+using Electricity.BusinessLogic.Services.Interface;
+using Electricity.BusinessLogic.Services;
 using Electricity.DataAccess.Repositories.Interface;
 
 namespace Electricity.BusinessLogic.Services
-{
+{ 
     public class ScheduleService : IScheduleService
-    {
+    { 
         public readonly IGenericRepository<Schedule> _repository;
         public readonly IMapper _mapper;
         public readonly IUnitOfWork _unitOfWork;
