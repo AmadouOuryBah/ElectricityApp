@@ -64,6 +64,11 @@ namespace Electricity.Presentation.Profiles
             CreateMap<User, UserDto>()
             .ReverseMap();
 
+            CreateMap<UserRegister, User>()
+         .ReverseMap();
+            CreateMap<User, UserDto>()
+            .ReverseMap();
+
 
         }
 
