@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace Electricity.BusinessLogic.Services
 {
-    public class UserService : IUserService, IUserRepository
+    public class UserService : IUserService
     {
         public readonly IGenericRepository<User> _userRepository;
         public readonly IUserRepository _userLoginRepository;
@@ -46,7 +46,7 @@ namespace Electricity.BusinessLogic.Services
                 new Claim(ClaimsIdentity.DefaultRoleClaimType, role)
             };
 
-            var id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType); ;
+            var id = new ClaimsIdentity(claims, "ApplicationCookie", ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
 
             await context.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(id));
         }
@@ -59,6 +59,7 @@ namespace Electricity.BusinessLogic.Services
         public async Task<List<UserDto>> GetAllAsync()
         {
             var users = await _userRepository.GetAllAsync();
+
             return _mapper.Map<List<UserDto>>(users);
         }
 
@@ -67,14 +68,29 @@ namespace Electricity.BusinessLogic.Services
             throw new NotImplementedException();
         }
 
-        public Task<User> LoginAsync(string username, string password)
+      
+
+        //public async Task<User> LoginAsync(UserRequest user)
+        //{
+          
+        //}
+
+        public async Task<User> LoginAsync(string username, string password)
         {
-            return _userLoginRepository.LoginAsync(username, password);
+            return await _userLoginRepository.LoginAsync(username, password);
         }
+
+        //public async Task Register(UserRegister user)
+        //{
+        //    var userMapped = _mapper.Map<User>(user);
+        //    await _userRepository.Add(userMapped);
+        //}
 
         public Task<UserDto> UpdateAsync(UserDto user)
         {
             throw new NotImplementedException();
         }
+
+      
     }
 }
