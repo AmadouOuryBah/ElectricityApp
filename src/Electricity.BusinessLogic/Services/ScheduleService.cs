@@ -62,12 +62,7 @@ namespace Electricity.BusinessLogic.Services
         public async  Task<ScheduleDto> UpdateAsync(ScheduleDto schedule)
         {
             var scheduleFound = await _repository.GetByIdAsync(schedule.Id);
-
-            scheduleFound.RoomId = schedule.RoomId;
-            scheduleFound.Month = schedule.Month;
-            scheduleFound.Year = schedule.Year;
-            scheduleFound.TotalOfDay = schedule.TotalOfDay;
-
+            //a reecrider cette partie pour update
             _repository.Update(scheduleFound);
             await _unitOfWork.SaveChangesAsync();
 

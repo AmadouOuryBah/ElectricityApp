@@ -16,8 +16,6 @@ namespace Electricity.DataAccess.Repositories
 
         public void Add(User item)
         {
-            item.Id = -2 ;
-
             _users.Add(item);
         }
 

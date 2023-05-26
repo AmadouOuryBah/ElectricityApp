@@ -15,12 +15,10 @@ public class ApplicationContext: DbContext
 
     public DbSet<Room> Rooms { get; set; }
     public DbSet<Renter> Renters { get; set; }
-    public DbSet<ElectricityMeter> ElectricityMeters { get; set; }
+    public DbSet<ElectricityConsumption> ElectricityConsumptions { get; set; }
     public DbSet<ElectricalEquipement> ElectricalEquipments { get; set; }
     public DbSet<Building> Buildings { get; set; }
-    public DbSet<HeatMeter> HeatMeters { get; set; }
-    public DbSet<MetersData> MetersDatas { get; set; }
-    public DbSet<WaterMeter> WaterMeters { get; set; }
+  
     public DbSet<Schedule> Schedules { get; set; }
     public DbSet<RoomElectricalEquipement> RoomElectricalEquipements { get; set; }
     public DbSet<User> Users { get; set; }

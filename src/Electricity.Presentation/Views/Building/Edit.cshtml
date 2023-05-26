@@ -22,43 +22,9 @@
         <input asp-for="City" type="text" class="form-control">
     </div>
 
-    <div class="col-4">
-        <select asp-for="ElectricityMeterId" class="form-select">
+  
 
-            <option >@Model.ElectricityMeterId</option>
-            @foreach (var item in (List<ElectricityMeterDto>)ViewData["electricityMeters"])
-            {
-                <option value=@item.Id>@item.Name @item.FactoryNumber</option>
-
-            }
-        </select>
-    </div>
-
-    <div class="col-4">
-        <select asp-for="HeatMeterId" class="form-select">
-
-           <option >@Model.HeatMeterId</option>
-            @foreach (var item in (List<HeatMeterDto>)ViewData["heatMeters"])
-            {
-                <option value=@item.Id>@item.Name @item.FactoryNumber</option>
-
-            }
-        </select>
-    </div>
-
-
-    <div class="col-4">
-        <select asp-for="WaterMeterId" class="form-select">
-
-            <option>@Model.WaterMeterId</option>
-            @foreach (var item in (List<WaterMeterDto>)ViewData["waterMeters"])
-            {
-                <option value=@item.Id>@item.Name @item.FactoryNumber</option>
-
-            }
-        </select>
-    </div>
-
+  
 
     <div class="col-4">
         <label asp-for="BuildingArea" class="form-label"> Area</label>

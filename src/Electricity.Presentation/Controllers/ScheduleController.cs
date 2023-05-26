@@ -2,10 +2,12 @@
 using Electricity.BusinessLogic.Requests;
 using Electricity.BusinessLogic.Services;
 using Electricity.BusinessLogic.Services.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Electricity.Presentation.Controllers
 {
+    [Authorize(Roles = "admin,user")]
     public class ScheduleController : Controller
     {
         private readonly IScheduleService _scheduleService;

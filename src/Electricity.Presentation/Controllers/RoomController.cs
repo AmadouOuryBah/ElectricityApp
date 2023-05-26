@@ -1,10 +1,12 @@
 ﻿using Electricity.BusinessLogic.DTO_s;
 using Electricity.BusinessLogic.Requests;
 using Electricity.BusinessLogic.Services.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Electricity.Presentation.Controllers
 {
+    [Authorize(Roles = "admin,user")]
     public class RoomController : Controller
     {
         private readonly IRoomService _roomService;

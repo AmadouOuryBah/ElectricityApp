@@ -30,6 +30,7 @@ namespace Electricity.BusinessLogic.Services
         {
 
             var userMapped = _mapper.Map<User>(user);
+            userMapped.RoleId = -2;
             _userRepository.Add(userMapped);
             await _unitOfWork.SaveChangesAsync();
 

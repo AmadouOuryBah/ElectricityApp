@@ -29,8 +29,8 @@ internal class Program
         builder.Services.AddScoped<IGenericRepository<ElectricalEquipement>, ElectricalEquipementRepository>();
         builder.Services.AddScoped<IElectricityEquipement, ElectricalEquipementService>();
 
-        builder.Services.AddScoped<IGenericRepository<ElectricityMeter>, ElectricityMeterRepository>();
-        builder.Services.AddScoped<IElectricityMeterService, ElectricityMeterService>();
+        builder.Services.AddScoped<IGenericRepository<ElectricityConsumption>, ElectricityConsumptionRepository>();
+   
 
         builder.Services.AddScoped<IGenericRepository<Room>, RoomRepository>();
         builder.Services.AddScoped<IRoomService, RoomService>();
@@ -43,19 +43,13 @@ internal class Program
         builder.Services.AddScoped<IGenericRepository<Building>, BuildingRepository>();
         builder.Services.AddScoped<IBuildingService, BuildingService>();
 
-        builder.Services.AddScoped<IGenericRepository<HeatMeter>, HeatMeterRepository>();
-        builder.Services.AddScoped<IHeatMeterService, HeatMeterService>();
-
-        builder.Services.AddScoped<IGenericRepository<WaterMeter>, WaterMeterRepository>();
-        builder.Services.AddScoped<IWaterMeterService, WaterMeterService>();
-
         builder.Services.AddScoped<IGenericRepository<RoomElectricalEquipement>,  RoomElectricalEquipementRepository>();
         builder.Services.AddScoped<IRoomElectricalEquipementService,  RoomElectricalEquipementService>();
 
         builder.Services.AddScoped<IGenericRepository<Schedule>, ScheduleRepository>();
         builder.Services.AddScoped<IScheduleService, ScheduleService>();
 
-        builder.Services.AddScoped<IGenericRepository<MetersData>, MetersDataRepository>();
+       
 
         builder.Services.AddScoped<IGenericRepository<User>, UserRepository>();
         builder.Services.AddScoped<IUserRepository, UserRepository>();

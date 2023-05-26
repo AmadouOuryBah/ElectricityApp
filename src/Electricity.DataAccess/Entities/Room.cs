@@ -12,7 +12,7 @@ namespace Electricity.DataAccess.Entities
         public Building Building { get; set; }
         public int RenterId { get; set; }
         public Renter Renter { get; set; }
-
+        public int ScheduleId { get; set; }
         public Schedule Schedule { get; set; }
         public ICollection<RoomElectricalEquipement> RoomElectricalEquipements { get; set; }
 

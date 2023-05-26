@@ -14,11 +14,7 @@ namespace Electricity.BusinessLogic.DTO_s
         public string Address { get; set; }
         public string City { get; set; }
         public int ElectricityMeterId { get; set; }
-        public ElectricityMeterDto ElectricityMeter { get; set; }
-        public int HeatMeterId { get; set; }
-        public HeatMeterDto HeatMeter { get; set; }
-        public int WaterMeterId { get; set; }
-        public WaterMeterDto WaterMeter { get; set; }
+       
         public double BuildingArea { get; set; }
 
         public ICollection<RoomDto> Rooms { get; set; }

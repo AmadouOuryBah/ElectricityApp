@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Electricity.BusinessLogic.DTO_s.BuildingDto>
+﻿@using System.Security.Claims;
+@model IEnumerable<Electricity.BusinessLogic.DTO_s.BuildingDto>
 
 <div class="row mt-3">
     <div class="col-lg-6">
@@ -6,7 +7,15 @@
     </div>
 </div>
 
-<a class="btn btn-primary mt-3" asp-action="Create" asp-controller="Building">create</a>
+@{
+    if(User.HasClaim(ClaimsIdentity.DefaultRoleClaimType, "admin"))
+    {
+        <a class="btn btn-primary mt-3" asp-action="Create" asp-controller="Building">
+            <i class="bi bi-plus-circle pl-1"></i>&nbsp;create
+        </a>
+    }
+}
+
 <table class="table my-4">
 
     <thead class="table-dark">
@@ -15,14 +24,17 @@
             <th scope="col">Name</th>
             <th scope="col">Adress</th>
             <th scope="col">City</th>
-            <th scope="col">Electrcity Meter</th>
-            <th scope="col">Heat Meter</th>
-            <th scope="col">Water Meter</th>
+         
             <th scope="col">Building Area</th>
-            <th scope="col">Action</th>
-
+            @{
+                if (User.HasClaim(ClaimsIdentity.DefaultRoleClaimType, "admin"))
+                {
+                    <th scope="col">Action</th>
+                }
+            }
         </tr>
     </thead>
+
     <tbody>
         @foreach (var item in Model)
         {
@@ -30,14 +42,18 @@
                 <td>@item.Name</td>
                 <td>@item.Address</td>
                  <td>@item.City</td>
-                <td>@item.ElectricityMeter.Name</td>
-                <td>@item.HeatMeter.Name</td>
-                <td>@item.WaterMeter.Name</td>
+               
                 <td>@item.BuildingArea</td>
-                <td>
-                    <a class="btn btn-secondary" href="Building/Edit/@item.Id">edit</a>
-                    <a class="btn btn-danger mx-2" href="Building/Delete/@item.Id"><i class="bi bi-trash3-fill"></i>delete</a>
-                </td>
+                @{
+                    if(User.HasClaim(ClaimsIdentity.DefaultRoleClaimType, "admin"))
+                    {
+                        <td>
+                            <a class="btn btn-secondary" href="Building/Edit/@item.Id"><i class="bi bi-pencil-square mx-2"></i>edit</a>
+                            <a class="btn btn-danger mx-2" href="Building/Delete/@item.Id"><i class="bi bi-trash3-fill mx-2"></i>delete</a>
+                        </td>
+                    }
+                }
+               
             </tr>
 
         }
