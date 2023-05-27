@@ -9,33 +9,7 @@
 
 <form class="row g-3 my-4" method="post" asp-controller="Schedule">
 
-    <div class="col-4">
-        <select asp-for="RoomId" class="form-select">
-
-            <option>@Model.Room.Name @Model.Room.Floor @Model.Room.Building.Name</option>
-            @foreach (var item in (List<RoomDto>)ViewData["rooms"])
-            {
-                <option value=@item.Id>@item.Name @item.Floor @item.Building.Name</option>
-
-            }
-        </select>
-    </div>
-
-    <div class="mb-3 col-4">
-        <label asp-for="Month" class="form-label">Month</label>
-        <input asp-for="Month"  value=@Model.Month type="number" class="form-control">
-    </div>
-
-    <div class="mb-3 col-4">
-        <label asp-for="Year" class="form-label">Year</label>
-        <input asp-for="Year"  value=@Model.Year type="number" class="form-control">
-    </div>
-
-    <div class="mb-3 col-4">
-        <label asp-for="TotalOfDay" class="form-label">Total Days </label>
-        <input asp-for="TotalOfDay"  value=@Model.TotalOfDay type="number" class="form-control">
-    </div>
-
+   
  
 
     <div>

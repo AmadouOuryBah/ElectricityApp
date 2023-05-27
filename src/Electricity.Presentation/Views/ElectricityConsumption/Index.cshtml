@@ -1,0 +1,63 @@
+﻿@using System.Security.Claims;
+@model IEnumerable<Electricity.BusinessLogic.DTO_s.ElectricityConsumptionDto>
+
+<div class="row mt-3">
+    <div class="col-lg-6">
+        <h2>List of buildings </h2>
+    </div>
+</div>
+
+@{
+    if (User.HasClaim(ClaimsIdentity.DefaultRoleClaimType, "admin"))
+    {
+        <a class="btn btn-primary mt-3" asp-action="Create" asp-controller="ElectricityConsumption">
+            <i class="bi bi-plus-circle pl-1"></i>&nbsp;create
+        </a>
+    }
+}
+
+<table class="table my-4">
+
+    <thead class="table-dark">
+
+        <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Month</th>
+            <th scope="col">Counter</th>
+
+            <th scope="col">Building</th>
+            <th scope="col">Quantity </th>
+            @{
+                if (User.HasClaim(ClaimsIdentity.DefaultRoleClaimType, "admin"))
+                {
+                    <th scope="col">Action</th>
+                }
+            }
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Year</td>
+                <td>@item.Month</td>
+                <td>@item.Ressource</td>
+
+                <td>@item.Building.City, @item.Building.City</td>
+                <td>@item.Quantity</td>
+                @{
+                    if (User.HasClaim(ClaimsIdentity.DefaultRoleClaimType, "admin"))
+                    {
+                        <td>
+                            <a class="btn btn-secondary" href="Building/Edit/@item.Id"><i class="bi bi-pencil-square mx-2"></i>edit</a>
+                            <a class="btn btn-danger mx-2" href="Building/Delete/@item.Id"><i class="bi bi-trash3-fill mx-2"></i>delete</a>
+                        </td>
+                    }
+                }
+
+            </tr>
+
+        }
+    </tbody>
+</table>

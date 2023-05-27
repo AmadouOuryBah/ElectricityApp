@@ -6,33 +6,33 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Electricity.DataAccess.Repositories
 {
-    public class ElectricityConsumptionRepository : IGenericRepository<ElectricityConsumption>
+    public class ElectricityConsumptionRepository : IGenericRepository<ElectricityConsumptionDto>
     {
-        public readonly DbSet<ElectricityConsumption> electricityConsumptions;
+        public readonly DbSet<ElectricityConsumptionDto> electricityConsumptions;
 
         public ElectricityConsumptionRepository(ApplicationContext context)
         {
-            electricityConsumptions = context.Set<ElectricityConsumption>();
+            electricityConsumptions = context.Set<ElectricityConsumptionDto>();
         }
 
-        public void Add(ElectricityConsumption item)
+        public void Add(ElectricityConsumptionDto item)
         {
             electricityConsumptions.Add(item);
         }
 
-        public void Delete(ElectricityConsumption item)
+        public void Delete(ElectricityConsumptionDto item)
         {
             electricityConsumptions.Remove(item);
         }
 
-        public Task<List<ElectricityConsumption>> GetAllAsync()
+        public Task<List<ElectricityConsumptionDto>> GetAllAsync()
         {
             return electricityConsumptions
                 .Include(e => e.Building)
                 .ToListAsync();
         }
 
-        public Task<ElectricityConsumption?> GetByIdAsync(int id)
+        public Task<ElectricityConsumptionDto?> GetByIdAsync(int id)
         {
             return electricityConsumptions
                 .Include(e => e.Building)
@@ -40,7 +40,7 @@ namespace Electricity.DataAccess.Repositories
                 .FirstOrDefaultAsync();
         }
 
-        public void Update(ElectricityConsumption item)
+        public void Update(ElectricityConsumptionDto item)
         {
             electricityConsumptions.Update(item);
         }

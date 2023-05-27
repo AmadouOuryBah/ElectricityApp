@@ -11,7 +11,7 @@ namespace Electricity.DataAccess.Entities
         public double BuildingArea { get; set; }
 
         public ICollection<Room> Rooms { get; set; }
-        public ICollection<ElectricityConsumption> Consumptions{ get; set; }
+        public ICollection<ElectricityConsumptionDto> Consumptions{ get; set; }
        
     }
 }

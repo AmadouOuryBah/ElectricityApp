@@ -11,12 +11,12 @@ namespace Electricity.Presentation.Controllers
     public class ScheduleController : Controller
     {
         private readonly IScheduleService _scheduleService;
-        private readonly IRoomService _roomService;
+       
 
-        public ScheduleController(IScheduleService scheduleService, IRoomService roomService)
+        public ScheduleController(IScheduleService scheduleService)
         {
             _scheduleService = scheduleService;
-            _roomService = roomService;
+          
         }
 
 
@@ -29,7 +29,7 @@ namespace Electricity.Presentation.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            ViewData["rooms"] = await _roomService.GetAllAsync();
+           // ViewData["rooms"] = await _roomService.GetAllAsync();
             return View();
         }
 
@@ -43,7 +43,7 @@ namespace Electricity.Presentation.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            ViewData["rooms"] = await _roomService.GetAllAsync();
+           // ViewData["rooms"] = await _roomService.GetAllAsync();
 
             return View(await _scheduleService.GetByIdAsync(id));
         }

@@ -25,9 +25,9 @@ namespace Electricity.BusinessLogic.Services
           
         }
 
-        public async Task<ScheduleDto> AddAsync(ScheduleRequest schedule)
+        public async Task<ScheduleDto> AddAsync(ScheduleRequest scheduleRequest)
         {
-            var scheduleMapped = _mapper.Map<Schedule>(schedule);
+            var scheduleMapped = _mapper.Map<Schedule>(scheduleRequest);
 
             _repository.Add(scheduleMapped);
             await _unitOfWork.SaveChangesAsync();
@@ -59,9 +59,10 @@ namespace Electricity.BusinessLogic.Services
             
         }
 
-        public async  Task<ScheduleDto> UpdateAsync(ScheduleDto schedule)
+        public async  Task<ScheduleDto> UpdateAsync(ScheduleDto scheduleDto)
         {
-            var scheduleFound = await _repository.GetByIdAsync(schedule.Id);
+            var scheduleFound = await _repository.GetByIdAsync(scheduleDto.Id);
+
             //a reecrider cette partie pour update
             _repository.Update(scheduleFound);
             await _unitOfWork.SaveChangesAsync();

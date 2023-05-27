@@ -9,7 +9,7 @@ namespace Electricity.BusinessLogic.Services.Interface
     {
         Task<List<ScheduleDto>> GetAllAsync();
         Task<ScheduleDto> AddAsync(ScheduleRequest scheduleRequest);
-        Task<ScheduleDto> UpdateAsync(ScheduleDto scheduleRequest);
+        Task<ScheduleDto> UpdateAsync(ScheduleDto scheduleDto);
         Task<string> DeleteAsync(int id);
 
         Task<ScheduleDto> GetByIdAsync(int id);

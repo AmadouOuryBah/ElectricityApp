@@ -27,10 +27,10 @@ namespace Electricity.Presentation.Controllers
 
 
         [HttpGet]
-        //public async Task<IActionResult> Create()
-        //{
-          
-        //}
+        public async Task<IActionResult> Create()
+        {
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> Create(BuildingRequest buildingRequest)
@@ -40,15 +40,15 @@ namespace Electricity.Presentation.Controllers
             return RedirectToAction("Index");
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> Edit(int id)
-        //{
-        //    ViewData["electricityMeters"] = await _electricityMeterService.GetAllAsync();
-        //    ViewData["heatMeters"] = await _heatMeterService.GetAllAsync();
-        //    ViewData["waterMeters"] = await _waterMeterService.GetAllAsync();
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+          //  ViewData["electricityMeters"] = await _electricityMeterService.GetAllAsync();
+          //  ViewData["heatMeters"] = await _heatMeterService.GetAllAsync();
+          //  ViewData["waterMeters"] = await _waterMeterService.GetAllAsync();
 
-        //    return View(await _buildingService.GetById(id));
-        //}
+            return View(await _buildingService.GetById(id));
+        }
 
         [HttpPost]
         public async Task<IActionResult> Edit(BuildingDto building)
