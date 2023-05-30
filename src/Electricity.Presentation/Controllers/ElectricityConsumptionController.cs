@@ -1,6 +1,5 @@
 ﻿using Electricity.BusinessLogic.DTO_s;
 using Electricity.BusinessLogic.Requests;
-using Electricity.BusinessLogic.Services;
 using Electricity.BusinessLogic.Services.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +10,12 @@ namespace Electricity.Presentation.Controllers
     public class ElectricityConsumptionController : Controller
     {
         public readonly IElectricityConsumptionService _elecService;
+        public readonly IBuildingService _buildingService;
 
-        public ElectricityConsumptionController(IElectricityConsumptionService elecService)
+        public ElectricityConsumptionController(IElectricityConsumptionService elecService, IBuildingService buildingService)
         {
             _elecService = elecService;
+            _buildingService = buildingService;
         }
 
         [HttpGet]
@@ -26,10 +27,10 @@ namespace Electricity.Presentation.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
-        { 
-            
-            
+        public async Task< IActionResult> Create()
+        {
+            ViewData["buildings"] = await _buildingService.GetAllAsync();
+
             return View();
         }
 
@@ -44,6 +45,7 @@ namespace Electricity.Presentation.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
+            ViewData["buildings"] = await _buildingService.GetAllAsync();
 
             return View(await _elecService.GetById(id));
         }

@@ -13,24 +13,25 @@ namespace Electricity.BusinessLogic.Services
 {
     public class ElectricityConsumptionService : IElectricityConsumptionService
     {
-        private readonly ElectricityConsumptionRepository  _repository;
+
+        public readonly IGenericRepository<ElectricityConsumption> _repository;
         public readonly IMapper _mapper;
         public readonly IUnitOfWork _unitOfWork;
 
-        public ElectricityConsumptionService(ElectricityConsumptionRepository electricityConsumptionRepository, IMapper mapper, IUnitOfWork unitOfWork)
+        public ElectricityConsumptionService(IGenericRepository<ElectricityConsumption> electricityConsumptionRepository, IMapper mapper, IUnitOfWork unitOfWork)
         {
             _repository = electricityConsumptionRepository;
             _mapper = mapper;
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<DTO_s.ElectricityConsumptionDto> AddAsync(ElectricityConsumptionRequest electricity)
+        public async Task<ElectricityConsumptionDto> AddAsync(ElectricityConsumptionRequest electricity)
         {
-            var electricityMapped = _mapper.Map<DataAccess.Entities.ElectricityConsumptionDto>(electricity);
+            var electricityMapped = _mapper.Map<ElectricityConsumption>(electricity);
 
             _repository.Add(electricityMapped);
             await _unitOfWork.SaveChangesAsync();
-            return _mapper.Map<DTO_s.ElectricityConsumptionDto>(electricityMapped);
+            return _mapper.Map<ElectricityConsumptionDto>(electricityMapped);
         }
 
         public async Task<string> DeleteAsync(int id)
@@ -43,21 +44,21 @@ namespace Electricity.BusinessLogic.Services
             return "deleted";
         }
 
-        public async Task<List<DTO_s.ElectricityConsumptionDto>> GetAllAsync()
+        public async Task<List<ElectricityConsumptionDto>> GetAllAsync()
         {
             var elects = await _repository.GetAllAsync();
 
-            return _mapper.Map<List<DTO_s.ElectricityConsumptionDto>>(elects);
+            return _mapper.Map<List<ElectricityConsumptionDto>>(elects);
         }
 
-        public async  Task<DTO_s.ElectricityConsumptionDto> GetById(int id)
+        public async  Task<ElectricityConsumptionDto> GetById(int id)
         {
             var elect = await _repository.GetByIdAsync(id);
 
-            return _mapper.Map<DTO_s.ElectricityConsumptionDto>(elect);
+            return _mapper.Map<ElectricityConsumptionDto>(elect);
         }
 
-        public async Task<DTO_s.ElectricityConsumptionDto> UpdateAsync(DTO_s.ElectricityConsumptionDto electricity)
+        public async Task<ElectricityConsumptionDto> UpdateAsync(ElectricityConsumptionDto electricity)
         {
             var electFound = await _repository.GetByIdAsync(electricity.Id);
 
@@ -70,7 +71,7 @@ namespace Electricity.BusinessLogic.Services
             _repository.Update(electFound);
             await _unitOfWork.SaveChangesAsync();
 
-            return _mapper.Map<DTO_s.ElectricityConsumptionDto>(electFound);
+            return _mapper.Map<ElectricityConsumptionDto>(electFound);
         }
     }
 }

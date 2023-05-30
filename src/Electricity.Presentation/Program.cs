@@ -21,15 +21,15 @@ internal class Program
         builder.Services.AddDbContext<ApplicationContext>(options =>
         {
             options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
-            options.EnableDetailedErrors();
-            options.EnableSensitiveDataLogging();
+            options.EnableDetailedErrors(true);
+            options.EnableSensitiveDataLogging(true);
         });
         builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         builder.Services.AddScoped<IGenericRepository<ElectricalEquipement>, ElectricalEquipementRepository>();
         builder.Services.AddScoped<IElectricityEquipement, ElectricalEquipementService>();
 
-        builder.Services.AddScoped<IGenericRepository<ElectricityConsumptionDto>, ElectricityConsumptionRepository>();
+        builder.Services.AddScoped<IGenericRepository<ElectricityConsumption>, ElectricityConsumptionRepository>();
         builder.Services.AddScoped<IElectricityConsumptionService, ElectricityConsumptionService>();
 
         builder.Services.AddScoped<IGenericRepository<Room>, RoomRepository>();
@@ -62,16 +62,16 @@ internal class Program
                 options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/User/Login");
             });
 
-        builder.Services.AddCors(options =>
-        {
-            options.AddPolicy("MyPolicy", policy =>
-            {
-                policy.AllowAnyHeader();
-                policy.AllowAnyOrigin();
-                policy.AllowAnyMethod();
+        //builder.Services.AddCors(options =>
+        //{
+        //    options.AddPolicy("MyPolicy", policy =>
+        //    {
+        //        policy.AllowAnyHeader();
+        //        policy.AllowAnyOrigin();
+        //        policy.AllowAnyMethod();
 
-            });
-        });
+        //    });
+        //});
 
         var app = builder.Build();
 

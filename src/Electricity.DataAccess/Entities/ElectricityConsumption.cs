@@ -1,7 +1,7 @@
 ﻿
 namespace Electricity.DataAccess.Entities
 {
-    public class ElectricityConsumptionDto
+    public class ElectricityConsumption
     {
         public int Id { get; set; }
         public int Year { get; set; }

@@ -1,65 +1,49 @@
 ﻿
 @model Electricity.BusinessLogic.DTO_s.BuildingDto
 
-<h2 class="mt-3">Are You Sure you want to Delete <br /> a Building ?</h2>
+<nav aria-label="breadcrumb" class="mt-3">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Building" asp-action="Index">List of Building</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Delete building</li>
+    </ol>
+</nav>
+
+<h2 class="mt-3">Are You Sure you want to Delete <br /> this Building ?</h2>
 
 
 
 <form class="row g-3 my-4" method="post" asp-controller="Building">
-    <div class="mb-3 col-4">
-        <label asp-for="Name" class="form-label">Name</label>
-        <input asp-for="Name" type="text" value=@Model.Name disabled class="form-control">
+
+    <div class="row">
+        <div class="mb-3 col-6">
+            <label asp-for="Name" class="form-label">Name</label>
+            <input asp-for="Name" type="text" value=@Model.Name disabled class="form-control">
+
+        </div>
+
+        <div class="mb-3 col-6">
+            <label asp-for="Address" class="form-label">Address</label>
+            <input disabled asp-for="Address" value=@Model.Address type="text" class="form-control">
+        </div>
     </div>
+ 
+    <div class="row">
+        <div class="mb-3 col-6">
+            <label asp-for="City" class="form-label">City</label>
+            <input disabled asp-for="City" type="text" value=@Model.City class="form-control">
+        </div>
 
-    <div class="mb-3 col-4">
-        <label asp-for="Address" class="form-label">Address</label>
-        <input disabled asp-for="Address"  value=@Model.Address type="text" class="form-control">
+
+
+
+        <div class="col-6">
+            <label asp-for="BuildingArea" class="form-label"> Area</label>
+            <input value=@Model.BuildingArea asp-for="BuildingArea" disabled type="text" class="form-control">
+        </div>
     </div>
+   
 
-    <div class="mb-3 col-4">
-        <label asp-for="City" class="form-label">City</label>
-        <input asp-for="City" type="text"  value=@Model.City form-control">
-    </div>
-
-    <div class="col-4">
-        <select  class="form-select">
-
-          
-           
-                <option >hc</option>
-
-         
-        </select>
-    </div>
-
-    <div class="col-4">
-        <select  class="form-select">
-
-
-
-            <option value=@Model.Id> </option>
-
-        
-        </select>
-    </div>
-
-
-    <div class="col-4">
-        <select class="form-select">
-
-           
-           
-                <option value=@Model.Id></option>
-
-           
-        </select>
-    </div>
-
-
-    <div class="col-4">
-        <label asp-for="BuildingArea" class="form-label"> Area</label>
-        <input value=@Model.BuildingArea asp-for="BuildingArea" disabled type="text" class="form-control">
-    </div>
+   
     <div>
         <button type="submit" class="btn btn-primary"> Delete </button>
     </div>
