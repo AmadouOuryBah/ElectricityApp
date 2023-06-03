@@ -27,7 +27,7 @@ namespace Electricity.Presentation.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
            // ViewData["rooms"] = await _roomService.GetAllAsync();
             return View();

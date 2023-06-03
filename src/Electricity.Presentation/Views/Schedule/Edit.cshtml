@@ -1,6 +1,4 @@
-﻿@using Electricity.BusinessLogic.DTO_s;
-@using Electricity.BusinessLogic.Requests
-@model Electricity.BusinessLogic.DTO_s.ScheduleDto
+﻿@model Electricity.BusinessLogic.DTO_s.ScheduleDto
 
 
 <h2 class="mt-3">Edit a Schedule </h2>
@@ -9,7 +7,73 @@
 
 <form class="row g-3 my-4" method="post" asp-controller="Schedule">
 
+    <h2 class="mt-3">Edit Schedule</h2>
+
+    <div class="mb-3 col-4">
+                   <label asp-for="Name" class="form-label">Name</label>
+                   <input asp-for="Name" type="text" class="form-control">
+               </div>
+       <div class="mb-2 col-4">
+          
+           <label asp-for="Sun" class="form-label col-4">Sun</label>
+           <div class="input-group-text ">
+               <input asp-for="Sun" class="form-check-input mt-0" type="checkbox" >
+           </div>
+          
+       </div>
+       
+       <div class="mb-2 col-4">
+            <label asp-for="Mon" class="form-label ">Mon</label>
+           <div class="input-group-text ">
+               <input asp-for="Mon"  class="form-check-input mt-0" type="checkbox"  >
+           </div>
+           
+       </div>
+       <div class="mb-2 col-4">
+           <label asp-for="Tue" class="form-label ">Tue</label>
+           <div class="input-group-text ">
+               <input  asp-for="Tue"  class="form-check-input mt-0" type="checkbox"  >
+           </div>
+              
+       </div>
+       
+       <div class="mb-2 col-4">
+           <label asp-for="Wed" class="form-label ">Wed</label>
+           <div class="input-group-text ">
+               <input asp-for="Wed"  class="form-check-input mt-0" type="checkbox"  >
+           </div>
+             
+       </div>
+       
+       <div class="mb-2 col-4">
+           <label asp-for="Thu" class="form-label ">Thur</label>
+           <div class="input-group-text ">
+               <input  asp-for="Thu" class="form-check-input mt-0" type="checkbox"  >
+           </div>
+              
+       </div>
+       
+       
+       <div class="mb-2 col-4">
+           <label asp-for="Fri" class="form-label ">Fri</label>
+           <div class="input-group-text ">
+               <input asp-for="Fri" class="form-check-input mt-0" type="checkbox" >
+           </div>
+              
+       </div>
+       <div class="mb-2 col-4">
+           <label asp-for="Sat" class="form-label ">Sat</label>
+           <div class="input-group-text ">
+               <input  asp-for="Sat" class="form-check-input mt-0" type="checkbox"  >
+           </div>
+               
+       </div>
    
+   
+       <div class="mb-2 col-4">
+           <label asp-for="TotalHours" class="form-label">Total Hour</label>
+           <input asp-for="TotalHours" type="Text" class="form-control">
+       </div>
  
 
     <div>
