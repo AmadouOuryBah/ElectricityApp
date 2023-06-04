@@ -3,6 +3,7 @@
     public  class RoomElectricalEquipement
     {
         public int Id { get; set; }
+        public int quantity { get; set; }
         public int WorkingTime { get; set; }
         public int Quantity { get; set; }
         public int RoomId { get; set; }

@@ -7,23 +7,23 @@ using Microsoft.AspNetCore.Mvc;
 namespace Electricity.Presentation.Controllers
 {
     [Authorize(Roles = "admin, user")]
-    public class ElectricityConsumptionController : Controller
+    public class ResourceController : Controller
     {
-        public readonly IElectricityConsumptionService _elecService;
+        public readonly IResourceService _resourceService;
         public readonly IBuildingService _buildingService;
 
-        public ElectricityConsumptionController(IElectricityConsumptionService elecService, IBuildingService buildingService)
+        public ResourceController(IResourceService reService, IBuildingService buildingService)
         {
-            _elecService = elecService;
+            _resourceService = reService;
             _buildingService = buildingService;
         }
 
         [HttpGet]
         public  async Task<IActionResult> Index()
         {
-            var electricitiesEnergy = await _elecService.GetAllAsync(); 
+            var resources = await  _resourceService.GetAllAsync(); 
             
-            return View(electricitiesEnergy);
+            return View(resources);
         }
 
         [HttpGet]
@@ -35,9 +35,9 @@ namespace Electricity.Presentation.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ElectricityConsumptionRequest electricity)
+        public async Task<IActionResult> Create(ResourceRequest res)
         {
-           await  _elecService.AddAsync(electricity);
+           await  _resourceService.AddAsync(res);
 
             return RedirectToAction("Index");
         }
@@ -47,14 +47,14 @@ namespace Electricity.Presentation.Controllers
         {
             ViewData["buildings"] = await _buildingService.GetAllAsync();
 
-            return View(await _elecService.GetById(id));
+            return View(await  _resourceService.GetById(id));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(ElectricityConsumptionDto item)
+        public async Task<IActionResult> Edit(ResourceDto item)
         {
 
-            await _elecService.UpdateAsync(item);
+            await  _resourceService.UpdateAsync(item);
 
             return RedirectToAction("Index");
         }
@@ -63,13 +63,13 @@ namespace Electricity.Presentation.Controllers
         public async Task<IActionResult> Delete(int id)
         {
 
-            return View(await _elecService.GetById(id));
+            return View(await  _resourceService.GetById(id));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Delete(ElectricityConsumptionDto item)
+        public async Task<IActionResult> Delete(ResourceDto item)
         {
-            await _elecService.DeleteAsync(item.Id);
+            await  _resourceService.DeleteAsync(item.Id);
 
             return RedirectToAction("Index");
         }

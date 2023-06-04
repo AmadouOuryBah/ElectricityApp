@@ -10,17 +10,17 @@
 <form class="row g-3 my-4" method="post" asp-controller="Room">
     <div class="mb-3 col-4">
         <label asp-for="Name" class="form-label">Name</label>
-        <input asp-for="Name" type="text" class="form-control">
+        <input asp-for="Name" type="text" class="form-control" value="@Model.Name">
     </div>
 
     <div class="mb-3 col-4">
         <label asp-for="Floor" class="form-label">Floor</label>
-        <input asp-for="Floor" type="text" class="form-control">
+        <input asp-for="Floor" type="text" class="form-control" value="@Model.Floor">
     </div>
 
     <div class="mb-3 col-4">
         <label asp-for="RoomArea" class="form-label">Area</label>
-        <input asp-for="RoomArea" type="text" class="form-control">
+        <input asp-for="RoomArea" type="text" class="form-control" value="@Model.RoomArea">
     </div>
 
     <div class="col-4">
@@ -50,6 +50,13 @@
             }
         </select>
     </div>
+     <div class="col-4">
+            <select asp-for="ScheduleId" class="form-select">
+    
+                <option>Rejim</option>
+              
+            </select>
+        </div>
 
 
     <div class="col-4">

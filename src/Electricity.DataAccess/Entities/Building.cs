@@ -9,9 +9,11 @@ namespace Electricity.DataAccess.Entities
         public string City { get; set; }
 
         public double BuildingArea { get; set; }
+        public int RenterdId { get; set; }
+        public  Renter Renter { get; set; }
 
         public ICollection<Room> Rooms { get; set; }
-        public ICollection<ElectricityConsumption> Consumptions{ get; set; }
+        public ICollection<Resource> Resources{ get; set; }
        
     }
 }

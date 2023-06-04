@@ -1,5 +1,5 @@
 ﻿@using System.Security.Claims;
-@model IEnumerable<Electricity.BusinessLogic.DTO_s.ElectricityConsumptionDto>
+@model IEnumerable<Electricity.BusinessLogic.DTO_s.ResourceDto>
 
 <div class="row mt-3">
     <div class="col-lg-6">
@@ -10,7 +10,7 @@
 @{
     if (User.HasClaim(ClaimsIdentity.DefaultRoleClaimType, "admin"))
     {
-        <a class="btn btn-primary mt-3" asp-action="Create" asp-controller="ElectricityConsumption">
+        <a class="btn btn-primary mt-3" asp-action="Create" asp-controller="Resource">
             <i class="bi bi-plus-circle pl-1"></i>&nbsp;create
         </a>
     }
@@ -42,7 +42,7 @@
             <tr>
                 <td>@item.Year</td>
                 <td>@item.Month</td>
-                <td>@item.Ressource</td>
+                <td>@item.ResourceType</td>
 
                 <td>@item.Building.City, @item.Building.Name</td>
                 <td>@item.Quantity</td>

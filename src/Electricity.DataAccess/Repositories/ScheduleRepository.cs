@@ -36,6 +36,7 @@ namespace Electricity.DataAccess.Repositories
 
         public void Update(Schedule item)
         {
+            
             _schedules.Update(item);
         }
     }

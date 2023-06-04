@@ -50,9 +50,9 @@ namespace Electricity.Presentation.Profiles
             CreateMap<User, UserDto>()
             .ReverseMap();
 
-            CreateMap<ElectricityConsumptionRequest, ElectricityConsumption>()
+            CreateMap<ResourceRequest, Resource>()
        .ReverseMap();
-            CreateMap<ElectricityConsumption, ElectricityConsumptionDto>()
+            CreateMap<Resource, ResourceDto>()
             .ReverseMap();
 
 
