@@ -9,10 +9,9 @@ namespace Electricity.DataAccess.Entities
         public double TotalWorkers { get; set; }
         
         public double Area { get; set; }
-        
-        public DateOnly ArrivalDate { get; set; }
-        
-        public  DateOnly LeavingDate { get; set; }
+
+        public DateTime ArrivalDate { get; set; }
+        public  DateTime LeavingDate { get; set; }
         
         public int BuildingId { get; set; }
         public Building Building { get; set; }

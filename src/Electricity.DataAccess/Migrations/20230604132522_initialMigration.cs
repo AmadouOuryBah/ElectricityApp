@@ -1,29 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace Electricity.DataAccess.Migrations
 {
-    public partial class RemodelingEntities : Migration
+    public partial class initialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Buildings",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BuildingArea = table.Column<double>(type: "float", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Buildings", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "ElectricalEquipments",
                 columns: table => new
@@ -87,24 +72,24 @@ namespace Electricity.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ElectricityConsumptions",
+                name: "Buildings",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Year = table.Column<int>(type: "int", nullable: false),
-                    Month = table.Column<int>(type: "int", nullable: false),
-                    Ressource = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    BuildingId = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<double>(type: "float", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BuildingArea = table.Column<double>(type: "float", nullable: false),
+                    RenterId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ElectricityConsumptions", x => x.Id);
+                    table.PrimaryKey("PK_Buildings", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ElectricityConsumptions_Buildings_BuildingId",
-                        column: x => x.BuildingId,
-                        principalTable: "Buildings",
+                        name: "FK_Buildings_Renters_RenterId",
+                        column: x => x.RenterId,
+                        principalTable: "Renters",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -131,15 +116,40 @@ namespace Electricity.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Resources",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Year = table.Column<int>(type: "int", nullable: false),
+                    Month = table.Column<int>(type: "int", nullable: false),
+                    ResourceType = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    BuildingId = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<double>(type: "float", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Resources", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Resources_Buildings_BuildingId",
+                        column: x => x.BuildingId,
+                        principalTable: "Buildings",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Rooms",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Floor = table.Column<int>(type: "int", nullable: false),
                     RoomArea = table.Column<double>(type: "float", nullable: false),
                     TotalWorkers = table.Column<double>(type: "float", nullable: false),
+                    Area = table.Column<double>(type: "float", nullable: false),
+                    ArrivalDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LeavingDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     BuildingId = table.Column<int>(type: "int", nullable: false),
                     RenterId = table.Column<int>(type: "int", nullable: false),
                     ScheduleId = table.Column<int>(type: "int", nullable: false)
@@ -158,7 +168,7 @@ namespace Electricity.DataAccess.Migrations
                         column: x => x.RenterId,
                         principalTable: "Renters",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Rooms_Schedules_ScheduleId",
                         column: x => x.ScheduleId,
@@ -174,6 +184,7 @@ namespace Electricity.DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     WorkingTime = table.Column<int>(type: "int", nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
                     RoomId = table.Column<int>(type: "int", nullable: false),
                     ElectricalEquipementId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -210,8 +221,13 @@ namespace Electricity.DataAccess.Migrations
                 values: new object[] { -1, "123456", -1, "Patrick" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ElectricityConsumptions_BuildingId",
-                table: "ElectricityConsumptions",
+                name: "IX_Buildings_RenterId",
+                table: "Buildings",
+                column: "RenterId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Resources_BuildingId",
+                table: "Resources",
                 column: "BuildingId");
 
             migrationBuilder.CreateIndex(
@@ -248,7 +264,7 @@ namespace Electricity.DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ElectricityConsumptions");
+                name: "Resources");
 
             migrationBuilder.DropTable(
                 name: "RoomElectricalEquipements");
@@ -269,10 +285,10 @@ namespace Electricity.DataAccess.Migrations
                 name: "Buildings");
 
             migrationBuilder.DropTable(
-                name: "Renters");
+                name: "Schedules");
 
             migrationBuilder.DropTable(
-                name: "Schedules");
+                name: "Renters");
         }
     }
 }
