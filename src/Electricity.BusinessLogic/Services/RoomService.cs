@@ -110,7 +110,6 @@ namespace Electricity.BusinessLogic.Services
             var roomFound = await _repository.GetByIdAsync(room.Id);
 
             roomFound.Name = room.Name;
-            roomFound.Floor = room.Floor;
             roomFound.TotalWorkers = room.TotalWorkers;
             roomFound.RoomArea = room.RoomArea;
             roomFound.BuildingId = room.BuildingId;

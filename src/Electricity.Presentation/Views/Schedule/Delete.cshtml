@@ -6,12 +6,76 @@
 
 <form class="row g-3 my-4" method="post" asp-controller="Schedule">
 
-  
-
+   <div class="mb-3 col-4">
+                     <label asp-for="Name" class="form-label">Name</label>
+                     <input asp-for="Name" type="text" disabled class="form-control" value="@Model.Name">
+                 </div>
+         <div class="mb-2 col-4">
+            
+             <label asp-for="Sun" class="form-label col-4">Sun</label>
+             <div class="input-group-text ">
+                 <input asp-for="Sun" class="form-check-input mt-0" disabled type="checkbox" value="@Model.Sun" >
+             </div>
+            
+         </div>
+         
+         <div class="mb-2 col-4">
+              <label asp-for="Mon" class="form-label ">Mon</label>
+             <div class="input-group-text ">
+                 <input asp-for="Mon" disabled  class="form-check-input mt-0" type="checkbox"  value="@Model.Mon">
+             </div>
+             
+         </div>
+         <div class="mb-2 col-4">
+             <label asp-for="Tue" class="form-label ">Tue</label>
+             <div class="input-group-text ">
+                 <input  asp-for="Tue"  disabled class="form-check-input mt-0" type="checkbox"  value="@Model.Tue">
+             </div>
+                
+         </div>
+         
+         <div class="mb-2 col-4">
+             <label asp-for="Wed" class="form-label ">Wed</label>
+             <div class="input-group-text ">
+                 <input asp-for="Wed" disabled class="form-check-input mt-0" type="checkbox" value="@Model.Wed" >
+             </div>
+               
+         </div>
+         
+         <div class="mb-2 col-4">
+             <label asp-for="Thu" class="form-label ">Thur</label>
+             <div class="input-group-text ">
+                 <input  asp-for="Thu"  disabled class="form-check-input mt-0" type="checkbox" value="@Model.Thu" >
+             </div>
+                
+         </div>
+         
+         
+         <div class="mb-2 col-4">
+             <label asp-for="Fri" class="form-label ">Fri</label>
+             <div class="input-group-text ">
+                 <input asp-for="Fri" disabled class="form-check-input mt-0" type="checkbox"  value="@Model.Fri">
+             </div>
+                
+         </div>
+         <div class="mb-2 col-4">
+             <label asp-for="Sat" class="form-label ">Sat</label>
+             <div class="input-group-text ">
+                 <input  asp-for="Sat"  disabled class="form-check-input mt-0" type="checkbox"  value="@Model.Sat" >
+             </div>
+                 
+         </div>
+     
+     
+         <div class="mb-2 col-4">
+             <label asp-for="TotalHours" class="form-label">Total Hour</label>
+             <input asp-for="TotalHours" type="Text"  value="@Model.TotalHours" disabled class="form-control">
+         </div>
    
-
-
-    <div>
-        <button class="btn btn-primary" type="submit"> Delete </button>
-    </div>
+  
+      <div>
+          <button class="btn btn-primary" type="submit" > Delete </button>
+          <a class="btn btn-secondary" asp-controller="Schedule" asp-action="Index">Back </a>
+      </div>
+    
 </form>

@@ -13,8 +13,10 @@ namespace Electricity.BusinessLogic.DTO_s
         public string Name { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
+        public int RenterId { get; set; }
+        public Renter RenterDto {get; set; }
         public double BuildingArea { get; set; }
-        public ICollection<Room> Rooms { get; set; }
-        public ICollection<ElectricityConsumptionDto> Consumptions { get; set; }
+        public ICollection<RoomDto> Rooms { get; set; }
+        public ICollection<ResourceDto> ResourcesType { get; set; }
     }
 }

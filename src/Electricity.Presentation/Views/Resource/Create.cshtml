@@ -1,34 +1,31 @@
 ﻿@using Electricity.BusinessLogic.DTO_s
-@model Electricity.BusinessLogic.DTO_s.ElectricityConsumptionDto
+@model Electricity.BusinessLogic.Requests.ResourceRequest
 
-<nav aria-label="breadcrumb" class="mt-3">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a asp-controller="ElectricityConsumption" asp-action="Index">List of Ressources</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Edit</li>
-    </ol>
-</nav>
+<h2 class="mt-3">Create new counter</h2>
 
-<form class="row g-3 my-4" method="post" asp-controller="ElectricityConsumption">
+
+
+<form class="row g-3 my-4" method="post" asp-controller="Resource">
     <div class="row">
         <div class="mb-3 col-4">
             <label asp-for="Year" class="form-label">Year</label>
-            <input asp-for="Year" type="text" value="@Model.Year" class="form-control">
+            <input asp-for="Year" type="text" class="form-control">
         </div>
 
         <div class="mb-3 col-4">
             <label asp-for="Month" class="form-label">Month</label>
-            <input asp-for="Month" type="text" value="@Model.Month" class="form-control">
+            <input asp-for="Month" type="text" class="form-control">
         </div>
     </div>
 
 
     <div class="row">
         <div class="mb-3 col-4">
-            <label asp-for="Ressource" class="form-label">Counter type</label>
-            <select asp-for="Ressource" value="@Model.Ressource" class="form-select">
-
+            <label asp-for="ResourceType" class="form-label">Resource type</label>
+            <select asp-for="ResourceType" class="form-select">
+        
                 <option value="ElectroEnergya">
-                    ElectroEnergya
+                     ElectroEnergya
                 </option>
                 <option value="HeatMeter (kcal)">
                     heatMeter (Kcal)
@@ -37,13 +34,13 @@
                     KumboMeter (cube meter)
                 </option>
 
-
+                
             </select>
         </div>
 
         <div class="mb-3 col-4">
             <label asp-for="BuildingId" class="form-label"> Building </label>
-            <select asp-for="BuildingId" value="@Model.Building.Name , @Model.Building.City" class="form-select">
+            <select asp-for="BuildingId" class="form-select">
 
                 @foreach (var item in (List<BuildingDto>)ViewData["buildings"])
                 {
@@ -57,15 +54,15 @@
             </select>
         </div>
 
-
+       
     </div>
 
     <div class="col-8">
         <label asp-for="Quantity" class="form-label">Quantity</label>
-        <input asp-for="Quantity" type="number" value="@Model.Quantity" class="form-control">
+        <input asp-for="Quantity" type="number" class="form-control">
     </div>
 
     <div>
-        <button type="submit" class="btn btn-primary" > Save </button>
+        <button type="submit" class="btn btn-primary">Add</button>
     </div>
 </form>

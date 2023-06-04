@@ -63,7 +63,15 @@ namespace Electricity.BusinessLogic.Services
         {
             var scheduleFound = await _repository.GetByIdAsync(scheduleDto.Id);
 
-            //a reecrider cette partie pour update
+            scheduleFound.Name = scheduleDto.Name;
+            scheduleFound.Mon = scheduleDto.Mon;
+            scheduleFound.Tue = scheduleDto.Tue;
+            scheduleFound.Wed = scheduleDto.Wed;
+            scheduleFound.Thu = scheduleDto.Thu;
+            scheduleFound.Fri = scheduleDto.Fri;
+            scheduleFound.Sat = scheduleDto.Sat;
+            scheduleFound.Sun = scheduleDto.Sun;
+            
             _repository.Update(scheduleFound);
             await _unitOfWork.SaveChangesAsync();
 
