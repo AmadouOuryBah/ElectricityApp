@@ -5,48 +5,61 @@
 
 
 <form class="row g-3 my-4" method="post" asp-controller="Room">
-    <div class="mb-3 col-4">
-        <label asp-for="Name" class="form-label">Name</label>
-        <input asp-for="Name" type="text" value=@Model.Name disabled class="form-control">
+
+    <div class="row">
+
+         <div class="mb-3 col-4">
+            <label asp-for="Name" class="form-label">Name</label>
+            <input asp-for="Name" type="text" value=@Model.Name disabled class="form-control">
+         </div>
+
+
+        <div class="mb-3 col-4">
+            <label asp-for="RoomArea" class="form-label">Area</label>
+            <input asp-for="RoomArea" disabled type="text" value=@Model.RoomArea class="form-control">
+        </div>
+    </div>
+   
+
+    <div class="row">
+          <div class="col-4">
+               <select disabled asp-for="BuildingId" class="form-select">
+                   <option >@Model.Building.Name </option>
+                </select>
+          </div>
+
+        <div class="col-4">
+            <select disabled asp-for="RenterId" class="form-select">
+
+                <option> @Model.Renter.Name</option>
+
+            </select>
+        </div>
     </div>
 
-    <div class="mb-3 col-4">
-        <label asp-for="Floor" class="form-label">Floor</label>
-        <input disabled asp-for="Floor" value=@Model.Floor type="text" class="form-control">
+    <div class="row">
+
+          <div class="col-4">
+                <label asp-for="ArrivalDate" class="form-label"> Arrival Date</label>
+                <input value=@Model.ArrivalDate asp-for="ArrivalDate" disabled type="text" class="form-control">
+          </div>
+
+        <div class="col-4">
+            <label asp-for="LeavingDate" class="form-label"> Leaving Date</label>
+            <input value=@Model.LeavingDate asp-for="LeavingDate" disabled type="text" class="form-control">
+        </div>
     </div>
+     
+     <div class="mb-2 col-4">
+            <label asp-for="ScheduleId" class="form-label">Schedule</label>
 
-    <div class="mb-3 col-4">
-        <label asp-for="RoomArea" class="form-label">Area</label>
-        <input asp-for="RoomArea" type="text" value=@Model.RoomArea  class="form-control">
-    </div>
-
-    <div class="col-4">
-        <select disabled asp-for="BuildingId" class="form-select">
-
-
-
-            <option >@Model.Building.Name @Model.Building.Address @Model.Building.City</option>
-
-
-        </select>
-    </div>
-
-    <div class="col-4">
-        <select asp-for="RenterId" class="form-select">
-
-
-
-            <option> @Model.Name</option>
-
-
-        </select>
-    </div>
-
-
-    <div class="col-4">
-        <label asp-for="TotalWorkers" class="form-label"> Total of Workers</label>
-        <input value=@Model.TotalWorkers asp-for="TotalWorkers" disabled type="text" class="form-control">
-    </div>
+            <select asp-for="ScheduleId" class="form-select">
+                
+                    <option>
+                        <span>@Model.Schedule.Name</span>
+                    </option>
+            </select>
+        </div>
     <div>
         <button type="submit" class="btn btn-primary"> Delete </button>
     </div>

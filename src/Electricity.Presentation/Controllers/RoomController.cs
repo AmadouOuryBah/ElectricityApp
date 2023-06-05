@@ -10,14 +10,18 @@ namespace Electricity.Presentation.Controllers
     public class RoomController : Controller
     {
         private readonly IRoomService _roomService;
+        private readonly IScheduleService _scheduleService;
         private readonly IRenter _renterService;
         private readonly IBuildingService _buildingService;
 
-        public RoomController(IRoomService roomService, IRenter renterService, IBuildingService buildingService)
+        public RoomController(IRoomService roomService, IRenter renterService, IBuildingService buildingService,
+            IScheduleService scheduleService
+            )
         {
             _roomService = roomService;
             _renterService = renterService;
             _buildingService = buildingService;
+            _scheduleService = scheduleService;
         }
 
         public async Task<IActionResult> Index()
@@ -32,6 +36,7 @@ namespace Electricity.Presentation.Controllers
         {
             ViewData["buildings"] = await _buildingService.GetAllAsync();
             ViewData["renters"] = await _renterService.GetAllAsync();
+            ViewData["schedules"] = await _scheduleService.GetAllAsync();
 
             return View();
         }
@@ -51,6 +56,8 @@ namespace Electricity.Presentation.Controllers
        
             ViewData["buildings"] = await _buildingService.GetAllAsync();
             ViewData["renters"] = await _renterService.GetAllAsync();
+            ViewData["schedules"] = await _scheduleService.GetAllAsync();
+
 
             return View(await _roomService.GetById(id));
         }

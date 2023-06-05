@@ -64,7 +64,8 @@ namespace Electricity.BusinessLogic.Services
         {
             var roomEkipmntFound = await _repository.GetByIdAsync(item.Id);
             roomEkipmntFound.RoomId = item.RoomId;
-            roomEkipmntFound.WorkingTime = item.WorkingTime;
+            roomEkipmntFound.ElectricalEquipementId = item.ElectricalEquipementId;
+            roomEkipmntFound.Quantity = item.Quantity;
             
            
             _repository.Update(roomEkipmntFound);

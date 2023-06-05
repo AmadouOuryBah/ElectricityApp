@@ -7,8 +7,6 @@ namespace Electricity.DataAccess.Entities
         public string Name { get; set; }
         public double RoomArea { get; set; }
         public double TotalWorkers { get; set; }
-        
-        public double Area { get; set; }
 
         public DateTime ArrivalDate { get; set; }
         public  DateTime LeavingDate { get; set; }

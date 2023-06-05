@@ -7,8 +7,9 @@ namespace Electricity.BusinessLogic.DTO_s
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Floor { get; set; }
         public double RoomArea { get; set; }
+        public DateTime ArrivalDate { get; set; }
+        public DateTime LeavingDate { get; set; }
         public double TotalWorkers { get; set; }
         public int BuildingId { get; set; }
         public BuildingDto Building { get; set; }

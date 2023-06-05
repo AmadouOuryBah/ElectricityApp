@@ -87,13 +87,12 @@ namespace Electricity.BusinessLogic.Services
                     roomDeviceEnergy.RoomElectricalEquipements[c].ElectricalEquipement.Coefficient = elec.ElectricalEquipement.Coefficient; 
 
                     roomDeviceEnergy.RoomElectricalEquipements[c].ElectricalEquipement.Power = elec.ElectricalEquipement.Power;
-                    roomDeviceEnergy.RoomElectricalEquipements[c].WorkingTime =   elec.WorkingTime;
 
 
                     roomDeviceEnergy.EnergyConsumed = roomDeviceEnergy.RoomElectricalEquipements[c].ElectricalEquipement.Coefficient
-                                                       * roomDeviceEnergy.RoomElectricalEquipements[c].ElectricalEquipement.Power
+                                                       * roomDeviceEnergy.RoomElectricalEquipements[c].ElectricalEquipement.Power;
 
-                                                         * roomDeviceEnergy.RoomElectricalEquipements[c].WorkingTime;
+                                                        
 
                     roomElectricalEquipementEnergies.Add(roomDeviceEnergy);
                     c++;

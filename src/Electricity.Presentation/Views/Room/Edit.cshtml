@@ -8,61 +8,87 @@
 
 
 <form class="row g-3 my-4" method="post" asp-controller="Room">
-    <div class="mb-3 col-4">
-        <label asp-for="Name" class="form-label">Name</label>
-        <input asp-for="Name" type="text" class="form-control" value="@Model.Name">
+
+    <div class="row">
+
+        <div class="mb-3 col-4">
+            <label asp-for="Name" class="form-label">Name</label>
+            <input asp-for="Name" type="text" class="form-control" value="@Model.Name">
+        </div>
+
+
+        <div class="mb-3 col-4">
+            <label asp-for="RoomArea" class="form-label">Area</label>
+            <input asp-for="RoomArea" type="text" class="form-control" value="@Model.RoomArea">
+        </div>
     </div>
-
-    <div class="mb-3 col-4">
-        <label asp-for="Floor" class="form-label">Floor</label>
-        <input asp-for="Floor" type="text" class="form-control" value="@Model.Floor">
-    </div>
-
-    <div class="mb-3 col-4">
-        <label asp-for="RoomArea" class="form-label">Area</label>
-        <input asp-for="RoomArea" type="text" class="form-control" value="@Model.RoomArea">
-    </div>
-
-    <div class="col-4">
-        <select asp-for="BuildingId" class="form-select">
-
-            <option>@Model.Building.Name <span>@Model.Building.Address</span> <span>@Model.Building.City</span></option>
-            @foreach (var item in (List<BuildingDto>)ViewData["buildings"])
-            {
-                <option value=@item.Id>
-                    <span>@item.Name</span>
-                    <span>@item.Address</span>
-                    <span>@item.City</span>
-                </option>
-
-            }
-        </select>
-    </div>
-
-    <div class="col-4">
-        <select asp-for="RenterId" class="form-select">
-
-            <option>@Model.Renter.Name</option>
-            @foreach (var item in (List<RenterDto>)ViewData["renters"])
-            {
-                <option value=@item.Id>@item.Name @item.Name</option>
-
-            }
-        </select>
-    </div>
-     <div class="col-4">
-            <select asp-for="ScheduleId" class="form-select">
     
-                <option>Rejim</option>
-              
+    <div  class="row">
+
+        <div class="col-4">
+            <select asp-for="BuildingId" class="form-select">
+
+                <option>@Model.Building.Name <span>@Model.Building.Address</span> <span>@Model.Building.City</span></option>
+                @foreach (var item in (List<BuildingDto>)ViewData["buildings"])
+                {
+                    <option value=@item.Id>
+                        <span>@item.Name</span>
+                        <span>@item.City</span>
+                    </option>
+
+                }
+            </select>
+        </div>
+
+        <div class="col-4">
+            <select asp-for="RenterId" class="form-select">
+
+                <option>@Model.Renter.Name</option>
+                @foreach (var item in (List<RenterDto>)ViewData["renters"])
+                {
+                    <option value=@item.Id>@item.Name </option>
+
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            <select asp-for="ScheduleId" class="form-select">
+
+                <option>@Model.Schedule.Name</option>
+                @foreach (var item in (List<ScheduleDto>)ViewData["schedules"])
+                {
+                    <option value=@item.Id>@item.Name </option>
+
+                }
+
             </select>
         </div>
 
 
-    <div class="col-4">
-        <label asp-for="TotalWorkers" class="form-label"> Total of Workers</label>
-        <input asp-for="TotalWorkers" type="text" value=@Model.TotalWorkers class="form-control">
+        <div class="col-4">
+            <label asp-for="TotalWorkers" class="form-label">Workers</label>
+            <input asp-for="TotalWorkers" type="text" value=@Model.TotalWorkers class="form-control">
+        </div>
     </div>
+   
+   
+
+    <div class="row">
+
+        <div class="col-4">
+            <label asp-for="ArrivalDate" class="form-label">Arrival Date</label>
+            <input asp-for="ArrivalDate" type="text" value=@Model.ArrivalDate class="form-control">
+        </div>
+
+        <div class="col-4">
+            <label asp-for="LeavingDate" class="form-label">Leaving Date</label>
+            <input asp-for="LeavingDate" type="text" value=@Model.LeavingDate class="form-control">
+        </div>
+    </div>
+     
     <div>
         <button type="submit" class="btn btn-primary"> Save </button>
     </div>

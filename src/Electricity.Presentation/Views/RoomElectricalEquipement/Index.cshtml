@@ -12,11 +12,8 @@
 
         <tr>
             <th scope="col">Room </th>
-            <th scope="col">Renter</th>
             <th scope="col">Device</th>
-            <th scope="col">Power</th>
-            <th scope="col">Coeffcient</th>
-            <th scope="col">Working Time </th>
+            <th scope="col">Quantity </th>
             <th scope="col">Action</th>
 
         </tr>
@@ -26,11 +23,9 @@
         {
             <tr>
                 <td>@item.Room.Name</td>
-                <td>@item.Room.Renter.Name</td>
                 <td> @item.ElectricalEquipement.Name</td>
-                <td>@item.ElectricalEquipement.Power</td>
-                <td>@item.ElectricalEquipement.Coefficient</td>
-                <td>@item.WorkingTime</td>
+                <td>@item.Quantity</td>
+               
                
                 <td>
                     <a class="btn btn-secondary" href="RoomElectricalEquipement/Edit/@item.Id"><i class="bi bi-pencil-square mx-2"></i>edit</a>

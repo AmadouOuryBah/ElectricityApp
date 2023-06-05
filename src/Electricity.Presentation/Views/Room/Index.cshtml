@@ -21,11 +21,13 @@
 
         <tr>
             <th scope="col"> Name</th>
-            <th scope="col">Floor</th>
             <th scope="col">Renter</th>
             <th scope="col">Building</th>
-            <th scope="col">Room Area</th>
-            <th scope="col">Total of Workers</th>
+            <th scope="col">Area</th>
+            <th scope="col">Workers</th>
+            <th> scope="col">Schedule</th>
+            <th> scope="col">Arrival Date</th>
+            <th> scope="col">Leaving Date</th>
             @{
                 if (User.HasClaim(ClaimsIdentity.DefaultRoleClaimType, "admin"))
                 {
@@ -42,12 +44,13 @@
             <tr>
                
                 <td>@room.Name</td>
-                <td>@room.Floor</td>
                 <td>@room.Renter.Name</td>
-
                  <td>@room.Building.Name </td>
                 <td>@room.RoomArea</td>
                 <td>@room.TotalWorkers</td>
+                <td>@room.Schedule.Name</td>
+                <td>@room.ArrivalDate</td>
+                <td>@room.LeavingDate</td>
                 
                 
                 @{

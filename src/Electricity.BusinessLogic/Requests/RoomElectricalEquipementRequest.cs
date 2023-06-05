@@ -6,7 +6,7 @@ namespace Electricity.BusinessLogic.Requests
     {
         public int RoomId { get; set; }
         public int ElectricalEquipementId { get; set; }
-        public int WorkingTime { get; set; }
+       public int Quantity { get; set; }
       
     }
 }

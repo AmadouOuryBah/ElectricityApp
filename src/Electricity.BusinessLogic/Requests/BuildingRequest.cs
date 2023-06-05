@@ -9,6 +9,7 @@ namespace Electricity.BusinessLogic.Requests
         public string Address { get; set; }
         public string City { get; set; }
         public double BuildingArea { get; set; }
+        public int RenterId { get; set; }
        
 
     }

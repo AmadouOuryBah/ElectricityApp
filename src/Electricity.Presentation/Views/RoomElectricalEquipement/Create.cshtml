@@ -14,9 +14,6 @@
             {
                 <option value=@item.Id>
                     <span>@item.Name</span>
-                    <span>@item.Floor</span>
-                    <span>@item.Building.Name</span>
-                    <span>@item.Building.City</span>
                 </option>
 
             }
@@ -29,17 +26,19 @@
 
             @foreach (var item in (List<ElectricalEquipementDto>)ViewData["equipements"])
             {
-                <option value=@item.Id>@item.Name <span>Power: </span>@item.Power</option>
+                <option value=@item.Id>@item.Name / @item.Power</option>
 
             }
         </select>
     </div>
 
     <div class="col-6">
-        <label asp-for="WorkingTime" class="form-label"> Time </label>
-        <input asp-for="WorkingTime" type="text" class="form-control">
+        <label asp-for="Quantity" class="form-label"> Quantity </label>
+        <input asp-for="Quantity" type="text" class="form-control">
     </div>
+
     <div>
-        <button  class="btn btn-primary">Add  electrical equipement in room </button>
+        <button  type="submit" class="btn btn-primary"> Create </button>
+        <a class="btn btn-secondary" asp-controller="RoomElectricalEquipement" asp-action="Index">Back </a>
     </div>
 </form>

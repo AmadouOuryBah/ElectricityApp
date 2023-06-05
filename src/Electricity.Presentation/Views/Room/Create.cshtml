@@ -15,7 +15,6 @@
                 {
                     <option value=@item.Id>
                         <span>@item.Name</span>
-                        <span>@item.Address</span>
                         <span>@item.City</span>
                     </option>
 
@@ -31,9 +30,20 @@
    
 
    <div class="row">
-        <div class=" mb-2 col-4">
-            <label asp-for="Floor" class="form-label">Floor</label>
-            <input asp-for="Floor" type="number" class="form-control">
+      
+        <div class="mb-2 col-4">
+            <label asp-for="ScheduleId" class="form-label">Schedule</label>
+
+            <select asp-for="ScheduleId" class="form-select">
+
+                @foreach (var item in (List<ScheduleDto>)ViewData["schedules"])
+                {
+                    <option value=@item.Id>
+                        <span>@item.Name</span>
+                    </option>
+
+                }
+            </select>
         </div>
 
         <div class=" mb-2 col-4">
@@ -58,10 +68,24 @@
         </div>
 
         <div class=" mb- 2 col-4">
-            <label asp-for="TotalWorkers" class="form-label">Total of workers</label>
+            <label asp-for="TotalWorkers" class="form-label"> Workers</label>
             <input asp-for="TotalWorkers" type="text" class="form-control">
         </div>
    </div>
+
+    <div class="row">
+
+        <div class=" mb- 2 col-4">
+            <label asp-for="ArrivalDate" class="form-label"> Arrival Date</label>
+            <input asp-for="ArrivalDate" type="text" class="form-control">
+        </div>
+
+        <div class=" mb-2 col-4">
+            <label asp-for="LeavingDate" class="form-label">Leaving Date </label>
+            <input asp-for="LeavingDate" type="number" class="form-control">
+        </div>
+   </div>
+
 
 
     <div>
