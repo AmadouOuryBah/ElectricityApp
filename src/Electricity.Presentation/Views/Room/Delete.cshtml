@@ -8,13 +8,13 @@
 
     <div class="row">
 
-         <div class="mb-3 col-4">
+         <div class="mb-3 col-6">
             <label asp-for="Name" class="form-label">Name</label>
             <input asp-for="Name" type="text" value=@Model.Name disabled class="form-control">
          </div>
 
 
-        <div class="mb-3 col-4">
+        <div class="mb-3 col-6">
             <label asp-for="RoomArea" class="form-label">Area</label>
             <input asp-for="RoomArea" disabled type="text" value=@Model.RoomArea class="form-control">
         </div>
@@ -22,13 +22,15 @@
    
 
     <div class="row">
-          <div class="col-4">
+          <div class="col-6">
+            <label asp-for="BuildingId" class="form-label">Building</label>
                <select disabled asp-for="BuildingId" class="form-select">
                    <option >@Model.Building.Name </option>
                 </select>
           </div>
 
-        <div class="col-4">
+        <div class="col-6">
+             <label asp-for="RenterId" class="form-label">Renter</label>
             <select disabled asp-for="RenterId" class="form-select">
 
                 <option> @Model.Renter.Name</option>
@@ -39,12 +41,12 @@
 
     <div class="row">
 
-          <div class="col-4">
+          <div class="col-6">
                 <label asp-for="ArrivalDate" class="form-label"> Arrival Date</label>
                 <input value=@Model.ArrivalDate asp-for="ArrivalDate" disabled type="text" class="form-control">
           </div>
 
-        <div class="col-4">
+        <div class="col-6">
             <label asp-for="LeavingDate" class="form-label"> Leaving Date</label>
             <input value=@Model.LeavingDate asp-for="LeavingDate" disabled type="text" class="form-control">
         </div>

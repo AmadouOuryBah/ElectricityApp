@@ -13,7 +13,7 @@ namespace Electricity.BusinessLogic.Requests
         public int ScheduleId { get; set; }
 
         public DateTime ArrivalDate { get; set; }
-        public DateTime LeavingDate { get; set; }
+        public DateTime? LeavingDate { get; set; } 
 
 
 

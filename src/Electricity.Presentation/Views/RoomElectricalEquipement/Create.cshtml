@@ -8,6 +8,7 @@
    
 
     <div class="col-6">
+         <label class="form-control">Room</label>
         <select asp-for="RoomId" class="form-select">
 
             @foreach (var item in (List<RoomDto>)ViewData["rooms"])
@@ -21,8 +22,9 @@
     </div>
 
     <div class="col-6">
+         <label class="form-control">Device</label>
         <select asp-for="ElectricalEquipementId" class="form-select">
-            <option>Select device</option>
+           
 
             @foreach (var item in (List<ElectricalEquipementDto>)ViewData["equipements"])
             {

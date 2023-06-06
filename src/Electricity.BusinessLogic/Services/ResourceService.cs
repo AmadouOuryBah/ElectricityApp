@@ -63,11 +63,11 @@ namespace Electricity.BusinessLogic.Services
         {
             var resourceFound = await _repository.GetByIdAsync(resource.Id);
 
-            resource.Month = resource.Month;
-            resource.Year = resource.Year;
-            resource.Quantity = resource.Quantity;
-            resource.ResourceType = resource.ResourceType;
-            resource.BuildingId = resource.BuildingId;
+            resourceFound.Month = resource.Month;
+            resourceFound.Year = resource.Year;
+            resourceFound.Quantity = resource.Quantity;
+            resourceFound.ResourceType = resource.ResourceType;
+            resourceFound.BuildingId = resource.BuildingId;
             
             _repository.Update(resourceFound);
             await _unitOfWork.SaveChangesAsync();

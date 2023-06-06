@@ -6,7 +6,7 @@
 <form class="row g-3 mt-4" method="post" asp-controller="Room">
 
     <div class="row">
-        <div class="mb-2 col-4">
+        <div class="mb-2 col-6">
             <label asp-for="BuildingId" class="form-label">Building</label>
 
             <select asp-for="BuildingId" class="form-select">
@@ -22,7 +22,7 @@
             </select>
         </div>
 
-        <div class="mb-2 col-4">
+        <div class="mb-2 col-6">
             <label asp-for="Name" class="form-label">Name</label>
             <input asp-for="Name" type="text" class="form-control">
         </div>
@@ -31,7 +31,7 @@
 
    <div class="row">
       
-        <div class="mb-2 col-4">
+        <div class="mb-2 col-6">
             <label asp-for="ScheduleId" class="form-label">Schedule</label>
 
             <select asp-for="ScheduleId" class="form-select">
@@ -46,9 +46,9 @@
             </select>
         </div>
 
-        <div class=" mb-2 col-4">
+        <div class=" mb-2 col-6">
             <label asp-for="RoomArea" class="form-label">Area </label>
-            <input asp-for="RoomArea" type="number" class="form-control">
+            <input asp-for="RoomArea" type="text" class="form-control">
         </div>
    </div>
 
@@ -56,7 +56,9 @@
 
    <div class="row">
 
-        <div class=" mb-2 col-4">
+       
+        <div class=" mb-2 col-6">
+             <label asp-for="RenterId" class="form-label">Renters </label>
             <select asp-for="RenterId" class="form-select">
 
                 @foreach (var item in (List<RenterDto>)ViewData["renters"])
@@ -67,7 +69,7 @@
             </select>
         </div>
 
-        <div class=" mb- 2 col-4">
+        <div class=" mb- 2 col-6">
             <label asp-for="TotalWorkers" class="form-label"> Workers</label>
             <input asp-for="TotalWorkers" type="text" class="form-control">
         </div>
@@ -75,20 +77,22 @@
 
     <div class="row">
 
-        <div class=" mb- 2 col-4">
+        <div class=" mb-2 col-6">
             <label asp-for="ArrivalDate" class="form-label"> Arrival Date</label>
             <input asp-for="ArrivalDate" type="text" class="form-control">
         </div>
 
-        <div class=" mb-2 col-4">
+        <div class=" mb-2 col-6">
             <label asp-for="LeavingDate" class="form-label">Leaving Date </label>
-            <input asp-for="LeavingDate" type="number" class="form-control">
+            <input asp-for="LeavingDate" type="text" class="form-control">
         </div>
    </div>
 
+   <div class="row">
+        <div class="col-4">
+            <button type="submit" class="btn btn-primary">creeate room</button>
+        </div>
+   </div>
 
-
-    <div>
-        <button class="btn btn-primary">add</button>
-    </div>
+   
 </form>

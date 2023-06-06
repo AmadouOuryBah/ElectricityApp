@@ -11,13 +11,13 @@
 
     <div class="row">
 
-        <div class="mb-3 col-4">
+        <div class="mb-3 col-6">
             <label asp-for="Name" class="form-label">Name</label>
             <input asp-for="Name" type="text" class="form-control" value="@Model.Name">
         </div>
 
 
-        <div class="mb-3 col-4">
+        <div class="mb-3 col-6">
             <label asp-for="RoomArea" class="form-label">Area</label>
             <input asp-for="RoomArea" type="text" class="form-control" value="@Model.RoomArea">
         </div>
@@ -25,10 +25,10 @@
     
     <div  class="row">
 
-        <div class="col-4">
+        <div class="col-6">
             <select asp-for="BuildingId" class="form-select">
-
-                <option>@Model.Building.Name <span>@Model.Building.Address</span> <span>@Model.Building.City</span></option>
+                <label class="form-label">Building<</label>
+                <option>@Model.Building.Name </option>
                 @foreach (var item in (List<BuildingDto>)ViewData["buildings"])
                 {
                     <option value=@item.Id>
@@ -40,9 +40,9 @@
             </select>
         </div>
 
-        <div class="col-4">
+        <div class="col-6">
             <select asp-for="RenterId" class="form-select">
-
+                <label class="form-label">Renters<</label>
                 <option>@Model.Renter.Name</option>
                 @foreach (var item in (List<RenterDto>)ViewData["renters"])
                 {
@@ -54,9 +54,9 @@
     </div>
 
     <div class="row">
-        <div class="col-4">
+        <div class="col-6">
             <select asp-for="ScheduleId" class="form-select">
-
+                <label class="form-label">Schedule<</label>
                 <option>@Model.Schedule.Name</option>
                 @foreach (var item in (List<ScheduleDto>)ViewData["schedules"])
                 {
@@ -68,7 +68,7 @@
         </div>
 
 
-        <div class="col-4">
+        <div class="col-6">
             <label asp-for="TotalWorkers" class="form-label">Workers</label>
             <input asp-for="TotalWorkers" type="text" value=@Model.TotalWorkers class="form-control">
         </div>
@@ -78,12 +78,12 @@
 
     <div class="row">
 
-        <div class="col-4">
+        <div class="col-6">
             <label asp-for="ArrivalDate" class="form-label">Arrival Date</label>
             <input asp-for="ArrivalDate" type="text" value=@Model.ArrivalDate class="form-control">
         </div>
 
-        <div class="col-4">
+        <div class="col-6">
             <label asp-for="LeavingDate" class="form-label">Leaving Date</label>
             <input asp-for="LeavingDate" type="text" value=@Model.LeavingDate class="form-control">
         </div>

@@ -113,6 +113,7 @@ namespace Electricity.BusinessLogic.Services
             roomFound.RoomArea = room.RoomArea;
             roomFound.BuildingId = room.BuildingId;
             roomFound.RenterId = room.RenterId;
+            roomFound.ScheduleId = room.ScheduleId;
 
             _repository.Update(roomFound);
             await _unitOfWork.SaveChangesAsync();

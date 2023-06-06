@@ -28,8 +28,7 @@ namespace Electricity.DataAccess.Repositories
         {
             return buildings
                 .Include(building => building.Rooms)
-                
-                
+                .Include(building => building.Renter)
                 .ToListAsync();
         }
 
