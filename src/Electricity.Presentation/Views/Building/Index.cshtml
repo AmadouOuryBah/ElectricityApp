@@ -24,7 +24,7 @@
             <th scope="col">Name</th>
             <th scope="col">Adress</th>
             <th scope="col">City</th>
-         
+            <th scope="col">Renter</th>
             <th scope="col">Building Area</th>
             @{
                 if (User.HasClaim(ClaimsIdentity.DefaultRoleClaimType, "admin"))
@@ -42,7 +42,7 @@
                 <td>@item.Name</td>
                 <td>@item.Address</td>
                  <td>@item.City</td>
-               
+                   <td>@item.Renter.Name</td>
                 <td>@item.BuildingArea</td>
                 @{
                     if(User.HasClaim(ClaimsIdentity.DefaultRoleClaimType, "admin"))

@@ -32,15 +32,21 @@
             <label asp-for="City" class="form-label">City</label>
             <input disabled asp-for="City" type="text" value=@Model.City class="form-control">
         </div>
+        <div class="mb-2 col-6">
+            <label asp-for="RenterId" class="form-label">Renter</label>
 
-
-        <div class="col-6">
-            <label asp-for="BuildingArea" class="form-label"> Area</label>
-            <input value=@Model.BuildingArea asp-for="BuildingArea" disabled type="text" class="form-control">
+            <select asp-for="RenterId" class="form-select">
+                <option>@Model.Renter.Name</option>
+             </select>
         </div>
-    </div>
-   
 
+      
+    </div>
+
+    <div class="col-6">
+        <label asp-for="BuildingArea" class="form-label"> Area</label>
+        <input value=@Model.BuildingArea asp-for="BuildingArea" disabled type="text" class="form-control">
+    </div>
    
     <div>
         <button type="submit" class="btn btn-primary"> Delete </button>

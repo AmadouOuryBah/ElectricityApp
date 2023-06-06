@@ -15,15 +15,13 @@
             <select asp-for="RoomId" class="form-select">
                 <option>
                     @Model.Room.Name ,
-                    @Model.Room.Floor
+                  
                 </option>
                 @foreach (var item in (List<RoomDto>)ViewData["rooms"])
                 {
                     <option value=@item.Id>
                         <span>@item.Name</span>,
-                        <span>@item.Floor</span>,
-                        <span>@item.Building.Name</span>,
-                        <span>@item.Building.City</span>
+                       
                     </option>
 
                 }
@@ -41,7 +39,7 @@
                 {
                     <option value=@item.Id>
                         @item.Name
-                        <span>Power:</span> @item.Power
+                        <span>Power : @item.Power
                     </option>
                             
 
@@ -54,8 +52,8 @@
    
     <div class="row">
         <div class="col-6">
-            <label asp-for="WorkingTime" class="form-label"> Working time</label>
-            <input asp-for="WorkingTime" type="text" value=@Model.WorkingTime class="form-control">
+            <label asp-for="Quantity" class="form-label"> Quantity</label>
+            <input asp-for="Quantity" type="text" value=@Model.Quantity class="form-control">
         </div>
     </div>
 

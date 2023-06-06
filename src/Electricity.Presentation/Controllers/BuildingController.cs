@@ -10,11 +10,13 @@ namespace Electricity.Presentation.Controllers
     public class BuildingController : Controller
     {
         private readonly IBuildingService _buildingService;
+        private readonly IRenter _renterService;
 
-        public BuildingController(IBuildingService building)
+        public BuildingController(IBuildingService building, IRenter renterService)
         {
             _buildingService = building;
-          
+            _renterService = renterService;
+
         }
 
         [HttpGet]
@@ -29,6 +31,7 @@ namespace Electricity.Presentation.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
+            ViewData["renters"] = await _renterService.GetAllAsync(); 
             return View();
         }
 
@@ -43,9 +46,7 @@ namespace Electricity.Presentation.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-          //  ViewData["electricityMeters"] = await _electricityMeterService.GetAllAsync();
-          //  ViewData["heatMeters"] = await _heatMeterService.GetAllAsync();
-          //  ViewData["waterMeters"] = await _waterMeterService.GetAllAsync();
+            ViewData["renters"] = await _renterService.GetAllAsync();
 
             return View(await _buildingService.GetById(id));
         }

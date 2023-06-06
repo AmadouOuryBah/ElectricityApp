@@ -34,15 +34,28 @@
         </div>
 
 
+        <div class="mb-2 col-6">
+            <label asp-for="RenterId" class="form-label">Renter</label>
 
+            <select asp-for="RenterId" class="form-select">
+                <option>@Model.Renter.Name</option>
+                @foreach (var item in (List<RenterDto>)ViewData["Renters"])
+                {
+                    <option value=@item.Id>
+                        <span>@item.Name</span>
+                    </option>
 
-
-        <div class="col-6">
-            <label asp-for="BuildingArea" class="form-label"> Area</label>
-            <input asp-for="BuildingArea" type="text" value=@Model.BuildingArea class="form-control">
+                }
+            </select>
         </div>
-   </div>
 
+
+    
+   </div>
+    <div class="col-12">
+        <label asp-for="BuildingArea" class="form-label"> Area</label>
+        <input asp-for="BuildingArea" type="text" value=@Model.BuildingArea class="form-control">
+    </div>
    
     <div>
         <button class="btn btn-primary" type="submit" > Save </button>
