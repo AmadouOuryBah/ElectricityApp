@@ -4,6 +4,6 @@ namespace Electricity.DataAccess.Repositories.Interface
 {
     public interface IRoomRepository : IGenericRepository<Room>
     {
-        Task<List<Room>> GetRoomsByBuilding(int buildingId);
+        List<Room> GetRoomsByBuilding(int buildingId);
     }
 }
