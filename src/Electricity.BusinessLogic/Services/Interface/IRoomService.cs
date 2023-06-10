@@ -10,6 +10,6 @@ namespace Electricity.BusinessLogic.Services.Interface
         Task<RoomDto> AddAsync(RoomRequest room);
         Task<RoomDto> UpdateAsync(RoomDto room);
         Task<string> DeleteAsync(int id);
-        Task<List<RoomElectricalEquipementEnergy>> GetEnergyConsumptionByRenter(int id);
+        //Task<List<RoomElectricalEquipementEnergy>> GetEnergyConsumptionByRenter(int id);
     }
 }

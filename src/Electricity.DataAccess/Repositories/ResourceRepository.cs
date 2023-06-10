@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Electricity.DataAccess.Repositories
 {
-    public class ResourceRepository : IGenericRepository<Resource>
+    public class ResourceRepository : IResourceRepository
     {
         public readonly DbSet<Resource> resources;
 
@@ -38,6 +38,14 @@ namespace Electricity.DataAccess.Repositories
                 .Include(e => e.Building)
                 .Where(e => e.Id == id)
                 .FirstOrDefaultAsync();
+        }
+
+        public Task<double> GetResourceQtity(int year, int month, string resourceType)
+        {
+            return  resources
+                .Where(u => u.ResourceType == resourceType && u.Month == month && u.Year == year)
+                .Select(u => u.Quantity)
+                .SingleOrDefaultAsync(); 
         }
 
         public void Update(Resource item)

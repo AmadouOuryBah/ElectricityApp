@@ -29,10 +29,10 @@ internal class Program
         builder.Services.AddScoped<IGenericRepository<ElectricalEquipement>, ElectricalEquipementRepository>();
         builder.Services.AddScoped<IElectricityEquipement, ElectricalEquipementService>();
 
-        builder.Services.AddScoped<IGenericRepository<Resource>, ResourceRepository>();
+        builder.Services.AddScoped<IResourceRepository, ResourceRepository>();
         builder.Services.AddScoped<IResourceService, ResourceService>();
 
-        builder.Services.AddScoped<IGenericRepository<Room>, RoomRepository>();
+        builder.Services.AddScoped<IRoomRepository, RoomRepository>();
         builder.Services.AddScoped<IRoomService, RoomService>();
 
         builder.Services.AddScoped<IRoomRepository, RoomRepository>();

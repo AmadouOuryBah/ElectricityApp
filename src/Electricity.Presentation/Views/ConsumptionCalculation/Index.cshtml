@@ -1,0 +1,169 @@
+﻿@using Electricity.BusinessLogic.DTO_s;
+@using System.Security.Claims;
+
+
+<h2 class="mt-3">Hot water consumption  calculation of each room located<br />in a specific building </h2>
+
+<form class="row g-3 my-4" method="post" asp-controller="ConsumptionCalculation">
+    <div class="row">
+        <div class="mb-3 col-4">
+            <label class="form-label">Year</label>
+            <select class="form-select">
+
+                <option value="2020">
+                    2020
+                </option>
+                <option value="2021">
+                    2021
+                </option>
+                <option value="2022">
+                    2022
+                </option>
+                 <option value="2023">
+                    2023
+                </option>
+                 <option value="2024">
+                    2024
+                </option>
+                 <option value="2025">
+                    2025
+                </option>
+                 <option value="2026">
+                    2026
+                </option>
+                <option value="2027">
+                    2027
+                </option>
+                 <option value="2028">
+                    2028
+                </option>
+                 <option value="2029">
+                    2029
+                </option>
+                 <option value="2030">
+                    2030
+                </option>
+                <option value="2031">
+                    2031
+                </option>
+            </select>
+        </div>
+
+        <div class="mb-3 col-4">
+            <label  class="form-label">Month</label>
+            <select class="form-select">
+
+                <option value="1">
+                    1
+                </option>
+               <option value="2">
+                    2
+                </option>
+               <option value="3">
+                    3
+                </option>
+                 <option value="4">
+                    4
+                </option>
+                 <option value="5">
+                   5
+                </option>
+                 <option value="6">
+                    6
+                </option>
+                 <option value="7">
+                    7
+                </option>
+                 <option value="8">
+                    8
+                </option>
+                 <option value="9">
+                    9
+                </option>
+                 <option value="10">
+                    10
+                </option>
+                 <option value="11">
+                    11
+                </option>
+                <option value="12">
+                    12
+                </option>
+
+            </select>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="mb-3 col-4">
+            <label  class="form-label">Resource type</label>
+            <select  class="form-select">
+
+                <option value="электроэнергия">
+                    электроэнергия
+                </option>
+                <option value="теплоэнергия(kcal)">
+                    теплоэнергия(kcal)
+                </option>
+                <option value="Кубометры(cube)">
+                    Кубометры (cube meter)
+                </option>
+
+
+            </select>
+        </div>
+
+        <div class="mb-3 col-4">
+            <label  class="form-label"> Building </label>
+            <select class="form-select">
+
+                @foreach (var item in (List<BuildingDto>)ViewData["buildings"])
+                {
+                    <option value=@item.Id>
+                        <span>@item.Name</span>
+                    </option>
+
+                }
+            </select>
+        </div>
+
+
+    </div >
+    <div class="row">
+        <div class="col-8">
+            <button type="submit" class="btn btn-primary">Calculate</button>
+        </div>
+    </div>
+
+    
+</form>
+
+<div class="mt-3">
+    <h3>Result after calculation</h3>
+</div>
+<table class="table my-4">
+
+    <thead class="table-dark">
+
+        <tr>
+            <th scope="col">Year</th>
+            <th scope="col">Month</th>
+            <th scope="col">Ressource Type</th>
+
+            <th scope="col">Building</th>
+            <th scope="col">Quantity </th>
+            @{
+                if (User.HasClaim(ClaimsIdentity.DefaultRoleClaimType, "admin"))
+                {
+                    <th scope="col">Action</th>
+                }
+            }
+        </tr>
+    </thead>
+
+    <tbody>
+      
+    </tbody>
+</table>
+

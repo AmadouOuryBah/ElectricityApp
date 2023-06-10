@@ -15,11 +15,11 @@ namespace Electricity.BusinessLogic.Services
     public class ResourceService : IResourceService
     {
 
-        public readonly IGenericRepository<Resource> _repository;
+        public readonly IResourceRepository _repository;
         public readonly IMapper _mapper;
         public readonly IUnitOfWork _unitOfWork;
 
-        public ResourceService(IGenericRepository<Resource> electricityConsumptionRepository, IMapper mapper, IUnitOfWork unitOfWork)
+        public ResourceService(IResourceRepository electricityConsumptionRepository, IMapper mapper, IUnitOfWork unitOfWork)
         {
             _repository = electricityConsumptionRepository;
             _mapper = mapper;

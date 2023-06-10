@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Electricity.DataAccess.Repositories
 {
-    public class RoomRepository : IGenericRepository<Room>, IRoomRepository
+    public class RoomRepository : IRoomRepository
     {
         public readonly DbSet<Room> rooms; 
 
@@ -22,6 +22,15 @@ namespace Electricity.DataAccess.Repositories
         public void Delete(Room item)
         {
             rooms.Remove(item);
+        }
+
+        public Task<List<Room>> GetRoomsByBuilding(int buildingId)
+        {
+            return rooms.Include(room => room.Building)
+                 .Include(room => room.Renter)
+                 .Include(room => room.Schedule)
+                 .Where(room => room.BuildingId == buildingId)
+                 .ToListAsync();
         }
 
         public Task<List<Room>> GetAllAsync()
