@@ -28,6 +28,7 @@ internal class Program
 
         builder.Services.AddScoped<IGenericRepository<ElectricalEquipement>, ElectricalEquipementRepository>();
         builder.Services.AddScoped<IElectricityEquipement, ElectricalEquipementService>();
+        builder.Services.AddScoped<IConsumptionCalcultationService, ConsumptionComputationService>();
 
         builder.Services.AddScoped<IResourceRepository, ResourceRepository>();
         builder.Services.AddScoped<IResourceService, ResourceService>();

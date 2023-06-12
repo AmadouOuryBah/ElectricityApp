@@ -3,9 +3,6 @@ using Electricity.BusinessLogic.Requests;
 using Electricity.BusinessLogic.Services.Interface;
 using Electricity.DataAccess.Entities;
 using Electricity.DataAccess.Repositories.Interface;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
 
 namespace Electricity.BusinessLogic.Services
 {
