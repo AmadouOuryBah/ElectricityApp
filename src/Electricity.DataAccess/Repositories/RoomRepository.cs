@@ -24,13 +24,13 @@ namespace Electricity.DataAccess.Repositories
             rooms.Remove(item);
         }
 
-        public Task<List<Room>> GetRoomsByBuilding(int buildingId)
+        public List<Room> GetRoomsByBuilding(int buildingId)
         {
             return rooms.Include(room => room.Building)
                  .Include(room => room.Renter)
                  .Include(room => room.Schedule)
                  .Where(room => room.BuildingId == buildingId)
-                 .ToListAsync();
+                 .ToList();
         }
 
         public Task<List<Room>> GetAllAsync()

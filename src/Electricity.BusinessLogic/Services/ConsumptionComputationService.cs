@@ -4,6 +4,7 @@ using Electricity.BusinessLogic.Services.Interface;
 using Electricity.DataAccess.Entities;
 using Electricity.DataAccess.Repositories.Interface;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace Electricity.BusinessLogic.Services
@@ -21,7 +22,7 @@ namespace Electricity.BusinessLogic.Services
             _scheduleRepository = scheduleRepository;
         }
 
-        public async void FindHotWaterConsumed(FilterParameter filterParameter)
+        public async Task<List<double>> FindHotWaterConsumed(FilterParameter filterParameter)
         {
             var rooms = _roomRepository.GetRoomsByBuilding(filterParameter.BuildingId);
 
@@ -53,26 +54,51 @@ namespace Electricity.BusinessLogic.Services
 
             }
 
-            var schedules = await _scheduleRepository.GetAllAsync();
+            var  schedules = await GetDaysBySchedule();
 
 
+            var kdays = new List<double>();
 
-            foreach (var room in rooms)
+           
+           
+            for( int i = 1; i < rooms.Count;  i++) 
             {
-                foreach (var rejim in schedules)
-                {
+                TimeSpan time  = dates2[i] - dates1[i];
+                double Totaldays = time.Days;
+                
 
+
+                for (int j = 1; j < schedules.Count; j++)
+                {
+                    if (rooms[i].Schedule.Name == schedules[j].name)
+                    {
+                        Totaldays = Math.Floor((Totaldays * schedules[j].day) / 7);
+
+                        kdays.Add(Totaldays);
+                    } 
                 }
+                
             }
 
+            var kp = new List<double>();
+            var k = new double[rooms.Count];
+
+            for (int i = 1; i < rooms.Count; i++)
+            {
+                k[i] = kdays[i] * rooms[i].TotalWorkers;
+
+                 kp.Add(k[i]);
+            }
+            return kp;
         }
 
-        private async Task<List<(string, int)>> GetDaysBySchedule()
+        private async Task<List<(string name, int day)>> GetDaysBySchedule()
         {
 
             var rejimDays = new List<(string, int)>();
 
-            (string name, int day) rejimDay;
+            (string name, int day) rejimDay = ("", 0);
+                
 
             var schedules = await _scheduleRepository.GetAllAsync();
 
