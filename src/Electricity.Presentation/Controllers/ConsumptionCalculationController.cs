@@ -1,7 +1,6 @@
 ﻿using Electricity.BusinessLogic.Requests;
 using Electricity.BusinessLogic.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
-using System.Web.Mvc;
 
 namespace Electricity.Presentation.Controllers
 {

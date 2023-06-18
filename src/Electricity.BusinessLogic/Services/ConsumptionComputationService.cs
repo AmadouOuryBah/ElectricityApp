@@ -26,14 +26,14 @@ namespace Electricity.BusinessLogic.Services
         {
             var rooms = _roomRepository.GetRoomsByBuilding(filterParameter.BuildingId);
 
-            List<DateTime> dates1 = new List<DateTime>();
-            List<DateTime> dates2 = new List<DateTime>();
+            List<DateTime> arrivingDates = new List<DateTime>();
+            List<DateTime> leavingDates = new List<DateTime>();
 
             foreach (var room in rooms)
             {
-                if (room.LeavingDate.Date < new DateTime(01 / 04 / 2023).Date)
+                /*if (room.LeavingDate.Date < new DateTime(01 / 04 / 2023).Date)
                 {
-                    continue;
+                    continue; 
                 }
                 else
                 {
@@ -50,24 +50,43 @@ namespace Electricity.BusinessLogic.Services
                 else
                 {
                     dates2.Add(new DateTime(30 / 04 / 2023));
+                }*/
+                
+                if (room.LeavingDate < new DateTime(1 / filterParameter.Month / filterParameter.Year).Date)
+                {
+                    continue;
+                }
+                else if (room.ArrivalDate >= new DateTime(1 / filterParameter.Month / filterParameter.Year).Date) 
+                {
+                    arrivingDates.Add(room.ArrivalDate);
+                }
+                else if (room.ArrivalDate < new DateTime(1 / filterParameter.Month / filterParameter.Year).Date)
+                {
+                    arrivingDates.Add(new DateTime(1 / filterParameter.Month / filterParameter.Year).Date);
+
+                }
+                
+
+                if ((room.LeavingDate - room.ArrivalDate).Days <= 30)
+                {
+                    leavingDates.Add(room.LeavingDate);
+                }
+                else
+                {
+                    leavingDates.Add(new DateTime(28 / filterParameter.Month / filterParameter.Year).AddDays(2));
                 }
 
             }
 
             var  schedules = await GetDaysBySchedule();
 
-
             var kdays = new List<double>();
 
-           
-           
             for( int i = 1; i < rooms.Count;  i++) 
             {
-                TimeSpan time  = dates2[i] - dates1[i];
+                TimeSpan time  = leavingDates[i] - arrivingDates[i];
                 double Totaldays = time.Days;
-                
-
-
+               
                 for (int j = 1; j < schedules.Count; j++)
                 {
                     if (rooms[i].Schedule.Name == schedules[j].name)
@@ -95,12 +114,8 @@ namespace Electricity.BusinessLogic.Services
         /// getting tuple of number of day by rejim
         /// </summary>
         /// <returns></returns>
-        private async static Task<List<(string, int)>> GetDaysBySchedule()
-        {
-
         private async Task<List<(string name, int day)>> GetDaysBySchedule()
         {
-
             var rejimDays = new List<(string, int)>();
 
             (string name, int day) rejimDay = ("", 0);
@@ -110,38 +125,37 @@ namespace Electricity.BusinessLogic.Services
 
             for (int i = 0; i < schedules.Count; i++)
             {
-                
-           
 
-                int kday = 0;
                 if (schedules[i].Sun == true)
                 {
-                    rejimDay = (schedules[i].Name, kday += 1);
+                    rejimDay.day += 1;
                 }
                 if (schedules[i].Mon == true)
                 {
-                    rejimDay = (schedules[i].Name, kday += 1);
+                    rejimDay.day += 1;
                 }
                 if (schedules[i].Tue == true)
                 {
-                    rejimDay = (schedules[i].Name, kday += 1);
+                    rejimDay.day += 1;
                 }
                 if (schedules[i].Wed == true)
                 {
-                    rejimDay = (schedules[i].Name, kday += 1);
+                    rejimDay.day += 1;
                 }
                 if (schedules[i].Thu == true)
                 {
-                    rejimDay = (schedules[i].Name, kday += 1);
+                    rejimDay.day += 1;
                 }
                 if (schedules[i].Fri == true)
                 {
-                    rejimDay = (schedules[i].Name, kday += 1);
+                    rejimDay.day += 1;
                 }
                 if (schedules[i].Sat == true)
                 {
-                    rejimDay = (schedules[i].Name, kday += 1);
+                    rejimDay.day += 1;
                 }
+
+                rejimDay.name = schedules[i].Name;
 
                 rejimDays.Add(rejimDay);
             }
