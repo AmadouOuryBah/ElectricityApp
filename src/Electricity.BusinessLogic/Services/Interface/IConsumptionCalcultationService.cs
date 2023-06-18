@@ -5,6 +5,6 @@ namespace Electricity.BusinessLogic.Services.Interface
 {
     public interface IConsumptionCalcultationService
     {
-          void FindHotWaterConsumed(FilterParameter filterParameter);
+          Task<List<double>> FindHotWaterConsumed(FilterParameter filterParameter);
     }
 }

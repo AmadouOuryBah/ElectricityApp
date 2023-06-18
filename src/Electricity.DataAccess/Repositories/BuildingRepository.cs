@@ -35,6 +35,7 @@ namespace Electricity.DataAccess.Repositories
         public Task<Building?> GetByIdAsync(int id)
         {
             return buildings.Include(building => building.Rooms)
+                 .Include(building => building.Renter)
                 .Where(building => building.Id == id)
                 .FirstOrDefaultAsync();
         }
