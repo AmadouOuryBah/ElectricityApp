@@ -53,7 +53,6 @@ namespace Electricity.BusinessLogic.Services
 
             }
 
-            var schedules = await _scheduleRepository.GetAllAsync();
 
 
 
@@ -66,18 +65,25 @@ namespace Electricity.BusinessLogic.Services
             }
 
         }
-
-        private async Task<List<(string, int)>> GetDaysBySchedule()
+        /// <summary>
+        /// getting tuple of number of day by rejim
+        /// </summary>
+        /// <returns></returns>
+        private async static Task<List<(string, int)>> GetDaysBySchedule()
         {
 
-            var rejimDays = new List<(string, int)>();
+            var rejimDays = new List<(string name, int day)>();
 
-            (string name, int day) rejimDay;
+            (string, int) rejimDay  = ("", 0);//peut causer un bug 
+         
 
             var schedules = await _scheduleRepository.GetAllAsync();
 
             for (int i = 0; i < schedules.Count; i++)
             {
+                
+           
+
                 int kday = 0;
                 if (schedules[i].Sun == true)
                 {
@@ -107,9 +113,10 @@ namespace Electricity.BusinessLogic.Services
                 {
                     rejimDay = (schedules[i].Name, kday += 1);
                 }
+
                 rejimDays.Add(rejimDay);
             }
-
+          
             return rejimDays;
         }
     }
