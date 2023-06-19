@@ -1,0 +1,17 @@
+SET IDENTITY_INSERT [dbo].[Resources] ON
+INSERT INTO [dbo].[Resources] ([Id], [Year], [Month], [ResourceType], [BuildingId], [Quantity]) VALUES (2, 2023, 1, N'ElectroEnergya', 4, 4200)
+INSERT INTO [dbo].[Resources] ([Id], [Year], [Month], [ResourceType], [BuildingId], [Quantity]) VALUES (3, 2023, 1, N'HeatMeter (kcal)', 4, 31)
+INSERT INTO [dbo].[Resources] ([Id], [Year], [Month], [ResourceType], [BuildingId], [Quantity]) VALUES (4, 2023, 1, N'Kumbo meter(cube)', 4, 1240)
+INSERT INTO [dbo].[Resources] ([Id], [Year], [Month], [ResourceType], [BuildingId], [Quantity]) VALUES (5, 2023, 2, N'ElectroEnergya', 4, 4000)
+INSERT INTO [dbo].[Resources] ([Id], [Year], [Month], [ResourceType], [BuildingId], [Quantity]) VALUES (6, 2023, 2, N'HeatMeter (kcal)', 4, 27)
+INSERT INTO [dbo].[Resources] ([Id], [Year], [Month], [ResourceType], [BuildingId], [Quantity]) VALUES (7, 2023, 2, N'Kumbo meter(cube)', 4, 1450)
+INSERT INTO [dbo].[Resources] ([Id], [Year], [Month], [ResourceType], [BuildingId], [Quantity]) VALUES (8, 2023, 3, N'ElectroEnergya', 4, 4100)
+INSERT INTO [dbo].[Resources] ([Id], [Year], [Month], [ResourceType], [BuildingId], [Quantity]) VALUES (9, 2023, 3, N'HeatMeter (kcal)', 4, 22)
+INSERT INTO [dbo].[Resources] ([Id], [Year], [Month], [ResourceType], [BuildingId], [Quantity]) VALUES (10, 2023, 3, N'Kumbo meter(cube)', 4, 1260)
+INSERT INTO [dbo].[Resources] ([Id], [Year], [Month], [ResourceType], [BuildingId], [Quantity]) VALUES (11, 2023, 4, N'ElectroEnergya', 4, 3800)
+INSERT INTO [dbo].[Resources] ([Id], [Year], [Month], [ResourceType], [BuildingId], [Quantity]) VALUES (12, 2023, 4, N'HeatMeter (kcal)', 4, 15)
+INSERT INTO [dbo].[Resources] ([Id], [Year], [Month], [ResourceType], [BuildingId], [Quantity]) VALUES (13, 2023, 4, N'Kumbo meter(cube)', 4, 1810)
+INSERT INTO [dbo].[Resources] ([Id], [Year], [Month], [ResourceType], [BuildingId], [Quantity]) VALUES (14, 2023, 5, N'ElectroEnergya', 4, 3950)
+INSERT INTO [dbo].[Resources] ([Id], [Year], [Month], [ResourceType], [BuildingId], [Quantity]) VALUES (15, 2023, 5, N'HeatMeter (kcal)', 4, 0)
+INSERT INTO [dbo].[Resources] ([Id], [Year], [Month], [ResourceType], [BuildingId], [Quantity]) VALUES (16, 2023, 5, N'Kumbo meter(cube)', 4, 1150)
+SET IDENTITY_INSERT [dbo].[Resources] OFF

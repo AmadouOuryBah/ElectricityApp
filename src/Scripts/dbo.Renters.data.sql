@@ -1,0 +1,16 @@
+SET IDENTITY_INSERT [dbo].[Renters] ON
+INSERT INTO [dbo].[Renters] ([Id], [Name]) VALUES (1059, N'ОДО "Рент-Лизa"')
+INSERT INTO [dbo].[Renters] ([Id], [Name]) VALUES (1060, N'ЧПТУП «Гомельстройкомплект»')
+INSERT INTO [dbo].[Renters] ([Id], [Name]) VALUES (1061, N'ЧТУП "Мировые двери"')
+INSERT INTO [dbo].[Renters] ([Id], [Name]) VALUES (1062, N'РМОО "Встречa"')
+INSERT INTO [dbo].[Renters] ([Id], [Name]) VALUES (1063, N'ООО «РБУ основа»')
+INSERT INTO [dbo].[Renters] ([Id], [Name]) VALUES (1064, N'ООО "Космоопт"')
+INSERT INTO [dbo].[Renters] ([Id], [Name]) VALUES (1065, N'ООО "Центлизинг"')
+INSERT INTO [dbo].[Renters] ([Id], [Name]) VALUES (1066, N'ООО "Нэкстстройгрупп"')
+INSERT INTO [dbo].[Renters] ([Id], [Name]) VALUES (1067, N'ЧПУП "ХлебНицца"')
+INSERT INTO [dbo].[Renters] ([Id], [Name]) VALUES (1068, N'ООО "МонолитПромИнвест"')
+INSERT INTO [dbo].[Renters] ([Id], [Name]) VALUES (1069, N'ИП "Бауер-Интернешнл"')
+INSERT INTO [dbo].[Renters] ([Id], [Name]) VALUES (1070, N'ООО  «Кантермбел»')
+INSERT INTO [dbo].[Renters] ([Id], [Name]) VALUES (1071, N'ОДО "ИГДЕ"')
+INSERT INTO [dbo].[Renters] ([Id], [Name]) VALUES (1072, N'ИП Морозов')
+SET IDENTITY_INSERT [dbo].[Renters] OFF

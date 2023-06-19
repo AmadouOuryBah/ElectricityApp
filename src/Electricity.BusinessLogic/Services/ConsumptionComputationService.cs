@@ -1,4 +1,6 @@
 ﻿
+using AutoMapper;
+using Electricity.BusinessLogic.DTO_s;
 using Electricity.BusinessLogic.Requests;
 using Electricity.BusinessLogic.Services.Interface;
 using Electricity.DataAccess.Entities;
@@ -11,21 +13,22 @@ namespace Electricity.BusinessLogic.Services
         private readonly IRoomRepository _roomRepository;
         private readonly IResourceRepository _resourceRepository;
         private readonly IGenericRepository<Schedule> _scheduleRepository;
+        private readonly IMapper _mapper;
         public ConsumptionComputationService(IRoomRepository roomRepository, IResourceRepository resourceRepository,
-            IGenericRepository<Schedule> scheduleRepository)
+            IGenericRepository<Schedule> scheduleRepository, IMapper mapper)
         {
             _roomRepository = roomRepository;
             _resourceRepository = resourceRepository;
             _scheduleRepository = scheduleRepository;
+            _mapper = mapper;
         }
 
-        public async Task<List<double>> FindHotWaterConsumed(FilterParameter filterParameter)
+        public async Task<List<RenterByConsumedWater>> HotWaterConsumedByRenter(FilterParameter filterParameter)
         {
             var rooms = _roomRepository.GetRoomsByBuilding(filterParameter.BuildingId);
+            var roomsFiltered = new List<RoomFiltered>();
 
-            List<DateTime> arrivingDates = new List<DateTime>();
-            List<DateTime> leavingDates = new List<DateTime>();
-
+       
             foreach (var room in rooms)
             {
                 /*if (room.LeavingDate.Date < new DateTime(01 / 04 / 2023).Date)
@@ -48,30 +51,43 @@ namespace Electricity.BusinessLogic.Services
                 {
                     dates2.Add(new DateTime(30 / 04 / 2023));
                 }*/
+                RoomFiltered roomFiltered = new RoomFiltered();
                 
-                if (room.LeavingDate < new DateTime(1 / filterParameter.Month / filterParameter.Year).Date)
+                if (room.LeavingDate < new DateTime(filterParameter.Year, filterParameter.Month, 1).Date)
                 {
                     continue;
                 }
-                else if (room.ArrivalDate >= new DateTime(1 / filterParameter.Month / filterParameter.Year).Date) 
+                else if (room.ArrivalDate >= new DateTime(filterParameter.Year, filterParameter.Month, 1).Date) 
                 {
-                    arrivingDates.Add(room.ArrivalDate);
+                    
+                    roomFiltered.ArrivalDate = room.ArrivalDate.Date;
                 }
-                else if (room.ArrivalDate < new DateTime(1 / filterParameter.Month / filterParameter.Year).Date)
+                else if (room.ArrivalDate < new DateTime(filterParameter.Year, filterParameter.Month, 1).Date)
                 {
-                    arrivingDates.Add(new DateTime(1 / filterParameter.Month / filterParameter.Year).Date);
-
+                   
+                    roomFiltered.ArrivalDate = new DateTime(filterParameter.Year, filterParameter.Month, 1).Date;
                 }
-                
 
-                if ((room.LeavingDate - room.ArrivalDate).Days <= 30)
+
+                if (Math.Abs((room.LeavingDate - room.ArrivalDate).Days) <= 30)
                 {
-                    leavingDates.Add(room.LeavingDate);
+                    
+                    roomFiltered.LeavingDate = room.LeavingDate.Date;
                 }
                 else
                 {
-                    leavingDates.Add(new DateTime(28 / filterParameter.Month / filterParameter.Year).AddDays(2));
+                   
+
+                    roomFiltered.LeavingDate = new DateTime(filterParameter.Year, filterParameter.Month, 28).AddDays(2);
                 }
+
+                roomFiltered.Renter = room.Renter.Name;
+                roomFiltered.Room = room.Name;
+                roomFiltered.Schedule = room.Schedule.Name;
+                roomFiltered.TotalWorkers = room.TotalWorkers;
+
+                
+                 roomsFiltered.Add(roomFiltered);
 
             }
 
@@ -79,14 +95,13 @@ namespace Electricity.BusinessLogic.Services
 
             var kdays = new List<double>();
 
-            for( int i = 1; i < rooms.Count;  i++) 
+            for( int i = 0; i < roomsFiltered.Count;  i++) 
             {
-                TimeSpan time  = leavingDates[i] - arrivingDates[i];
-                double Totaldays = time.Days;
+                double Totaldays = (roomsFiltered[i].LeavingDate - roomsFiltered[i].ArrivalDate).TotalDays;
                
-                for (int j = 1; j < schedules.Count; j++)
+                for (int j = 0; j < schedules.Count; j++)
                 {
-                    if (rooms[i].Schedule.Name == schedules[j].name)
+                    if (roomsFiltered[i].Schedule == schedules[j].name)
                     {
                         Totaldays = Math.Floor((Totaldays * schedules[j].day) / 7);
 
@@ -97,15 +112,25 @@ namespace Electricity.BusinessLogic.Services
             }
 
             var kp = new List<double>();
-            var k = new double[rooms.Count];
+            var k = new double[roomsFiltered.Count];
+            var rentersByConsumedWater = new List<RenterByConsumedWater>();
 
-            for (int i = 1; i < rooms.Count; i++)
+           
+
+            for (int i = 0; i < roomsFiltered.Count; i++)
             {
-                k[i] = kdays[i] * rooms[i].TotalWorkers;
+                //k[i] = kdays[i] * roomsFiltered[i].TotalWorkers;
+                // kp.Add(k[i]);
 
-                 kp.Add(k[i]);
+                var renterByConsumedWater = new RenterByConsumedWater();
+
+                renterByConsumedWater.Renter = roomsFiltered[i].Renter;
+                renterByConsumedWater.Room = roomsFiltered[i].Room;
+                renterByConsumedWater.Quantity = kdays[i] * roomsFiltered[i].TotalWorkers;
+
+                rentersByConsumedWater.Add(renterByConsumedWater);
             }
-            return kp;
+            return rentersByConsumedWater ;
         }
         /// <summary>
         /// getting tuple of number of day by rejim
@@ -153,7 +178,6 @@ namespace Electricity.BusinessLogic.Services
                 }
 
                 rejimDay.name = schedules[i].Name;
-
                 rejimDays.Add(rejimDay);
             }
           

@@ -1,9 +1,12 @@
 ﻿using Electricity.BusinessLogic.Requests;
 using Electricity.BusinessLogic.Services.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace Electricity.Presentation.Controllers
 {
+    [Authorize(Roles = "admin, user")]
     public class ConsumptionCalculationController : Controller
     {
         private readonly IBuildingService _buildingService;
@@ -17,6 +20,7 @@ namespace Electricity.Presentation.Controllers
         [HttpGet]
         public  async Task<IActionResult> Index()
         {
+            
             ViewData["buildings"] = await _buildingService.GetAllAsync();
 
             return View();
@@ -26,9 +30,13 @@ namespace Electricity.Presentation.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(FilterParameter item)
         {
-           var result = await _consumption.FindHotWaterConsumed(item);
+            ViewData["buildings"] = await _buildingService.GetAllAsync();
+            ViewData["rooms-calcul"] = await _consumption.HotWaterConsumedByRenter(item);
 
-            return View(result);
+
+            return View();
         }
+
+       
     }
 }

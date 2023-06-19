@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Electricity.BusinessLogic.DTO_s.RenterByConsumedWater>
+
+
+<table class="table my-4">
+
+    <thead class="table-dark">
+
+        <tr>
+            <th scope="col">Renter</th>
+            <th scope="col">Room</th>
+            <th scope="col">Quantity </th>
+          
+        </tr>
+    </thead>
+
+     <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Renter</td>
+                <td>@item.Room</td>
+                <td>@item.Quantity</td>
+            </tr>
+
+        }
+    </tbody>
+</table>
+
